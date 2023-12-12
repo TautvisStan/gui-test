@@ -93,7 +93,7 @@ namespace UI
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkBox1.Checked)
+            if(TooSmallControlCheck.Checked)
             {
                 if (!SelectedRules.Contains(Rules.TooSmallControlCheck.ToString()))
                     SelectedRules.Add(Rules.TooSmallControlCheck.ToString());
