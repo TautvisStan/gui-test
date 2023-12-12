@@ -1,6 +1,6 @@
 package com.ipeirotis.readability.endpoints;
-
 /*
+
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,10 +13,10 @@ import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 import com.ipeirotis.readability.engine.Readability;
 import com.ipeirotis.readability.enums.MetricType;
 
-@Api(name = "readability", description = "The API for readability metrics", version = "v1")
+@Api(name = "readability", description = "The API for readability metrics", version = "v1")*/
 public class ReadabilityEndpoint {
 
-    @ApiMethod(name = "getReadabilityMetrics", path = "getReadabilityMetrics", httpMethod = HttpMethod.POST)
+ /*   @ApiMethod(name = "getReadabilityMetrics", path = "getReadabilityMetrics", httpMethod = HttpMethod.POST)
     public Map<MetricType, BigDecimal> get(@Named("text") String text) {
         Map<MetricType, BigDecimal> result = new HashMap<MetricType, BigDecimal>();
         Readability r = new Readability(text);
@@ -28,8 +28,7 @@ public class ReadabilityEndpoint {
         }
 
         return result;
-    }
+    }*/
 
 }
 
-*/

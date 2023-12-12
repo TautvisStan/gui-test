@@ -544,6 +544,25 @@ var		matcher = new ConsistentLocalFeatureMatcher2d<Keypoint>(
 			return null;
 		}
 	}
+	
+	public static BufferedImage BufferedImageSubimage(BufferedImage image, Rect bounds)
+	{
+		BufferedImage subimage = new BufferedImage( 
+	            bounds.width, bounds.height, image.getType() );
+		var imagex = bounds.x;
+		for(int x = 0; x < bounds.width; x++)
+		{
+			var imagey = bounds.y;
+            for(int y = 0; y < bounds.height; y++)
+            {
+            	subimage.setRGB(x, y, image.getRGB(imagex, imagey));
+            	imagey++;
+            }
+            imagex++;
+            
+        }
+		return subimage;
+	}
 		
 	
 

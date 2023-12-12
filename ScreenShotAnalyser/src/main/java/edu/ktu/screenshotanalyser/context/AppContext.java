@@ -3,344 +3,174 @@ package edu.ktu.screenshotanalyser.context;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Pattern;
-import javax.annotation.Nonnull;
-import org.apache.commons.lang3.NotImplementedException;
-import org.opencv.core.Mat;
 import edu.ktu.screenshotanalyser.checks.SystemContext;
-import edu.ktu.screenshotanalyser.database.DataBase.Application;
-import edu.ktu.screenshotanalyser.tools.Settings;
 import edu.ktu.screenshotanalyser.tools.SystemUtils;
-import edu.ktu.screenshotanalyser.utils.ImageUtils;
-import edu.ktu.screenshotanalyser.utils.LazyObject;
+import net.dongliu.apk.parser.ApkFile;
 
 public class AppContext
 {
-	public AppContext(Application app, File dataFolder, List<TestDevice> testDevices, SystemContext systemContext) throws IOException
+	public AppContext(File appFolder, File dataFolder, List<TestDevice> testDevices, SystemContext systemContext) throws IOException
 	{
-		this.app = app;
 		this.dataFolder = dataFolder;
 		this.testDevices = testDevices;
 		this.systemContext = systemContext;
-		this.states = loadStates(app, this.testDevices, this);
-	}
-
-
-	
-	
-	
-
-
-
-	public synchronized List<Drawable> findDrawable(Mat source)
-	{
-		var mainColor = ImageUtils.getMinMaxHsv(source, 2);  		
-		
-		if (mainColor.a().equals(ImageUtils.zero))
-		{
-			return Collections.emptyList();
-		}
-		
-//		System.out.println("" + mainColor.a());
-		
-		if (null == this.allImages)
-		{
-			var result = new ArrayList<Drawable>();
-			var drawableFolders = new File(Settings.unpackedAppsFolder + this.app.apkFile() + "/res/").listFiles(p -> p.getName().startsWith("drawable") && p.isDirectory());			
-
-			for (var folder : drawableFolders)
-			{
-				var images = folder.listFiles(p -> p.getName().endsWith(".png") || p.getName().endsWith(".jpg") || p.getName().endsWith(".webp"));
-
-				if (null != images)
-				{
-					for (var image : images)
-					{
-						result.add(new Drawable(image));
-					}
-				}
-			}
-			
-			this.allImages = result.stream().filter(p -> p.is300x300()).toList();
-		}
-		
-		
-		
-		
-		var result = new ArrayList<Drawable>();
-		float similarity = 0;
-		
-		
-
-	
-			for (var image : this.allImages)
-			{
-				try
-				{
-					var cc = ImageUtils.isSimillar(source, image.getScaledTo300x300(), mainColor);
-					
-					if (cc > 0.5f)
-					{
-						result.add(image);
-					}
-					
-				}
-				catch (IOException e)
-				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		
-		
-		return result;
-	}
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	private static List<State> loadStates(Application app, List<TestDevice> testDevices, AppContext appContext)
-	{
-		var result = new ArrayList<State>();
 		
 		for (var testDevice : testDevices)
 		{
-			var stateFiles = new File(testDevice.getFolder(), app.folder() + "/states/").listFiles(pathelement -> pathelement.getAbsolutePath().endsWith("." + STATE_FILE_EXTENSION));
-			
+			System.out.println("checking device path" + testDevice.getFolder().getAbsolutePath() + "/" + appFolder.getName() + "/states/");
+			var stateFiles = new File(testDevice.getFolder().getAbsolutePath() + "/" + appFolder.getName() + "/states/").listFiles(pathelement -> pathelement.getAbsolutePath().endsWith("." + stateFileExtension));
+			System.out.println(testDevice.getFolder().getAbsolutePath() + "/" + appFolder.getName() + "/states/");
 			if (null != stateFiles)
 			{
 				for (var stateFile : stateFiles)
 				{
-					var stateImage = new File(stateFile.getAbsolutePath().replaceAll(STATE_FILE_EXTENSION + "$", "png").replace("state_", "screen_"));
+					var stateImage = new File(stateFile.getAbsolutePath().replaceAll(stateFileExtension + "$", "png").replace("state_", "screen_"));
 				
-					if (!stateImage.exists())
-					{
-						stateImage = new File(stateFile.getAbsolutePath().replaceAll(STATE_FILE_EXTENSION + "$", "jpg").replace("state_", "screen_"));
-					}
-					
 					if ((stateImage.exists()) && (stateImage.isFile()) && (stateImage.length() > 0))
 					{
-						result.add(new State("", appContext, stateImage, stateFile, testDevice));
+						this.states.add(new State("", this, stateImage, stateFile, testDevice));
 					}
-				}
-			}
-		}
-		
-		return result;
-	}
-	
-	public synchronized @Nonnull List<Drawable> findDrawable(UIElement element)
-	{
-		if (element.getBackground() != null)
-		{
-			var result = findDrawable(element.getBackground(), "drawable", true);
-			
-			if (!result.isEmpty())
-			{
-				return result;
-			}
-			
-			return findDrawable(element.getBackground(), "mipmap", true);
-		}
-		else if (element.getSrc() != null)
-		{
-			var result = findDrawable(element.getSrc(), "drawable", true);
-			
-			if (!result.isEmpty())
-			{
-				return result;
-			}
-			
-			return findDrawable(element.getSrc(), "mipmap", true);
-		}
-		
-		return Collections.emptyList();
-	}
-	
-	public synchronized List<Drawable> findDrawable(String id, String type, boolean useSelectors)
-	{
-		if (!id.startsWith("@" + type + "/"))
-		{
-			return Collections.emptyList();
-		}
-		
-		id = id.substring(("@" + type + "/").length());
-		
-		var result = this.drawables.getOrDefault(id, null);
-		
-		if (result == null)
-		{
-			result = new ArrayList<>();
-
-			var drawableFolders = new File(Settings.unpackedAppsFolder + this.app.apkFile() + "/res/").listFiles(p -> p.getName().startsWith(type) && p.isDirectory());
-
-			for (var folder : drawableFolders)
-			{
-				var file1 = new File(folder, id + ".png");
-				var file2 = new File(folder, id + ".jpg");
-				var file3 = new File(folder, id + ".webp");
-				var file4 = new File(folder, id + ".9.png");
-				
-				if (file1.exists())
-				{
-					result.add(new Drawable(file1));
-				}
-				
-				if (file2.exists())
-				{
-					result.add(new Drawable(file2));
-				}				
-				
-				if (file3.exists())
-				{
-					result.add(new Drawable(file3));
-				}				
-
-				if (file4.exists())
-				{
-					result.add(new Drawable(file4));
-				}				
-			}
-			
-			if (result.isEmpty() && useSelectors)
-			{
-				var drawableFile = new File(Settings.unpackedAppsFolder + this.app.apkFile() + "/res/drawable/" + id + ".xml");
-				
-				if (drawableFile.exists())
-				{
-					var drawable = new DrawableDocument(drawableFile);
-					var rootElement = drawable.getRoot();
-					
-					if ("selector".equals(rootElement.getType()))
+					else
 					{
-						for (var item : rootElement.getChildren())
+						stateImage = new File(stateFile.getAbsolutePath().replaceAll(stateFileExtension + "$", "jpg").replace("state_", "screen_"));
+					
+						if ((stateImage.exists()) && (stateImage.isFile()) && (stateImage.length() > 0))
 						{
-							if (item.getDrawable() != null)
-							{
-								var drawables = findDrawable(item.getDrawable(), "drawable", false);
-								
-								result.addAll(drawables);
-							}
+							this.states.add(new State("", this, stateImage, stateFile, testDevice));
 						}
 					}
 				}
 			}
-			
-			this.drawables.put(id, result);
 		}
 		
-		return result;
+		var apkFiles = appFolder.listFiles(p -> p.isFile() && p.getName().endsWith(".apk"));
+		
+		if (apkFiles.length > 0)
+		{
+			this.apkFile = apkFiles[0];
+		}			
 	}
 	
-	private List<Drawable> getAllImages()
+	private synchronized void loadAppInfo()
 	{
-		var result = new ArrayList<Drawable>();
-		var folders = new String[] { "drawable", "mipmap" };
-
-		for (var imageFolder : folders)
+		if (this.name.equals(""))
 		{
-			var drawableFolders = new File(Settings.unpackedAppsFolder + this.app.apkFile() + "/res/").listFiles(p -> p.getName().startsWith(imageFolder) && p.isDirectory());
-
-			for (var folder : drawableFolders)
+			if ((null != this.apkFile) && this.apkFile.length() > 0)
 			{
-				var images = folder.listFiles(p -> p.getName().endsWith(".png") || p.getName().endsWith(".jpg") || p.getName().endsWith(".webp"));
-
-				if (null != images)
+				try (var apkFile = new ApkFile(this.apkFile))
 				{
-					for (var image : images)
+					var apkMeta = apkFile.getApkMeta();
+					// System.out.println(apkMeta.getLabel() + "; " + apkMeta.getPackageName() + "; " + apkMeta.getVersionCode());
+					// System.out.println(apkMeta.getPackageName());
+					// System.out.println(apkMeta.getVersionCode());
+
+					for (var feature : apkMeta.getUsesFeatures())
 					{
-						result.add(new Drawable(image));
+						// System.out.println(feature.getName());
 					}
+
+					var name = apkMeta.getLabel();
+					var version = apkMeta.getVersionName();
+					var packageName = apkMeta.getPackageName();
+
+					this.locales = apkFile.getLocales();
+
+					for (var locale : locales)
+					{
+						// System.out.println(name + " Language: " + locale.getCountry() + " " + locale.toString());
+					}
+
+					if (this.name.startsWith("@string/"))
+					{
+						var messages = getMessages().getTranslations(name.substring("@string/".length()));
+						var nameEnglish = messages.get("en");
+
+						if (null != nameEnglish)
+						{
+							name = nameEnglish;
+						}
+						else
+						{
+							name = messages.get(messages.keySet().iterator().next());
+						}
+					}
+
+					this.packageName = packageName;
+					this.version = version;
+					this.name = name;
 				}
-			}
-		}
+				catch (Exception ex)
+				{
+					ex.printStackTrace(System.err);
 
-		return result;
-	}
-
-	public Drawable getSmallestIcon()
-	{
-		return this.smallestIcon.instance();
-	}
-	
-	public synchronized List<Layout> getLayouts()
-	{
-		if (null == this.layouts)
-		{
-			var layoutFiles = new File(Settings.unpackedAppsFolder + this.app.apkFile() + "/res/layout/").listFiles(p -> p.getAbsolutePath().endsWith(".xml"));
-
-			if (layoutFiles != null)
-			{
-				this.layouts = Arrays.stream(layoutFiles).map(Layout::new).toList();
+					this.packageName = "";
+					this.version = "";
+					this.name = "";
+				}
 			}
 			else
 			{
-				this.layouts = new ArrayList<>();
+				this.packageName = "";
+				this.version = "";
+				this.name = "";
 			}
+
 		}
-		
-		return this.layouts;
 	}
 	
-	public Layout getSplashLayout()
+	public File getApkFile()
 	{
-		for (var layout : getLayouts())
-		{
-			if (layout.getLayoutFile().getName().contains("splash_screen") || layout.getLayoutFile().getName().contains("activity_splash"))
-			{
-				return layout;
-			}
-		}
-		
-		return null;
+		return this.apkFile;
 	}
 	
-	public List<UIElement> findElement(Control control)
+	public String getName()
 	{
-		var result = new ArrayList<UIElement>();
-		var resourceId = control.getResourceId();
-		var matcher = Pattern.compile(".*:id/(.*)$").matcher(resourceId);
+		loadAppInfo();
 		
-		if (matcher.find())
-		{
-			var id = "@id/" + matcher.group(1);		
-			
-			getLayouts().forEach(p -> result.addAll(p.findElement(id)));
-		}
-		
-		return result;
+		return this.name;
 	}
 	
-	public SystemContext getSystemContext()
+	public String getVersion()
 	{
-		return this.systemContext;
-	}	
+		loadAppInfo();
+		
+		return this.version;
+	}
+	
+	public String getPackage()
+	{
+		loadAppInfo();
+		
+		return this.packageName;
+	}
+	
+	public File getDataFolder()
+	{
+		return this.dataFolder;
+	}
 	
 	public List<State> getStates()
 	{
 		return this.states;
 	}
 	
+	public Set<Locale> getLocales()
+	{
+		loadAppInfo();
+		
+		return this.locales;
+	}	
+	
 	public synchronized LocalizedMessages getMessages()
 	{
-/*		if (null == this.messages)
+		if (null == messages)
 		{
-			var tempFolder = new File(Settings.unpackedAppsTempFolder + this.app.apkFile());
+			var tempFolder = new File("e:/3/" + this.apkFile.getName());
 
 			try
 			{
@@ -356,39 +186,59 @@ public class AppContext
 
 			this.messages = new LocalizedMessages(tempFolder, this);
 		}
-*/
+
 		return this.messages;
 	}
 	
-	public record ResourceText(String key, String value, String file)
+	public SystemContext getSystemContext()
 	{
+		return this.systemContext;
 	}
-	
+
 	public Map<String, List<ResourceText>> getResources()
 	{
 		return this.resources;
 	}
 	
-	public File getDataFolder()
-	{
-		return this.dataFolder;
-	}	
-	
-	public String getPackage()
-	{
-		return this.app.packageName();
-	}	
-
-	private LocalizedMessages messages = null;
-	private List<Layout> layouts = null;
-	private List<Drawable> allImages = null;
+	private static final String stateFileExtension = "json";
+	private String name = "";
+	private String version = "";
+	private String packageName = "";
 	private final File dataFolder;	
-	private final Map<String, List<ResourceText>> resources = new HashMap<>();
-	private final SystemContext systemContext;
-	private final HashMap<String, List<Drawable>> drawables = new HashMap<>();
 	private final List<TestDevice> testDevices;
-	private final Application app;
-	private final List<State> states;
-	private LazyObject<Drawable> smallestIcon = new LazyObject<>(() -> getAllImages().stream().filter(p -> p.isIcon() && p.getWidth() > 0).sorted((a, b) -> a.getWidth() - b.getWidth()).findFirst().orElse(null));	
-	private static final String STATE_FILE_EXTENSION = "json";
+	private final List<State> states = new ArrayList<>();
+	private final SystemContext systemContext;
+	private LocalizedMessages messages = null;
+	private File apkFile = null;
+	private Set<Locale> locales = null;
+	private final Map<String, List<ResourceText>> resources = new HashMap<String, List<ResourceText>>();
+
+	public static class ResourceText
+	{
+		public ResourceText(String key, String value, String file)
+		{
+			this.key = key;
+			this.value = value;
+			this.file = file;
+		}
+
+		public String getKey()
+		{
+			return this.key;
+		}
+
+		public String getValue()
+		{
+			return this.value;
+		}
+
+		public String getFile()
+		{
+			return this.file;
+		}
+
+		private final String key;
+		private final String value;
+		private final String file;
+	}
 }

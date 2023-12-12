@@ -1,0 +1,73 @@
+package edu.ktu;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
+import edu.ktu.screenshotanalyser.checks.DataBaseResultsCollector;
+import edu.ktu.screenshotanalyser.checks.RulesSetChecker;
+import edu.ktu.screenshotanalyser.checks.experiments.tausta3.*;
+import edu.ktu.screenshotanalyser.tools.Settings;
+import edu.ktu.screenshotanalyser.StartUp;
+
+public class Runner {
+
+	public static void main(String[] args) throws IOException, InterruptedException
+	{
+		if(args[0].equals("Analyze"))
+		{
+			var checker = new RulesSetChecker();
+			var appDirectory = args[1];
+			var app = new File(appDirectory);
+			for(int i = 2; i < args.length; i++)
+			{
+				if(args[i].equals("TooSmallControlCheck")) checker.addRule(new TooSmallControlCheck());
+				if(args[i].equals("TooLargeControlCheck")) checker.addRule(new TooLargeControlCheck());
+				if(args[i].equals("HiddenControlCheck")) checker.addRule(new HiddenControlCheck());
+				if(args[i].equals("InsufficientSpaceCheck")) checker.addRule(new InsufficientSpaceCheck());
+				if(args[i].equals("InvisibleControlCheck")) checker.addRule(new InvisibleControlCheck());
+				if(args[i].equals("NoMarginsControlCheck")) checker.addRule(new NoMarginsControlCheck());
+				if(args[i].equals("PoorChoiceOfColorsCheck")) checker.addRule(new PoorChoiceOfColorsCheck());
+				if(args[i].equals("LowContrastCheck")) checker.addRule(new LowContrastCheck());
+				if(args[i].equals("EmptyViewCheck")) checker.addRule(new EmptyViewCheck());
+				if(args[i].equals("NonCenteredCheck")) checker.addRule(new NonCenteredCheck());
+			}
+			RunAnalyze(app, checker);
+		}
+
+	}
+	private static void RunAnalyze(File app, RulesSetChecker checker) throws IOException, InterruptedException
+	{
+		StartUp.enableLogs();
+		
+		var failures = new DataBaseResultsCollector("sdssss", false);
+		
+
+		//checker.addRule(new UnalignedControlsCheck());    +
+		//checker.addRule(new ClippedControlCheck());       +
+		//checker.addRule(new ObscuredControlCheck());      +
+		//checker.addRule(new WrongLanguageCheck());        +
+		//checker.addRule(new ObscuredTextCheck());         +
+		//checker.addRule(new GrammarCheck());              +
+		//checker.addRule(new WrongEncodingCheck());        +
+		//checker.addRule(new ClippedTextCheck());          +
+		//checker.addRule(new UnlocalizedIconsCheck());     +
+		//checker.addRule(new MissingTranslationCheck());   +
+		//checker.addRule(new MixedLanguagesStateCheck());  +
+		//checker.addRule(new MixedLanguagesAppCheck());    +
+		//checker.addRule(new OffensiveMessagesCheck());    + 
+		//checker.addRule(new UnreadableTextCheck());       +
+		//checker.addRule(new TooHardToUnderstandCheck());  +
+	//	checker.addRule(new MissingTextCheck());          //+
+		
+		
+		var exec = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());		
+		StartUp.runChecks(app, exec, checker, failures);
+		
+		exec.shutdown();
+		exec.awaitTermination(Integer.MAX_VALUE, TimeUnit.SECONDS);
+		
+	}
+
+}

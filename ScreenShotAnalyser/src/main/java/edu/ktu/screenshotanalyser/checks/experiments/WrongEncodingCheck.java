@@ -3,9 +3,9 @@ package edu.ktu.screenshotanalyser.checks.experiments;
 import java.util.stream.Collectors;
 //import com.lowagie.text.pdf.PatternColor;
 import edu.ktu.screenshotanalyser.checks.BaseTextRuleCheck;
-import edu.ktu.screenshotanalyser.checks.StateCheckResults;
+import edu.ktu.screenshotanalyser.checks.CheckResult;
 import edu.ktu.screenshotanalyser.checks.IStateRuleChecker;
-import edu.ktu.screenshotanalyser.checks.IResultsCollector;
+import edu.ktu.screenshotanalyser.checks.ResultsCollector;
 import edu.ktu.screenshotanalyser.context.Control;
 import edu.ktu.screenshotanalyser.context.State;
 
@@ -16,8 +16,8 @@ public class WrongEncodingCheck extends BaseTextRuleCheck implements IStateRuleC
 		super(27, "WrongEncodingCheck");
 	}
 	
-//	@Override
-	public StateCheckResults analyze(State state)
+	@Override
+	public void analyze(State state, ResultsCollector failures)
 	{
 		try
 		{
@@ -38,7 +38,7 @@ public class WrongEncodingCheck extends BaseTextRuleCheck implements IStateRuleC
 		
 		for (var control : textControls)
 		{
-			if ((control.isAd()) || ("Test Ad".equals(control.getText())))
+			if ((isAd(control)) || ("Test Ad".equals(control.getText())))
 			{
 				//defects.add(new DefectResult(control.getParent().getBounds(), "", ""));
 				
@@ -77,7 +77,10 @@ public class WrongEncodingCheck extends BaseTextRuleCheck implements IStateRuleC
 					{
 						System.out.println(text + state.getName());
 						
-			//			return new StateCheckResults(state, this, text, 1);
+						failures.addFailure(new CheckResult(state, this, text, 1));
+						
+						return;
+						
 					}
 				}
 				/*
@@ -121,7 +124,9 @@ public class WrongEncodingCheck extends BaseTextRuleCheck implements IStateRuleC
 								{
 									System.out.println("---- [" + w + "] "   + state.getName());
 									
-						//			return new StateCheckResults(state, this, "[" + w + "] "+ text, 1);
+									failures.addFailure(new CheckResult(state, this, "[" + w + "] "+ text, 1));
+									
+									return;
 								}
 							}
 						}
@@ -163,8 +168,6 @@ public class WrongEncodingCheck extends BaseTextRuleCheck implements IStateRuleC
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return null;
 	}
 	
 	/*
@@ -278,7 +281,7 @@ public class WrongEncodingCheck extends BaseTextRuleCheck implements IStateRuleC
 		return e.contains("\\'");
 	}
 	
-	protected boolean shouldSkipControl(Control control, State state)
+	private boolean shouldSkipControl(Control control, State state)
 	{
 		if (false == control.isVisible())
 		{

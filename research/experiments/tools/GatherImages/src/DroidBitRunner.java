@@ -15,15 +15,16 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class DroidBitRunner
 {
-	private static boolean skipRestart = false;
+	private static boolean skipRestart = true;
 
 	public static void main(String[] ar)
 	{
 //		String root = "./apps";
-		String root = "/media/me/ddsdg/mt/apps";
+	//	String root = "/media/me/ddsdg/mt/apps";
+		String root = "c:/_apps/";
 //		String device = "n5-480x800";
-		String device = "nokia31";
-boolean emulator = false;
+		String device = "emulator-5554";
+boolean emulator = true;
 
 
 
@@ -180,7 +181,7 @@ if (emulator)
 			
 			skipRestart = false;
 			
-			String command = "droidbot -a " + apkFile.getAbsolutePath().replaceAll("[ ]", "\\ ") + " -o " + resultsFolder.getAbsolutePath().replaceAll("[ ]", "\\ ") + " -keep_env -ignore_ad -timeout 300 -is_emulator";
+			String command = "python droidbot\\start.py -a " + apkFile.getAbsolutePath().replaceAll("[ ]", "\\ ") + " -o " + resultsFolder.getAbsolutePath().replaceAll("[ ]", "\\ ") + " -keep_env -ignore_ad -timeout 300 -is_emulator";
 			
 			Process p = Runtime.getRuntime().exec(command);
 

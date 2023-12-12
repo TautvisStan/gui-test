@@ -1,12 +1,10 @@
-/*
-
 package edu.ktu.screenshotanalyser.checks.experiments;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 import org.languagetool.Language;
 import edu.ktu.screenshotanalyser.checks.BaseTextRuleCheck;
-import edu.ktu.screenshotanalyser.checks.StateCheckResults;
+import edu.ktu.screenshotanalyser.checks.CheckResult;
 import edu.ktu.screenshotanalyser.checks.IAppRuleChecker;
 import edu.ktu.screenshotanalyser.checks.IStateRuleChecker;
 import edu.ktu.screenshotanalyser.checks.ResultsCollector;
@@ -21,21 +19,21 @@ public class GrammarCheck extends BaseTextRuleCheck implements IStateRuleChecker
 	}
 	
 	@Override
-	public StateCheckResults analyze(State state)
+	public void analyze(State state, ResultsCollector failures)
 	{
 		var allTexts = state.getActualControls().stream().map(this::getText).collect(Collectors.joining(". "));
 		var ll = determineLanguageAll(allTexts);
 
 		if (ll.isEmpty())
 		{
-			return null;
+			return;
 		}
 
 		for (var language : ll)
 		{
 			if (language.equals("lt"))
 			{
-				return null;
+				return;
 			}
 		}
 
@@ -48,7 +46,7 @@ public class GrammarCheck extends BaseTextRuleCheck implements IStateRuleChecker
 
 		if (languages.isEmpty())
 		{
-			return null;
+			return;
 		}
 
 		// var messages = new ArrayList<String>();
@@ -66,7 +64,9 @@ public class GrammarCheck extends BaseTextRuleCheck implements IStateRuleChecker
 
 				if ((mistypes != null) && (mistypes.length() > 0))
 				{
-					return new StateCheckResults(state, this, mistypes, 1);
+					failures.addFailure(new CheckResult(state, this, mistypes, 1));
+
+					return;
 				}
 			}
 
@@ -80,7 +80,9 @@ public class GrammarCheck extends BaseTextRuleCheck implements IStateRuleChecker
 
 					if ((mistypes != null) && (mistypes.length() > 0))
 					{
-						return new StateCheckResults(state, this, mistypes, 1);
+						failures.addFailure(new CheckResult(state, this, mistypes, 1));
+
+						return;
 					}
 				}
 			}
@@ -98,8 +100,6 @@ public class GrammarCheck extends BaseTextRuleCheck implements IStateRuleChecker
 		// {
 		// failures.addFailure(new CheckResult(state, this, errors, errors.length()));
 		// }
-		
-		return null;
 	}
 
 	@Override
@@ -124,12 +124,10 @@ public class GrammarCheck extends BaseTextRuleCheck implements IStateRuleChecker
 					
 					if (errors.length() > 0)
 					{
-						failures.addFailure(new StateCheckResults(appContext, this, errors));
+						failures.addFailure(new CheckResult(appContext, this, errors));
 					}
 				}
 			}
 		}
 	}
 }
-
-*/

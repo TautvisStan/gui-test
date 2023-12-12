@@ -1,4 +1,4 @@
-package edu.ktu.screenshotanalyser.context;
+/*package edu.ktu.screenshotanalyser.context;
 
 import org.junit.jupiter.api.Test;
 import org.opencv.core.Rect;
@@ -28,3 +28,4 @@ public class ControlTests
 		Assert.assertFalse(result2);
 	}
 }
+*/

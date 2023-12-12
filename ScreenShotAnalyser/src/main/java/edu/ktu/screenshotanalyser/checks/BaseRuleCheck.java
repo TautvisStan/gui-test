@@ -1,7 +1,6 @@
 package edu.ktu.screenshotanalyser.checks;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,10 +11,10 @@ import java.nio.file.StandardOpenOption;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 import edu.ktu.screenshotanalyser.context.Control;
 import edu.ktu.screenshotanalyser.context.State;
-import edu.ktu.screenshotanalyser.database.DataBase;
-import edu.ktu.screenshotanalyser.utils.LazyObject;
+import edu.ktu.screenshotanalyser.tools.Settings;
 
 public abstract class BaseRuleCheck
 {
@@ -25,12 +24,6 @@ public abstract class BaseRuleCheck
 		this.ruleCode = ruleCode;
 	}
 	
-	public void analyze(State state, StateCheckResults results)
-	{
-		// temp..
-	}
-	
-	
 	public void logMessage(String message)
 	{
 		message = message.trim() + "\n";
@@ -39,9 +32,9 @@ public abstract class BaseRuleCheck
 		{
 			var logFile = Paths.get("e:/log/" + this.ruleCode + ".txt");
 			
-			Files.write(logFile, message.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND, StandardOpenOption.CREATE);
+			//Files.write(logFile, message.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND, StandardOpenOption.CREATE);
 		}
-		catch (IOException ex)
+		catch (Exception ex)
 		{
 			ex.printStackTrace(System.err);
 		}
@@ -134,97 +127,35 @@ public abstract class BaseRuleCheck
 		return result.toString();
 	}
 	
-	protected boolean shouldSkipControl(Control control, State state)
+	protected static boolean isAd(Control control)
 	{
-		if (!control.isVisible())
-		{
-			return true;
-		}
-
-		if (control.isAd())
-		{
-			return true;
-		}
-
-		if (control.getSignature().contains("Layout"))
-		{
-			return true;
-		}
-
-		var bounds = control.getBounds();
-
-		if ((bounds.width <= 3) || (bounds.height <= 5))
-		{
-			return true;
-		}		
-
-		return control.isOffScreen();
-
-		// if ((control.getBounds().x + control.getBounds().width >= state.getImageSize().width) || (control.getBounds().y + control.getBounds().height >= state.getImageSize().height))
-		// {
-		// return true;
-		// }
-		//return false;
-	}	
-	
-	
-	protected static boolean isCutByScrollView(Control control)
-	{
-		var expectedType = "ScrollView";
-		
-		if (control.getParent() == null)
+		if (null == control)
 		{
 			return false;
 		}
 		
-		if (control.getBounds().y + control.getBounds().height >= control.getParent().getBounds().y + control.getParent().getBounds().height)
+		if (control.getSignature().contains("addview"))
 		{
-			for (var p = control.getParent(); p != null; p = p.getParent())
-			{
-				if ((p.getType() != null) && (p.getType().contains(expectedType)))
-				{
-					return p.getBounds().y - control.getBounds().y > 100;
-				}
-			}
+			return true;
 		}
-		
-		return false;
-	}		
-	
-	protected static boolean isVisibleImage(Control control)
-	{
-		if (control.getResourceId() == null)
+		else
 		{
-			return false;
+			return isAd(control.getParent());
 		}
-		
-		if (control.isOffScreen())
-		{
-			return false;
-		}
-		
-		if (control.isAd())
-		{
-			return false;
-		}
-
-		return true;
-	}	
-	
-	protected boolean isReference(File file)
-	{
-		for (var referenceImage : this.referenceImages.instance())
-		{
-			if (file.getAbsolutePath().endsWith(referenceImage))
-			{
-				return true;
-			}
-		}
-		
-		return false;
 	}
 	
-	protected final LazyObject<List<String>> referenceImages = new LazyObject<>(() -> new DataBase().getList(rs -> rs.getString(1), "SELECT s.FileName FROM ScreenShot s LEFT JOIN Defect d ON d.ScreenshotId = s.Id WHERE d.DefectTypeId = ?", getId()));
+	protected static void annotateDefectImage(State state, List<Control> controls)
+	{
+		var resultImage = new ResultImage(state.getImageFile());								
+		
+		for (var control : controls)
+		{
+			resultImage.drawBounds(control.getBounds());
+		}
+		
+		resultImage.save(Settings.debugFolder + "a_" + UUID.randomUUID().toString() + "1.png");
+	}
+	
 	private final String ruleCode;
 	private final long id;
 }

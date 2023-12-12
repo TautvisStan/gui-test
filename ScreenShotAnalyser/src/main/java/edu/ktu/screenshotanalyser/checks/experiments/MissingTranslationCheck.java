@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.languagetool.Language;
 import edu.ktu.screenshotanalyser.checks.BaseTextRuleCheck;
-import edu.ktu.screenshotanalyser.checks.StateCheckResults;
+import edu.ktu.screenshotanalyser.checks.CheckResult;
 import edu.ktu.screenshotanalyser.checks.IAppRuleChecker;
 import edu.ktu.screenshotanalyser.checks.IStateRuleChecker;
-import edu.ktu.screenshotanalyser.checks.IResultsCollector;
+import edu.ktu.screenshotanalyser.checks.ResultsCollector;
 import edu.ktu.screenshotanalyser.context.AppContext;
 import edu.ktu.screenshotanalyser.context.State;
 
@@ -22,9 +22,9 @@ public class MissingTranslationCheck extends BaseTextRuleCheck implements IAppRu
 	}
 
 	@Override
-	public void analyze(AppContext appContext, IResultsCollector failures)
+	public void analyze(AppContext appContext, ResultsCollector failures)
 	{
-/*		var messages = appContext.getMessages();
+		var messages = appContext.getMessages();
 		var languages = messages.getLanguages().stream().sorted((x, y) -> x.length() - y.length()).collect(Collectors.toList()).toArray(new String[0]);
 		
 		for (var key : messages.getKeys())
@@ -94,15 +94,15 @@ public class MissingTranslationCheck extends BaseTextRuleCheck implements IAppRu
 			{
 				var sameLanguages = sameTranslations.get(sameTranslation).stream().collect(Collectors.joining(","));
 
-//				failures.addFailure(new StateCheckResults(appContext, this, "Same for [" + key + "]: [" + sameTranslation + "]: " + sameLanguages));
+				failures.addFailure(new CheckResult(appContext, this, "Same for [" + key + "]: [" + sameTranslation + "]: " + sameLanguages));
 			}
-		} */
+		}
 	}
 	
 	@Override
-	public void analyze(State state, StateCheckResults results)
+	public void analyze(State state, ResultsCollector failures)
 	{
-/*		var placeholders = new ArrayList<String>();
+		var placeholders = new ArrayList<String>();
 		var allTexts = state.getActualControls().stream().map(this::getText).filter(x -> x != null && x.length() > 0).collect(Collectors.joining(". "));
 		var languages = getLanguage(allTexts);
 
@@ -116,10 +116,8 @@ public class MissingTranslationCheck extends BaseTextRuleCheck implements IAppRu
 
 		if (!placeholders.isEmpty())
 		{
-//			return new StateCheckResults(state, this, "unstranslated: " + String.join(", ", placeholders.toArray(new String[0])), placeholders.size());
+			failures.addFailure(new CheckResult(state, this, "unstranslated: " + String.join(", ", placeholders.toArray(new String[0])), placeholders.size()));
 		}
-		
-//		return null;  */
 	}
 	
 	private boolean isPlaceholder(String message, State state, List<Language> stateLanguages)

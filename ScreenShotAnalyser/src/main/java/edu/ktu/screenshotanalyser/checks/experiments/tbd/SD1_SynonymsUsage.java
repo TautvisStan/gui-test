@@ -23,9 +23,9 @@ import net.sf.extjwnl.data.POS;
 import net.sf.extjwnl.data.Synset;
 import net.sf.extjwnl.data.Word;
 import net.sf.extjwnl.dictionary.Dictionary;
-
-public class SD1_SynonymsUsage implements IRuleChecker {
-	private final String type = "SD1";
+*/
+public class SD1_SynonymsUsage{}// implements IRuleChecker {
+/*	private final String type = "SD1";
 
 	public static class FoundNoun {
 
@@ -139,5 +139,4 @@ public class SD1_SynonymsUsage implements IRuleChecker {
 
 	}
 }
-
 */

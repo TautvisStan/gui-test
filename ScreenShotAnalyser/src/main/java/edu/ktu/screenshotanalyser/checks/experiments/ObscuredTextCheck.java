@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import edu.ktu.screenshotanalyser.checks.BaseTextRuleCheck;
-import edu.ktu.screenshotanalyser.checks.StateCheckResults;
+import edu.ktu.screenshotanalyser.checks.CheckResult;
 import edu.ktu.screenshotanalyser.checks.IStateRuleChecker;
 import edu.ktu.screenshotanalyser.checks.ResultImage;
-import edu.ktu.screenshotanalyser.checks.IResultsCollector;
+import edu.ktu.screenshotanalyser.checks.ResultsCollector;
 import edu.ktu.screenshotanalyser.context.Control;
 import edu.ktu.screenshotanalyser.context.State;
 import edu.ktu.screenshotanalyser.tools.Settings;
@@ -23,8 +23,8 @@ public class ObscuredTextCheck extends BaseTextRuleCheck implements IStateRuleCh
 		super(23, "Obscured Text");
 	}
 
-	//@Override
-	public StateCheckResults analyze(State state)
+	@Override
+	public void analyze(State state, ResultsCollector failures)
 	{
 		var controls = state.getActualControls().stream().filter(p -> !shouldSkipControl(p, state)).collect(Collectors.toList());
 		var overlapped = new ArrayList<Control>();
@@ -94,10 +94,8 @@ public class ObscuredTextCheck extends BaseTextRuleCheck implements IStateRuleCh
 
 			resultImage.save(Settings.debugFolder + "a_" + UUID.randomUUID().toString() + "1.png");
 
-		//	return new StateCheckResults(state, this, "1", overlapped.size());
+			failures.addFailure(new CheckResult(state, this, "1", overlapped.size()));
 		}
-		
-		return null;
 	}
 	
 	public boolean contains(Rect r, Point p)
@@ -129,16 +127,15 @@ public class ObscuredTextCheck extends BaseTextRuleCheck implements IStateRuleCh
 		
 		return true;
 	}
-
-	@Override
-	protected boolean shouldSkipControl(Control control, State state)
+	
+	private boolean shouldSkipControl(Control control, State state)
 	{
 		if (false == control.isVisible())
 		{
 			return true;
 		}
 
-		if (("Test Ad".equals(control.getText())) || (control.isAd()))
+		if (("Test Ad".equals(control.getText())) || (isAd(control)))
 		{
 			return true;
 		}

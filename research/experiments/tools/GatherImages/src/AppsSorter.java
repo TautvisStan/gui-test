@@ -6,8 +6,8 @@ public class AppsSorter
 {
 	public static void main(String[] args) throws IOException
 	{
-		String root = "e:/_img_/2/1/";
-		String destination = "e:/_apps/";
+		String root = "c:/_img_/2/1/";
+		String destination = "c:/_apps/";
 
 		for (String apkName : new File(root).list())
 		{

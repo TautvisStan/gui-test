@@ -1,7 +1,7 @@
 package edu.ktu.screenshotanalyser;
 
+import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -11,34 +11,31 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;
 import edu.ktu.screenshotanalyser.checks.AppChecker;
 import edu.ktu.screenshotanalyser.checks.DataBaseResultsCollector;
-import edu.ktu.screenshotanalyser.checks.IResultsCollector;
+import edu.ktu.screenshotanalyser.checks.ResultsCollector;
 import edu.ktu.screenshotanalyser.checks.RulesSetChecker;
-import edu.ktu.screenshotanalyser.checks.experiments.BlurredImagesCheck;
-import edu.ktu.screenshotanalyser.context.DefaultContextProvider;
-import edu.ktu.screenshotanalyser.database.DataBase;
-import edu.ktu.screenshotanalyser.database.DataBase.Application;
+import edu.ktu.screenshotanalyser.checks.experiments.tausta3.*;
 import edu.ktu.screenshotanalyser.tools.Settings;
+import net.sourceforge.tess4j.TessAPI1;
 
 public class StartUp
 {
 	static
 	{
-		//nu.pattern.OpenCV.loadShared();
+		nu.pattern.OpenCV.loadLocally();
 		
-		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);				
+	//	System.loadLibrary(Core.NATIVE_LIBRARY_NAME);		
 	}
 	
-	public static void main(String[] args) throws IOException, InterruptedException, SQLException
+	public static void main(String[] args) throws IOException, InterruptedException
 	{
 		enableLogs();
 		
 		runExperiments();
 	}
 	
-	private static void runExperiments() throws IOException, InterruptedException, SQLException
+	private static void runExperiments() throws IOException, InterruptedException
 	{
-		defaultContextProvider = new DefaultContextProvider(Settings.appImagesFolder);
-		
+		var failures = new DataBaseResultsCollector("sdssss", false);
 		var checker = new RulesSetChecker();
 
 		//checker.addRule(new UnalignedControlsCheck());    +
@@ -56,28 +53,34 @@ public class StartUp
 		//checker.addRule(new OffensiveMessagesCheck());    + 
 		//checker.addRule(new UnreadableTextCheck());       +
 		//checker.addRule(new TooHardToUnderstandCheck());  +
-		//checker.addRule(new MissingTextCheck());          +
+	//	checker.addRule(new MissingTextCheck());          //+
 		
 		
-//		checker.addRule(new BadScalingCheck());
-		checker.addRule(new BlurredImagesCheck());
-//		checker.addRule(new ClashingBackgroundCheck());
 		
-		var failures = new DataBaseResultsCollector(checker.buildRunName(), false);
-		var dataBase = new DataBase();
-		var apps = dataBase.getApplications();
+	//	checker.addRule(new TooSmallControlCheck());	
+	//	checker.addRule(new TooLargeControlCheck());	
+		checker.addRule(new HiddenControlCheck());
+		/*	checker.addRule(new InsufficientSpaceCheck());	
+		checker.addRule(new InvisibleControlCheck());	
+		checker.addRule(new NoMarginsControlCheck());
+		checker.addRule(new PoorChoiceOfColorsCheck());
+		checker.addRule(new LowContrastCheck());
+	    checker.addRule(new EmptyViewCheck());			
+		checker.addRule(new NonCenteredCheck());*/
+		
+		var apps = new File(Settings.appsFolder).listFiles(p -> p.isDirectory());
 		var exec = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());		
-//		var exec = Executors.newFixedThreadPool(1);		
 
 		for (var app : apps)
 		{
+			System.out.println("checking " + app.getName());
 			runChecks(app, exec, checker, failures);
 		}
 		
 		exec.shutdown();
 		exec.awaitTermination(Integer.MAX_VALUE, TimeUnit.SECONDS);
 		
-		failures.finishRun();
+		//failures.finishRun();
 	}
 	
 	/*
@@ -94,30 +97,18 @@ public class StartUp
 		exec.awaitTermination(Integer.MAX_VALUE, TimeUnit.SECONDS);		
 	}*/
 	
-	private static void runChecks(Application app, ExecutorService exec, RulesSetChecker rules, IResultsCollector failures) throws IOException, InterruptedException
+	public static void runChecks(File appName, ExecutorService exec, RulesSetChecker rules, ResultsCollector failures) throws IOException, InterruptedException
 	{
-		var appChecker = new AppChecker(defaultContextProvider);
+		var appChecker = new AppChecker();
 		
-		appChecker.runChecks(app, rules, exec, failures);
+		appChecker.runChecks(appName, rules, exec, failures);
 	}
 	
-	private static void enableLogs()
+	public static void enableLogs()
 	{
 		var logContext = (LoggerContext)LoggerFactory.getILoggerFactory();
-		
-		setLogLevelToError(logContext, "com.jayway.jsonpath.internal.path.CompiledPath");
-		setLogLevelToError(logContext, "com.zaxxer.hikari.HikariConfig");
-		setLogLevelToError(logContext, "com.zaxxer.hikari.pool.HikariPool");
-		setLogLevelToError(logContext, "com.zaxxer.hikari.HikariDataSource");
-		setLogLevelToError(logContext, "com.zaxxer.hikari.util.DriverDataSource");
-	}
-	
-	private static void setLogLevelToError(LoggerContext logContext, String logger)
-	{
-		var log = logContext.getLogger(logger);
+		var log = logContext.getLogger("com.jayway.jsonpath.internal.path.CompiledPath");
 
 		log.setLevel(Level.ERROR);
 	}
-	
-	private static DefaultContextProvider defaultContextProvider;
 }

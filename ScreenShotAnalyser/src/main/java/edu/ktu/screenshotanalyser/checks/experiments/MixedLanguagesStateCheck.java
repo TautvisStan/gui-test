@@ -1,5 +1,3 @@
-/*
-
 package edu.ktu.screenshotanalyser.checks.experiments;
 
 import java.util.ArrayList;
@@ -9,7 +7,7 @@ import java.util.stream.Collectors;
 import com.aliasi.util.Pair;
 import com.github.pemistahl.lingua.api.Language;
 import edu.ktu.screenshotanalyser.checks.BaseTextRuleCheck;
-import edu.ktu.screenshotanalyser.checks.StateCheckResults;
+import edu.ktu.screenshotanalyser.checks.CheckResult;
 import edu.ktu.screenshotanalyser.checks.IStateRuleChecker;
 import edu.ktu.screenshotanalyser.checks.ResultsCollector;
 import edu.ktu.screenshotanalyser.context.Control;
@@ -23,7 +21,7 @@ public class MixedLanguagesStateCheck extends BaseTextRuleCheck implements IStat
 	}
 
 	@Override
-	public StateCheckResults analyze(State state)
+	public void analyze(State state, ResultsCollector failures)
 	{
 		var uniqueLanguages = new HashMap<Language, List<String>>();
 		var messages = state.getActualControls().stream().map(this::getText).filter(p -> isTranslateable(p, state.getAppContext())).map(message -> new Pair<>(message, determineLanguageShort(message))).collect(Collectors.toList());
@@ -62,7 +60,7 @@ public class MixedLanguagesStateCheck extends BaseTextRuleCheck implements IStat
 
 			if (languageMessages.size() == messages.size())
 			{
-				return null;
+				return;
 			}
 		}
 
@@ -99,12 +97,12 @@ public class MixedLanguagesStateCheck extends BaseTextRuleCheck implements IStat
 
 		if (allFound)
 		{
-			return null;
+			return;
 		}
 
 		/*
 		 * //forEach(message -> mergeLanguages(message, uniqueLanguages)); if (uniqueLanguages.keySet().size() > 1) { var message = "multiple langauges: "; for (var key : uniqueLanguages.keySet()) { message += key + uniqueLanguages.get(key) + "; "; } failures.addFailure(new CheckResult(state, this, message, 1)); }
-		 *-/
+		 */
 
 		var error = "";
 
@@ -127,7 +125,7 @@ public class MixedLanguagesStateCheck extends BaseTextRuleCheck implements IStat
 			error += message.a().replace("\n", " ").replace("\r", " ") + "[" + language.getIsoCode639_1() + " " + maxScore + "] ";
 		}
 
-		return new StateCheckResults(state, this, error, 1);
+		failures.addFailure(new CheckResult(state, this, error, 1));
 	}
 
 	@Override
@@ -156,12 +154,10 @@ public class MixedLanguagesStateCheck extends BaseTextRuleCheck implements IStat
 
 		/*
 		 * var l = languages.get(0).getShortCode(); if (uniqueLanguages.containsKey(l)) { uniqueLanguages.put(l, uniqueLanguages.get(l) + "[" + message.replace("\n", "").replace("\r", "") + "]"); } else { uniqueLanguages.put(l, "[" + message.replace("\n", "").replace("\r", "") + "]"); }
-		 *-/
+		 */
 	}
 
 	/*
 	 * protected synchronized static List<Language> getLanguageShort(String message) { String code = determineLanguageShort(message); // if (false == code.equals("en")) // { // return new ArrayList<>(); // } return getLanguageByCode(code); }
-	 *-/
+	 */
 }
-
-		*/

@@ -2,36 +2,33 @@ package edu.ktu.screenshotanalyser.context;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import edu.ktu.screenshotanalyser.checks.SystemContext;
-import edu.ktu.screenshotanalyser.database.DataBase;
-import edu.ktu.screenshotanalyser.database.DataBase.Application;
 
 public class DefaultContextProvider
 {
-	public DefaultContextProvider(File dataFolder) throws SQLException
+	public DefaultContextProvider(File dataFolder) throws IOException
 	{
 		this.dataFolder = dataFolder;
 		this.systemContext = new SystemContext();
 		
-		var devices = new DataBase().getTestDevices();
-		
-		for (var device : devices)
+		for (var testDeviceFolder : this.dataFolder.listFiles(File::isDirectory))
 		{
-			var testDeviceFolder = new File(this.dataFolder.getAbsolutePath() + "/" + device.name());
-			
 			if (new File(testDeviceFolder.getAbsoluteFile() + "/dev.txt").exists())
 			{
-				this.testDevices.add(new TestDevice(testDeviceFolder, device));
+				this.testDevices.add(new TestDevice(testDeviceFolder));
 			}
 		}
 	}
 
-	public AppContext getContext(Application app) throws IOException
+	public AppContext getContext(File appFolder) throws IOException
 	{
-		return new AppContext(app, this.dataFolder, this.testDevices, this.systemContext);
+		System.out.println(appFolder);
+		System.out.println(this.dataFolder);
+		System.out.println(this.testDevices.size());
+		System.out.println(this.systemContext);
+		return new AppContext(appFolder, this.dataFolder, this.testDevices, this.systemContext);
 	}
 
 	private final File dataFolder;

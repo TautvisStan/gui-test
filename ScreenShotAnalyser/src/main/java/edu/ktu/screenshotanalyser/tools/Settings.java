@@ -4,11 +4,9 @@ import java.io.File;
 
 public class Settings
 {
-	public static final String appsFolder = "E:\\gui\\_analyzer_\\apps\\Raccoon\\content\\apps\\";
-	public static final File appImagesFolder = new File("e:/gui/_r/");
-	public static final String debugFolder = "e:/1/";//"e:/1/";
-	public static final String unpackedAppsFolder = "e:/gui/_analyzer_/unpacked_apps/";
-	public static final String unpackedAppsTempFolder = "e:/3/";//"e:/1/";
+	public static final String appsFolder = "C:\\gui\\_analyzer_\\apps";
+	public static final File appImagesFolder = new File("c:/gui/_r/");
+	public static final String debugFolder = "c:/1/";//"e:/1/";
 }
 
 
@@ -79,6 +77,8 @@ public class AnalyzerSettings {
 	@Argument(alias = "t", description = "Texts directory", required = false)
 	private String textsDir =  ".\\out\\texts";
 	
+	@Argument(alias = "cv", description = "Path to opencv dll file", required = false)
+	private String cvLibrary = ".\\lib\\opencv_java340.dll";
 
 	@Argument(alias = "td", description = "Path to tessdata", required = false )
 	private String tessDataFolder = ".\\tessdata";
@@ -103,6 +103,9 @@ public class AnalyzerSettings {
 		this.outputDir = outputDir;
 	}
 
+	public void setCvLibrary(String cvLibrary) {
+		this.cvLibrary = cvLibrary;
+	}
 
 	public void setTessDataFolder(String tessDataFolder) {
 		this.tessDataFolder = tessDataFolder;
