@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -46,6 +47,20 @@ namespace UI
         public static List<string> SelectedRules = new List<string>();
         public static string ScreenshotDirectory = "";
 
+
+        private void HandleCheckBox(CheckBox ruleCheckbox, Rules rule)
+        {
+            if (ruleCheckbox.Checked)
+            {
+                if (!SelectedRules.Contains(rule.ToString()))
+                    SelectedRules.Add(rule.ToString());
+            }
+            else
+            {
+                if (SelectedRules.Contains(rule.ToString()))
+                    SelectedRules.Remove(rule.ToString());
+            }
+        }
         public Analyzer()
         {
             InitializeComponent();
@@ -53,101 +68,92 @@ namespace UI
 
         private void Analyzer_Load(object sender, EventArgs e)
         {
-
+            HandleCheckBox(HiddenControlCheck, Rules.HiddenControlCheck);
         }
 
-        private void checkBox11_CheckedChanged(object sender, EventArgs e)
+        private void UnalignedControlsCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            HandleCheckBox(UnalignedControlsCheck, Rules.UnalignedControlsCheck);
         }
 
-        private void checkBox12_CheckedChanged(object sender, EventArgs e)
+        private void ClippedControlCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            HandleCheckBox(ClippedControlCheck, Rules.ClippedControlCheck);
         }
 
-        private void checkBox13_CheckedChanged(object sender, EventArgs e)
+        private void ObscuredControlCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            HandleCheckBox(ObscuredControlCheck, Rules.ObscuredControlCheck);
         }
 
-        private void checkBox14_CheckedChanged(object sender, EventArgs e)
+        private void WrongLanguageCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            HandleCheckBox(WrongLanguageCheck, Rules.WrongLanguageCheck);
         }
 
-        private void checkBox15_CheckedChanged(object sender, EventArgs e)
+        private void ObscuredTextCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            HandleCheckBox(ObscuredTextCheck, Rules.ObscuredTextCheck);
         }
 
-        private void checkBox16_CheckedChanged(object sender, EventArgs e)
+        private void GrammarCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            HandleCheckBox(GrammarCheck, Rules.GrammarCheck);
         }
 
-        private void checkBox17_CheckedChanged(object sender, EventArgs e)
+        private void WrongEncodingCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            HandleCheckBox(WrongEncodingCheck, Rules.WrongEncodingCheck);
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void TooSmallControlCheck_CheckedChanged(object sender, EventArgs e)
         {
-            if(TooSmallControlCheck.Checked)
-            {
-                if (!SelectedRules.Contains(Rules.TooSmallControlCheck.ToString()))
-                    SelectedRules.Add(Rules.TooSmallControlCheck.ToString());
-            }
-            else
-            {
-                if (SelectedRules.Contains(Rules.TooSmallControlCheck.ToString()))
-                    SelectedRules.Remove(Rules.TooSmallControlCheck.ToString());
-            }
+            HandleCheckBox(TooSmallControlCheck, Rules.TooSmallControlCheck);
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        private void TooLargeControlCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            HandleCheckBox(TooLargeControlCheck, Rules.TooLargeControlCheck);
         }
 
-        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        private void HiddenControlCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            HandleCheckBox(HiddenControlCheck, Rules.HiddenControlCheck);
         }
 
-        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        private void InsufficientSpaceCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            HandleCheckBox(InsufficientSpaceCheck, Rules.InsufficientSpaceCheck);
         }
 
-        private void checkBox5_CheckedChanged(object sender, EventArgs e)
+        private void InvisibleControlCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            HandleCheckBox(InvisibleControlCheck, Rules.InvisibleControlCheck);
         }
 
-        private void checkBox6_CheckedChanged(object sender, EventArgs e)
+        private void NoMarginsControlCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            HandleCheckBox(NoMarginsControlCheck, Rules.NoMarginsControlCheck);
         }
 
-        private void checkBox7_CheckedChanged(object sender, EventArgs e)
+        private void PoorChoiceOfColorsCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            HandleCheckBox(PoorChoiceOfColorsCheck, Rules.PoorChoiceOfColorsCheck);
         }
 
-        private void checkBox8_CheckedChanged(object sender, EventArgs e)
+        private void LowContrastCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            HandleCheckBox(LowContrastCheck, Rules.LowContrastCheck);
         }
 
-        private void checkBox9_CheckedChanged(object sender, EventArgs e)
+        private void EmptyViewCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            HandleCheckBox(EmptyViewCheck, Rules.EmptyViewCheck);
         }
 
-        private void checkBox10_CheckedChanged(object sender, EventArgs e)
+        private void NonCenteredCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            HandleCheckBox(NonCenteredCheck, Rules.NonCenteredCheck);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -160,7 +166,6 @@ namespace UI
                 {
                     string[] files = Directory.GetFiles(fbd.SelectedPath);
                     ScreenshotDirectory = fbd.SelectedPath;
-                    System.Windows.Forms.MessageBox.Show("Files found: " + files.Length.ToString(), "Message");
                     label1.Text = "Current Screenshot Folder: " + ScreenshotDirectory;
                 }
                 else
@@ -170,5 +175,128 @@ namespace UI
                 }
             }
         }
+
+        private void TooHardToUnderstandCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            HandleCheckBox(TooHardToUnderstandCheck, Rules.TooHardToUnderstandCheck);
+        }
+
+        private void ClippedTextCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            HandleCheckBox(ClippedTextCheck, Rules.ClippedTextCheck);
+        }
+
+        private void UnlocalizedIconsCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            HandleCheckBox(UnlocalizedIconsCheck, Rules.UnlocalizedIconsCheck);
+        }
+
+        private void MissingTranslationCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            HandleCheckBox(MissingTranslationCheck, Rules.MissingTranslationCheck);
+        }
+
+        private void MixedLanguagesStateCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            HandleCheckBox(MixedLanguagesStateCheck, Rules.MixedLanguagesStateCheck);
+        }
+
+        private void MixedLanguagesAppCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            HandleCheckBox(MixedLanguagesAppCheck, Rules.MixedLanguagesAppCheck);
+        }
+
+        private void OffensiveMessagesCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            HandleCheckBox(OffensiveMessagesCheck, Rules.OffensiveMessagesCheck);
+        }
+
+        private void UnreadableTextCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            HandleCheckBox(UnreadableTextCheck, Rules.UnreadableTextCheck);
+        }
+
+        private void MissingTextCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            HandleCheckBox(MissingTextCheck, Rules.MissingTextCheck);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string strCmdText;
+            strCmdText = "/C java -jar \"C:\\Users\\AAA\\Downloads\\eclipse-java-2023-03-R-win32-x86_64\\Naujas aplankas\\test.jar\" Analyze \"C:\\gui\\_analyzer_\\apps\\ADSDroidFree_v0.0.2\" TooSmallControlCheck EmptyViewCheck";
+            System.Diagnostics.Process.Start("CMD.exe", strCmdText);
+            //ExecuteCmd.ExecuteCommandAsync("java -jar C:\\Users\\AAA\\Downloads\\eclipse-java-2023-03-R-win32-x86_64\\Naujas aplankas\\test.jar Analyze C:\\gui\\_analyzer_\\apps\\ADSDroidFree_v0.0.2 TooSmallControlCheck EmptyViewCheck");
+        }
+    }
+    public static class ExecuteCmd
+    {
+        /// <summary>
+        /// Executes a shell command synchronously.
+        /// </summary>
+        /// <param name="command">string command</param>
+        /// <returns>string, as output of the command.</returns>
+        public static void ExecuteCommandSync(object command)
+        {
+            try
+            {
+                // create the ProcessStartInfo using "cmd" as the program to be run, and "/c " as the parameters.
+                // Incidentally, /c tells cmd that we want it to execute the command that follows, and then exit.
+                System.Diagnostics.ProcessStartInfo procStartInfo = new System.Diagnostics.ProcessStartInfo("cmd", "/c " + command);
+                // The following commands are needed to redirect the standard output. 
+                //This means that it will be redirected to the Process.StandardOutput StreamReader.
+                procStartInfo.RedirectStandardOutput = true;
+                procStartInfo.UseShellExecute = false;
+                // Do not create the black window.
+                procStartInfo.CreateNoWindow = true;
+                // Now we create a process, assign its ProcessStartInfo and start it
+                System.Diagnostics.Process proc = new System.Diagnostics.Process();
+                proc.StartInfo = procStartInfo;
+                proc.Start();
+
+                // Get the output into a string
+                string result = proc.StandardOutput.ReadToEnd();
+
+                // Display the command output.
+                Console.WriteLine(result);
+            }
+            catch (Exception objException)
+            {
+                // Log the exception
+                Console.WriteLine("ExecuteCommandSync failed" + objException.Message);
+            }
+        }
+
+        /// <summary>
+        /// Execute the command Asynchronously.
+        /// </summary>
+        /// <param name="command">string command.</param>
+        public static void ExecuteCommandAsync(string command)
+        {
+            try
+            {
+                //Asynchronously start the Thread to process the Execute command request.
+                Thread objThread = new Thread(new ParameterizedThreadStart(ExecuteCommandSync));
+                //Make the thread as background thread.
+                objThread.IsBackground = true;
+                //Set the Priority of the thread.
+                objThread.Priority = ThreadPriority.AboveNormal;
+                //Start the thread.
+                objThread.Start(command);
+            }
+            catch (ThreadStartException)
+            {
+                // Log the exception
+            }
+            catch (ThreadAbortException)
+            {
+                // Log the exception
+            }
+            catch (Exception)
+            {
+                // Log the exception
+            }
+        }
+
     }
 }

@@ -31,32 +31,40 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.TooSmallControlCheck = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.checkBox9 = new System.Windows.Forms.CheckBox();
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
-            this.checkBox11 = new System.Windows.Forms.CheckBox();
-            this.checkBox12 = new System.Windows.Forms.CheckBox();
-            this.checkBox13 = new System.Windows.Forms.CheckBox();
-            this.checkBox14 = new System.Windows.Forms.CheckBox();
-            this.checkBox15 = new System.Windows.Forms.CheckBox();
-            this.checkBox16 = new System.Windows.Forms.CheckBox();
-            this.checkBox17 = new System.Windows.Forms.CheckBox();
-            this.checkBox18 = new System.Windows.Forms.CheckBox();
+            this.TooLargeControlCheck = new System.Windows.Forms.CheckBox();
+            this.HiddenControlCheck = new System.Windows.Forms.CheckBox();
+            this.InsufficientSpaceCheck = new System.Windows.Forms.CheckBox();
+            this.InvisibleControlCheck = new System.Windows.Forms.CheckBox();
+            this.NoMarginsControlCheck = new System.Windows.Forms.CheckBox();
+            this.PoorChoiceOfColorsCheck = new System.Windows.Forms.CheckBox();
+            this.LowContrastCheck = new System.Windows.Forms.CheckBox();
+            this.EmptyViewCheck = new System.Windows.Forms.CheckBox();
+            this.NonCenteredCheck = new System.Windows.Forms.CheckBox();
+            this.UnalignedControlsCheck = new System.Windows.Forms.CheckBox();
+            this.ClippedControlCheck = new System.Windows.Forms.CheckBox();
+            this.ObscuredControlCheck = new System.Windows.Forms.CheckBox();
+            this.WrongLanguageCheck = new System.Windows.Forms.CheckBox();
+            this.ObscuredTextCheck = new System.Windows.Forms.CheckBox();
+            this.GrammarCheck = new System.Windows.Forms.CheckBox();
+            this.WrongEncodingCheck = new System.Windows.Forms.CheckBox();
+            this.ClippedTextCheck = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.UnlocalizedIconsCheck = new System.Windows.Forms.CheckBox();
+            this.MissingTranslationCheck = new System.Windows.Forms.CheckBox();
+            this.MixedLanguagesStateCheck = new System.Windows.Forms.CheckBox();
+            this.MixedLanguagesAppCheck = new System.Windows.Forms.CheckBox();
+            this.OffensiveMessagesCheck = new System.Windows.Forms.CheckBox();
+            this.MissingTextCheck = new System.Windows.Forms.CheckBox();
+            this.TooHardToUnderstandCheck = new System.Windows.Forms.CheckBox();
+            this.UnreadableTextCheck = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(9, 281);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Location = new System.Drawing.Point(12, 487);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(141, 19);
+            this.button1.Size = new System.Drawing.Size(188, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "Select Screenshot Folder";
             this.button1.UseVisualStyleBackColor = true;
@@ -64,266 +72,371 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(9, 306);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Location = new System.Drawing.Point(12, 518);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(141, 19);
+            this.button2.Size = new System.Drawing.Size(188, 23);
             this.button2.TabIndex = 1;
             this.button2.Text = "Analyze Screenshots";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // TooSmallControlCheck
             // 
             this.TooSmallControlCheck.AutoSize = true;
-            this.TooSmallControlCheck.Location = new System.Drawing.Point(9, 10);
-            this.TooSmallControlCheck.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TooSmallControlCheck.Location = new System.Drawing.Point(12, 12);
+            this.TooSmallControlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TooSmallControlCheck.Name = "TooSmallControlCheck";
-            this.TooSmallControlCheck.Size = new System.Drawing.Size(109, 17);
+            this.TooSmallControlCheck.Size = new System.Drawing.Size(136, 20);
             this.TooSmallControlCheck.TabIndex = 2;
             this.TooSmallControlCheck.Text = "Too Small Control";
             this.TooSmallControlCheck.UseVisualStyleBackColor = true;
-            this.TooSmallControlCheck.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.TooSmallControlCheck.CheckedChanged += new System.EventHandler(this.TooSmallControlCheck_CheckedChanged);
             // 
-            // checkBox2
+            // TooLargeControlCheck
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(9, 31);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(80, 17);
-            this.checkBox2.TabIndex = 3;
-            this.checkBox2.Text = "checkBox2";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            this.TooLargeControlCheck.AutoSize = true;
+            this.TooLargeControlCheck.Location = new System.Drawing.Point(12, 38);
+            this.TooLargeControlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TooLargeControlCheck.Name = "TooLargeControlCheck";
+            this.TooLargeControlCheck.Size = new System.Drawing.Size(137, 20);
+            this.TooLargeControlCheck.TabIndex = 3;
+            this.TooLargeControlCheck.Text = "Too Large Control";
+            this.TooLargeControlCheck.UseVisualStyleBackColor = true;
+            this.TooLargeControlCheck.CheckedChanged += new System.EventHandler(this.TooLargeControlCheck_CheckedChanged);
             // 
-            // checkBox3
+            // HiddenControlCheck
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(9, 52);
-            this.checkBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(80, 17);
-            this.checkBox3.TabIndex = 4;
-            this.checkBox3.Text = "checkBox3";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            this.HiddenControlCheck.AutoSize = true;
+            this.HiddenControlCheck.Location = new System.Drawing.Point(12, 64);
+            this.HiddenControlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.HiddenControlCheck.Name = "HiddenControlCheck";
+            this.HiddenControlCheck.Size = new System.Drawing.Size(118, 20);
+            this.HiddenControlCheck.TabIndex = 4;
+            this.HiddenControlCheck.Text = "Hidden Control";
+            this.HiddenControlCheck.UseVisualStyleBackColor = true;
+            this.HiddenControlCheck.CheckedChanged += new System.EventHandler(this.HiddenControlCheck_CheckedChanged);
             // 
-            // checkBox4
+            // InsufficientSpaceCheck
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(9, 72);
-            this.checkBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(80, 17);
-            this.checkBox4.TabIndex = 5;
-            this.checkBox4.Text = "checkBox4";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
+            this.InsufficientSpaceCheck.AutoSize = true;
+            this.InsufficientSpaceCheck.Location = new System.Drawing.Point(12, 89);
+            this.InsufficientSpaceCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.InsufficientSpaceCheck.Name = "InsufficientSpaceCheck";
+            this.InsufficientSpaceCheck.Size = new System.Drawing.Size(133, 20);
+            this.InsufficientSpaceCheck.TabIndex = 5;
+            this.InsufficientSpaceCheck.Text = "Insufficient Space";
+            this.InsufficientSpaceCheck.UseVisualStyleBackColor = true;
+            this.InsufficientSpaceCheck.CheckedChanged += new System.EventHandler(this.InsufficientSpaceCheck_CheckedChanged);
             // 
-            // checkBox5
+            // InvisibleControlCheck
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(9, 93);
-            this.checkBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(80, 17);
-            this.checkBox5.TabIndex = 6;
-            this.checkBox5.Text = "checkBox5";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
+            this.InvisibleControlCheck.AutoSize = true;
+            this.InvisibleControlCheck.Location = new System.Drawing.Point(12, 114);
+            this.InvisibleControlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.InvisibleControlCheck.Name = "InvisibleControlCheck";
+            this.InvisibleControlCheck.Size = new System.Drawing.Size(123, 20);
+            this.InvisibleControlCheck.TabIndex = 6;
+            this.InvisibleControlCheck.Text = "Invisible Control";
+            this.InvisibleControlCheck.UseVisualStyleBackColor = true;
+            this.InvisibleControlCheck.CheckedChanged += new System.EventHandler(this.InvisibleControlCheck_CheckedChanged);
             // 
-            // checkBox6
+            // NoMarginsControlCheck
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(9, 115);
-            this.checkBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(80, 17);
-            this.checkBox6.TabIndex = 7;
-            this.checkBox6.Text = "checkBox6";
-            this.checkBox6.UseVisualStyleBackColor = true;
-            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
+            this.NoMarginsControlCheck.AutoSize = true;
+            this.NoMarginsControlCheck.Location = new System.Drawing.Point(12, 142);
+            this.NoMarginsControlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.NoMarginsControlCheck.Name = "NoMarginsControlCheck";
+            this.NoMarginsControlCheck.Size = new System.Drawing.Size(143, 20);
+            this.NoMarginsControlCheck.TabIndex = 7;
+            this.NoMarginsControlCheck.Text = "No Margins Control";
+            this.NoMarginsControlCheck.UseVisualStyleBackColor = true;
+            this.NoMarginsControlCheck.CheckedChanged += new System.EventHandler(this.NoMarginsControlCheck_CheckedChanged);
             // 
-            // checkBox7
+            // PoorChoiceOfColorsCheck
             // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(9, 136);
-            this.checkBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(80, 17);
-            this.checkBox7.TabIndex = 8;
-            this.checkBox7.Text = "checkBox7";
-            this.checkBox7.UseVisualStyleBackColor = true;
-            this.checkBox7.CheckedChanged += new System.EventHandler(this.checkBox7_CheckedChanged);
+            this.PoorChoiceOfColorsCheck.AutoSize = true;
+            this.PoorChoiceOfColorsCheck.Location = new System.Drawing.Point(12, 167);
+            this.PoorChoiceOfColorsCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PoorChoiceOfColorsCheck.Name = "PoorChoiceOfColorsCheck";
+            this.PoorChoiceOfColorsCheck.Size = new System.Drawing.Size(161, 20);
+            this.PoorChoiceOfColorsCheck.TabIndex = 8;
+            this.PoorChoiceOfColorsCheck.Text = "Poor Choice Of Colors";
+            this.PoorChoiceOfColorsCheck.UseVisualStyleBackColor = true;
+            this.PoorChoiceOfColorsCheck.CheckedChanged += new System.EventHandler(this.PoorChoiceOfColorsCheck_CheckedChanged);
             // 
-            // checkBox8
+            // LowContrastCheck
             // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(9, 157);
-            this.checkBox8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(80, 17);
-            this.checkBox8.TabIndex = 9;
-            this.checkBox8.Text = "checkBox8";
-            this.checkBox8.UseVisualStyleBackColor = true;
-            this.checkBox8.CheckedChanged += new System.EventHandler(this.checkBox8_CheckedChanged);
+            this.LowContrastCheck.AutoSize = true;
+            this.LowContrastCheck.Location = new System.Drawing.Point(12, 193);
+            this.LowContrastCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.LowContrastCheck.Name = "LowContrastCheck";
+            this.LowContrastCheck.Size = new System.Drawing.Size(105, 20);
+            this.LowContrastCheck.TabIndex = 9;
+            this.LowContrastCheck.Text = "Low Contrast";
+            this.LowContrastCheck.UseVisualStyleBackColor = true;
+            this.LowContrastCheck.CheckedChanged += new System.EventHandler(this.LowContrastCheck_CheckedChanged);
             // 
-            // checkBox9
+            // EmptyViewCheck
             // 
-            this.checkBox9.AutoSize = true;
-            this.checkBox9.Location = new System.Drawing.Point(9, 178);
-            this.checkBox9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(80, 17);
-            this.checkBox9.TabIndex = 10;
-            this.checkBox9.Text = "checkBox9";
-            this.checkBox9.UseVisualStyleBackColor = true;
-            this.checkBox9.CheckedChanged += new System.EventHandler(this.checkBox9_CheckedChanged);
+            this.EmptyViewCheck.AutoSize = true;
+            this.EmptyViewCheck.Location = new System.Drawing.Point(12, 219);
+            this.EmptyViewCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.EmptyViewCheck.Name = "EmptyViewCheck";
+            this.EmptyViewCheck.Size = new System.Drawing.Size(99, 20);
+            this.EmptyViewCheck.TabIndex = 10;
+            this.EmptyViewCheck.Text = "Empty View";
+            this.EmptyViewCheck.UseVisualStyleBackColor = true;
+            this.EmptyViewCheck.CheckedChanged += new System.EventHandler(this.EmptyViewCheck_CheckedChanged);
             // 
-            // checkBox10
+            // NonCenteredCheck
             // 
-            this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(9, 199);
-            this.checkBox10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(86, 17);
-            this.checkBox10.TabIndex = 11;
-            this.checkBox10.Text = "checkBox10";
-            this.checkBox10.UseVisualStyleBackColor = true;
-            this.checkBox10.CheckedChanged += new System.EventHandler(this.checkBox10_CheckedChanged);
+            this.NonCenteredCheck.AutoSize = true;
+            this.NonCenteredCheck.Location = new System.Drawing.Point(12, 245);
+            this.NonCenteredCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.NonCenteredCheck.Name = "NonCenteredCheck";
+            this.NonCenteredCheck.Size = new System.Drawing.Size(112, 20);
+            this.NonCenteredCheck.TabIndex = 11;
+            this.NonCenteredCheck.Text = "Non Centered";
+            this.NonCenteredCheck.UseVisualStyleBackColor = true;
+            this.NonCenteredCheck.CheckedChanged += new System.EventHandler(this.NonCenteredCheck_CheckedChanged);
             // 
-            // checkBox11
+            // UnalignedControlsCheck
             // 
-            this.checkBox11.AutoSize = true;
-            this.checkBox11.Location = new System.Drawing.Point(146, 110);
-            this.checkBox11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(86, 17);
-            this.checkBox11.TabIndex = 12;
-            this.checkBox11.Text = "checkBox11";
-            this.checkBox11.UseVisualStyleBackColor = true;
-            this.checkBox11.CheckedChanged += new System.EventHandler(this.checkBox11_CheckedChanged);
+            this.UnalignedControlsCheck.AutoSize = true;
+            this.UnalignedControlsCheck.Location = new System.Drawing.Point(182, 12);
+            this.UnalignedControlsCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UnalignedControlsCheck.Name = "UnalignedControlsCheck";
+            this.UnalignedControlsCheck.Size = new System.Drawing.Size(143, 20);
+            this.UnalignedControlsCheck.TabIndex = 12;
+            this.UnalignedControlsCheck.Text = "Unaligned Controls";
+            this.UnalignedControlsCheck.UseVisualStyleBackColor = true;
+            this.UnalignedControlsCheck.CheckedChanged += new System.EventHandler(this.UnalignedControlsCheck_CheckedChanged);
             // 
-            // checkBox12
+            // ClippedControlCheck
             // 
-            this.checkBox12.AutoSize = true;
-            this.checkBox12.Location = new System.Drawing.Point(146, 131);
-            this.checkBox12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(86, 17);
-            this.checkBox12.TabIndex = 13;
-            this.checkBox12.Text = "checkBox12";
-            this.checkBox12.UseVisualStyleBackColor = true;
-            this.checkBox12.CheckedChanged += new System.EventHandler(this.checkBox12_CheckedChanged);
+            this.ClippedControlCheck.AutoSize = true;
+            this.ClippedControlCheck.Location = new System.Drawing.Point(182, 38);
+            this.ClippedControlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ClippedControlCheck.Name = "ClippedControlCheck";
+            this.ClippedControlCheck.Size = new System.Drawing.Size(121, 20);
+            this.ClippedControlCheck.TabIndex = 13;
+            this.ClippedControlCheck.Text = "Clipped Control";
+            this.ClippedControlCheck.UseVisualStyleBackColor = true;
+            this.ClippedControlCheck.CheckedChanged += new System.EventHandler(this.ClippedControlCheck_CheckedChanged);
             // 
-            // checkBox13
+            // ObscuredControlCheck
             // 
-            this.checkBox13.AutoSize = true;
-            this.checkBox13.Location = new System.Drawing.Point(146, 152);
-            this.checkBox13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.checkBox13.Name = "checkBox13";
-            this.checkBox13.Size = new System.Drawing.Size(86, 17);
-            this.checkBox13.TabIndex = 14;
-            this.checkBox13.Text = "checkBox13";
-            this.checkBox13.UseVisualStyleBackColor = true;
-            this.checkBox13.CheckedChanged += new System.EventHandler(this.checkBox13_CheckedChanged);
+            this.ObscuredControlCheck.AutoSize = true;
+            this.ObscuredControlCheck.Location = new System.Drawing.Point(182, 64);
+            this.ObscuredControlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ObscuredControlCheck.Name = "ObscuredControlCheck";
+            this.ObscuredControlCheck.Size = new System.Drawing.Size(133, 20);
+            this.ObscuredControlCheck.TabIndex = 14;
+            this.ObscuredControlCheck.Text = "Obscured Control";
+            this.ObscuredControlCheck.UseVisualStyleBackColor = true;
+            this.ObscuredControlCheck.CheckedChanged += new System.EventHandler(this.ObscuredControlCheck_CheckedChanged);
             // 
-            // checkBox14
+            // WrongLanguageCheck
             // 
-            this.checkBox14.AutoSize = true;
-            this.checkBox14.Location = new System.Drawing.Point(146, 172);
-            this.checkBox14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.checkBox14.Name = "checkBox14";
-            this.checkBox14.Size = new System.Drawing.Size(86, 17);
-            this.checkBox14.TabIndex = 15;
-            this.checkBox14.Text = "checkBox14";
-            this.checkBox14.UseVisualStyleBackColor = true;
-            this.checkBox14.CheckedChanged += new System.EventHandler(this.checkBox14_CheckedChanged);
+            this.WrongLanguageCheck.AutoSize = true;
+            this.WrongLanguageCheck.Location = new System.Drawing.Point(182, 89);
+            this.WrongLanguageCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.WrongLanguageCheck.Name = "WrongLanguageCheck";
+            this.WrongLanguageCheck.Size = new System.Drawing.Size(133, 20);
+            this.WrongLanguageCheck.TabIndex = 15;
+            this.WrongLanguageCheck.Text = "Wrong Language";
+            this.WrongLanguageCheck.UseVisualStyleBackColor = true;
+            this.WrongLanguageCheck.CheckedChanged += new System.EventHandler(this.WrongLanguageCheck_CheckedChanged);
             // 
-            // checkBox15
+            // ObscuredTextCheck
             // 
-            this.checkBox15.AutoSize = true;
-            this.checkBox15.Location = new System.Drawing.Point(146, 193);
-            this.checkBox15.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.checkBox15.Name = "checkBox15";
-            this.checkBox15.Size = new System.Drawing.Size(86, 17);
-            this.checkBox15.TabIndex = 16;
-            this.checkBox15.Text = "checkBox15";
-            this.checkBox15.UseVisualStyleBackColor = true;
-            this.checkBox15.CheckedChanged += new System.EventHandler(this.checkBox15_CheckedChanged);
+            this.ObscuredTextCheck.AutoSize = true;
+            this.ObscuredTextCheck.Location = new System.Drawing.Point(182, 115);
+            this.ObscuredTextCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ObscuredTextCheck.Name = "ObscuredTextCheck";
+            this.ObscuredTextCheck.Size = new System.Drawing.Size(117, 20);
+            this.ObscuredTextCheck.TabIndex = 16;
+            this.ObscuredTextCheck.Text = "Obscured Text";
+            this.ObscuredTextCheck.UseVisualStyleBackColor = true;
+            this.ObscuredTextCheck.CheckedChanged += new System.EventHandler(this.ObscuredTextCheck_CheckedChanged);
             // 
-            // checkBox16
+            // GrammarCheck
             // 
-            this.checkBox16.AutoSize = true;
-            this.checkBox16.Location = new System.Drawing.Point(146, 214);
-            this.checkBox16.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.checkBox16.Name = "checkBox16";
-            this.checkBox16.Size = new System.Drawing.Size(86, 17);
-            this.checkBox16.TabIndex = 17;
-            this.checkBox16.Text = "checkBox16";
-            this.checkBox16.UseVisualStyleBackColor = true;
-            this.checkBox16.CheckedChanged += new System.EventHandler(this.checkBox16_CheckedChanged);
+            this.GrammarCheck.AutoSize = true;
+            this.GrammarCheck.Location = new System.Drawing.Point(182, 140);
+            this.GrammarCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.GrammarCheck.Name = "GrammarCheck";
+            this.GrammarCheck.Size = new System.Drawing.Size(126, 20);
+            this.GrammarCheck.TabIndex = 17;
+            this.GrammarCheck.Text = "Grammar Check";
+            this.GrammarCheck.UseVisualStyleBackColor = true;
+            this.GrammarCheck.CheckedChanged += new System.EventHandler(this.GrammarCheck_CheckedChanged);
             // 
-            // checkBox17
+            // WrongEncodingCheck
             // 
-            this.checkBox17.AutoSize = true;
-            this.checkBox17.Location = new System.Drawing.Point(146, 236);
-            this.checkBox17.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.checkBox17.Name = "checkBox17";
-            this.checkBox17.Size = new System.Drawing.Size(86, 17);
-            this.checkBox17.TabIndex = 18;
-            this.checkBox17.Text = "checkBox17";
-            this.checkBox17.UseVisualStyleBackColor = true;
-            this.checkBox17.CheckedChanged += new System.EventHandler(this.checkBox17_CheckedChanged);
+            this.WrongEncodingCheck.AutoSize = true;
+            this.WrongEncodingCheck.Location = new System.Drawing.Point(182, 167);
+            this.WrongEncodingCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.WrongEncodingCheck.Name = "WrongEncodingCheck";
+            this.WrongEncodingCheck.Size = new System.Drawing.Size(129, 20);
+            this.WrongEncodingCheck.TabIndex = 18;
+            this.WrongEncodingCheck.Text = "Wrong Encoding";
+            this.WrongEncodingCheck.UseVisualStyleBackColor = true;
+            this.WrongEncodingCheck.CheckedChanged += new System.EventHandler(this.WrongEncodingCheck_CheckedChanged);
             // 
-            // checkBox18
+            // ClippedTextCheck
             // 
-            this.checkBox18.AutoSize = true;
-            this.checkBox18.Location = new System.Drawing.Point(146, 257);
-            this.checkBox18.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.checkBox18.Name = "checkBox18";
-            this.checkBox18.Size = new System.Drawing.Size(86, 17);
-            this.checkBox18.TabIndex = 19;
-            this.checkBox18.Text = "checkBox18";
-            this.checkBox18.UseVisualStyleBackColor = true;
+            this.ClippedTextCheck.AutoSize = true;
+            this.ClippedTextCheck.Location = new System.Drawing.Point(182, 193);
+            this.ClippedTextCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ClippedTextCheck.Name = "ClippedTextCheck";
+            this.ClippedTextCheck.Size = new System.Drawing.Size(105, 20);
+            this.ClippedTextCheck.TabIndex = 19;
+            this.ClippedTextCheck.Text = "Clipped Text";
+            this.ClippedTextCheck.UseVisualStyleBackColor = true;
+            this.ClippedTextCheck.CheckedChanged += new System.EventHandler(this.ClippedTextCheck_CheckedChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(174, 284);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(232, 491);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 13);
+            this.label1.Size = new System.Drawing.Size(165, 16);
             this.label1.TabIndex = 20;
             this.label1.Text = "Current Screenshot Folder:";
             // 
+            // UnlocalizedIconsCheck
+            // 
+            this.UnlocalizedIconsCheck.AutoSize = true;
+            this.UnlocalizedIconsCheck.Location = new System.Drawing.Point(182, 219);
+            this.UnlocalizedIconsCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UnlocalizedIconsCheck.Name = "UnlocalizedIconsCheck";
+            this.UnlocalizedIconsCheck.Size = new System.Drawing.Size(135, 20);
+            this.UnlocalizedIconsCheck.TabIndex = 21;
+            this.UnlocalizedIconsCheck.Text = "Unlocalized Icons";
+            this.UnlocalizedIconsCheck.UseVisualStyleBackColor = true;
+            this.UnlocalizedIconsCheck.CheckedChanged += new System.EventHandler(this.UnlocalizedIconsCheck_CheckedChanged);
+            // 
+            // MissingTranslationCheck
+            // 
+            this.MissingTranslationCheck.AutoSize = true;
+            this.MissingTranslationCheck.Location = new System.Drawing.Point(182, 245);
+            this.MissingTranslationCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MissingTranslationCheck.Name = "MissingTranslationCheck";
+            this.MissingTranslationCheck.Size = new System.Drawing.Size(145, 20);
+            this.MissingTranslationCheck.TabIndex = 22;
+            this.MissingTranslationCheck.Text = "Missing Translation";
+            this.MissingTranslationCheck.UseVisualStyleBackColor = true;
+            this.MissingTranslationCheck.CheckedChanged += new System.EventHandler(this.MissingTranslationCheck_CheckedChanged);
+            // 
+            // MixedLanguagesStateCheck
+            // 
+            this.MixedLanguagesStateCheck.AutoSize = true;
+            this.MixedLanguagesStateCheck.Location = new System.Drawing.Point(182, 269);
+            this.MixedLanguagesStateCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MixedLanguagesStateCheck.Name = "MixedLanguagesStateCheck";
+            this.MixedLanguagesStateCheck.Size = new System.Drawing.Size(170, 20);
+            this.MixedLanguagesStateCheck.TabIndex = 23;
+            this.MixedLanguagesStateCheck.Text = "Mixed Languages State";
+            this.MixedLanguagesStateCheck.UseVisualStyleBackColor = true;
+            this.MixedLanguagesStateCheck.CheckedChanged += new System.EventHandler(this.MixedLanguagesStateCheck_CheckedChanged);
+            // 
+            // MixedLanguagesAppCheck
+            // 
+            this.MixedLanguagesAppCheck.AutoSize = true;
+            this.MixedLanguagesAppCheck.Location = new System.Drawing.Point(182, 293);
+            this.MixedLanguagesAppCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MixedLanguagesAppCheck.Name = "MixedLanguagesAppCheck";
+            this.MixedLanguagesAppCheck.Size = new System.Drawing.Size(164, 20);
+            this.MixedLanguagesAppCheck.TabIndex = 24;
+            this.MixedLanguagesAppCheck.Text = "Mixed Languages App";
+            this.MixedLanguagesAppCheck.UseVisualStyleBackColor = true;
+            this.MixedLanguagesAppCheck.CheckedChanged += new System.EventHandler(this.MixedLanguagesAppCheck_CheckedChanged);
+            // 
+            // OffensiveMessagesCheck
+            // 
+            this.OffensiveMessagesCheck.AutoSize = true;
+            this.OffensiveMessagesCheck.Location = new System.Drawing.Point(182, 317);
+            this.OffensiveMessagesCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.OffensiveMessagesCheck.Name = "OffensiveMessagesCheck";
+            this.OffensiveMessagesCheck.Size = new System.Drawing.Size(152, 20);
+            this.OffensiveMessagesCheck.TabIndex = 25;
+            this.OffensiveMessagesCheck.Text = "Offensive Messages";
+            this.OffensiveMessagesCheck.UseVisualStyleBackColor = true;
+            this.OffensiveMessagesCheck.CheckedChanged += new System.EventHandler(this.OffensiveMessagesCheck_CheckedChanged);
+            // 
+            // MissingTextCheck
+            // 
+            this.MissingTextCheck.AutoSize = true;
+            this.MissingTextCheck.Location = new System.Drawing.Point(182, 389);
+            this.MissingTextCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MissingTextCheck.Name = "MissingTextCheck";
+            this.MissingTextCheck.Size = new System.Drawing.Size(104, 20);
+            this.MissingTextCheck.TabIndex = 26;
+            this.MissingTextCheck.Text = "Missing Text";
+            this.MissingTextCheck.UseVisualStyleBackColor = true;
+            this.MissingTextCheck.CheckedChanged += new System.EventHandler(this.MissingTextCheck_CheckedChanged);
+            // 
+            // TooHardToUnderstandCheck
+            // 
+            this.TooHardToUnderstandCheck.AutoSize = true;
+            this.TooHardToUnderstandCheck.Location = new System.Drawing.Point(182, 365);
+            this.TooHardToUnderstandCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TooHardToUnderstandCheck.Name = "TooHardToUnderstandCheck";
+            this.TooHardToUnderstandCheck.Size = new System.Drawing.Size(180, 20);
+            this.TooHardToUnderstandCheck.TabIndex = 27;
+            this.TooHardToUnderstandCheck.Text = "Too Hard To Understand";
+            this.TooHardToUnderstandCheck.UseVisualStyleBackColor = true;
+            this.TooHardToUnderstandCheck.CheckedChanged += new System.EventHandler(this.TooHardToUnderstandCheck_CheckedChanged);
+            // 
+            // UnreadableTextCheck
+            // 
+            this.UnreadableTextCheck.AutoSize = true;
+            this.UnreadableTextCheck.Location = new System.Drawing.Point(182, 341);
+            this.UnreadableTextCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UnreadableTextCheck.Name = "UnreadableTextCheck";
+            this.UnreadableTextCheck.Size = new System.Drawing.Size(130, 20);
+            this.UnreadableTextCheck.TabIndex = 28;
+            this.UnreadableTextCheck.Text = "Unreadable Text";
+            this.UnreadableTextCheck.UseVisualStyleBackColor = true;
+            this.UnreadableTextCheck.CheckedChanged += new System.EventHandler(this.UnreadableTextCheck_CheckedChanged);
+            // 
             // Analyzer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.ClientSize = new System.Drawing.Size(762, 552);
+            this.Controls.Add(this.UnreadableTextCheck);
+            this.Controls.Add(this.TooHardToUnderstandCheck);
+            this.Controls.Add(this.MissingTextCheck);
+            this.Controls.Add(this.OffensiveMessagesCheck);
+            this.Controls.Add(this.MixedLanguagesAppCheck);
+            this.Controls.Add(this.MixedLanguagesStateCheck);
+            this.Controls.Add(this.MissingTranslationCheck);
+            this.Controls.Add(this.UnlocalizedIconsCheck);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.checkBox18);
-            this.Controls.Add(this.checkBox17);
-            this.Controls.Add(this.checkBox16);
-            this.Controls.Add(this.checkBox15);
-            this.Controls.Add(this.checkBox14);
-            this.Controls.Add(this.checkBox13);
-            this.Controls.Add(this.checkBox12);
-            this.Controls.Add(this.checkBox11);
-            this.Controls.Add(this.checkBox10);
-            this.Controls.Add(this.checkBox9);
-            this.Controls.Add(this.checkBox8);
-            this.Controls.Add(this.checkBox7);
-            this.Controls.Add(this.checkBox6);
-            this.Controls.Add(this.checkBox5);
-            this.Controls.Add(this.checkBox4);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.ClippedTextCheck);
+            this.Controls.Add(this.WrongEncodingCheck);
+            this.Controls.Add(this.GrammarCheck);
+            this.Controls.Add(this.ObscuredTextCheck);
+            this.Controls.Add(this.WrongLanguageCheck);
+            this.Controls.Add(this.ObscuredControlCheck);
+            this.Controls.Add(this.ClippedControlCheck);
+            this.Controls.Add(this.UnalignedControlsCheck);
+            this.Controls.Add(this.NonCenteredCheck);
+            this.Controls.Add(this.EmptyViewCheck);
+            this.Controls.Add(this.LowContrastCheck);
+            this.Controls.Add(this.PoorChoiceOfColorsCheck);
+            this.Controls.Add(this.NoMarginsControlCheck);
+            this.Controls.Add(this.InvisibleControlCheck);
+            this.Controls.Add(this.InsufficientSpaceCheck);
+            this.Controls.Add(this.HiddenControlCheck);
+            this.Controls.Add(this.TooLargeControlCheck);
             this.Controls.Add(this.TooSmallControlCheck);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Analyzer";
             this.Text = "Analyzer";
             this.Load += new System.EventHandler(this.Analyzer_Load);
@@ -337,24 +450,32 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox TooSmallControlCheck;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox7;
-        private System.Windows.Forms.CheckBox checkBox8;
-        private System.Windows.Forms.CheckBox checkBox9;
-        private System.Windows.Forms.CheckBox checkBox10;
-        private System.Windows.Forms.CheckBox checkBox11;
-        private System.Windows.Forms.CheckBox checkBox12;
-        private System.Windows.Forms.CheckBox checkBox13;
-        private System.Windows.Forms.CheckBox checkBox14;
-        private System.Windows.Forms.CheckBox checkBox15;
-        private System.Windows.Forms.CheckBox checkBox16;
-        private System.Windows.Forms.CheckBox checkBox17;
-        private System.Windows.Forms.CheckBox checkBox18;
+        private System.Windows.Forms.CheckBox TooLargeControlCheck;
+        private System.Windows.Forms.CheckBox HiddenControlCheck;
+        private System.Windows.Forms.CheckBox InsufficientSpaceCheck;
+        private System.Windows.Forms.CheckBox InvisibleControlCheck;
+        private System.Windows.Forms.CheckBox NoMarginsControlCheck;
+        private System.Windows.Forms.CheckBox PoorChoiceOfColorsCheck;
+        private System.Windows.Forms.CheckBox LowContrastCheck;
+        private System.Windows.Forms.CheckBox EmptyViewCheck;
+        private System.Windows.Forms.CheckBox NonCenteredCheck;
+        private System.Windows.Forms.CheckBox UnalignedControlsCheck;
+        private System.Windows.Forms.CheckBox ClippedControlCheck;
+        private System.Windows.Forms.CheckBox ObscuredControlCheck;
+        private System.Windows.Forms.CheckBox WrongLanguageCheck;
+        private System.Windows.Forms.CheckBox ObscuredTextCheck;
+        private System.Windows.Forms.CheckBox GrammarCheck;
+        private System.Windows.Forms.CheckBox WrongEncodingCheck;
+        private System.Windows.Forms.CheckBox ClippedTextCheck;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox UnlocalizedIconsCheck;
+        private System.Windows.Forms.CheckBox MissingTranslationCheck;
+        private System.Windows.Forms.CheckBox MixedLanguagesStateCheck;
+        private System.Windows.Forms.CheckBox MixedLanguagesAppCheck;
+        private System.Windows.Forms.CheckBox OffensiveMessagesCheck;
+        private System.Windows.Forms.CheckBox MissingTextCheck;
+        private System.Windows.Forms.CheckBox TooHardToUnderstandCheck;
+        private System.Windows.Forms.CheckBox UnreadableTextCheck;
     }
 }
 
