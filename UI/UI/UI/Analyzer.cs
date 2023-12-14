@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace UI
 {
     public partial class Analyzer : Form
     {
-        public enum Rules
+        private enum Rules
         {
             TooSmallControlCheck,
             TooLargeControlCheck,
@@ -44,9 +45,10 @@ namespace UI
             TooHardToUnderstandCheck,
             MissingTextCheck
         }
-        public static List<string> SelectedRules = new List<string>();
-        public static string ScreenshotDirectory = "";
-
+        private static List<string> SelectedRules = new List<string>();
+        private static string ScreenshotDirectory = "";
+        private static string JarLocation = "\"C:\\Users\\AAA\\Downloads\\eclipse-java-2023-03-R-win32-x86_64\\Naujas aplankas\\test.jar\"";
+        private System.Diagnostics.Process cmdProcess = null;
 
         private void HandleCheckBox(CheckBox ruleCheckbox, Rules rule)
         {
@@ -223,13 +225,40 @@ namespace UI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string strCmdText;
-            strCmdText = "/C java -jar \"C:\\Users\\AAA\\Downloads\\eclipse-java-2023-03-R-win32-x86_64\\Naujas aplankas\\test.jar\" Analyze \"C:\\gui\\_analyzer_\\apps\\ADSDroidFree_v0.0.2\" TooSmallControlCheck EmptyViewCheck";
-            System.Diagnostics.Process.Start("CMD.exe", strCmdText);
+
+            if (ScreenshotDirectory == "")
+            {
+                MessageBox.Show("No screenshot directory selected.", "Error",
+    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (SelectedRules.Count == 0)
+            {
+                MessageBox.Show("No rules selected.", "Error",
+MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (cmdProcess != null)
+            {
+                if (!cmdProcess.HasExited)
+                {
+                    MessageBox.Show("Analyzer is already running.", "Error",
+MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            string strCmdText = "/C java -jar " + JarLocation + " Analyze \"" + ScreenshotDirectory + "\"";
+            foreach (string rule in SelectedRules)
+            {
+                strCmdText += " " + rule;
+            }
+            label1.Text = strCmdText;
+
+            cmdProcess = System.Diagnostics.Process.Start("CMD.exe", strCmdText);
             //ExecuteCmd.ExecuteCommandAsync("java -jar C:\\Users\\AAA\\Downloads\\eclipse-java-2023-03-R-win32-x86_64\\Naujas aplankas\\test.jar Analyze C:\\gui\\_analyzer_\\apps\\ADSDroidFree_v0.0.2 TooSmallControlCheck EmptyViewCheck");
         }
     }
-    public static class ExecuteCmd
+    internal static class ExecuteCmd
     {
         /// <summary>
         /// Executes a shell command synchronously.
