@@ -57,11 +57,15 @@
             this.MissingTextCheck = new System.Windows.Forms.CheckBox();
             this.TooHardToUnderstandCheck = new System.Windows.Forms.CheckBox();
             this.UnreadableTextCheck = new System.Windows.Forms.CheckBox();
+            this.SelectAPKfile = new System.Windows.Forms.Button();
+            this.RunDroidBot = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 487);
+            this.button1.Location = new System.Drawing.Point(16, 526);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(188, 23);
@@ -72,7 +76,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 518);
+            this.button2.Location = new System.Drawing.Point(16, 556);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(188, 23);
@@ -84,7 +88,7 @@
             // TooSmallControlCheck
             // 
             this.TooSmallControlCheck.AutoSize = true;
-            this.TooSmallControlCheck.Location = new System.Drawing.Point(12, 12);
+            this.TooSmallControlCheck.Location = new System.Drawing.Point(25, 149);
             this.TooSmallControlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TooSmallControlCheck.Name = "TooSmallControlCheck";
             this.TooSmallControlCheck.Size = new System.Drawing.Size(136, 20);
@@ -96,7 +100,7 @@
             // TooLargeControlCheck
             // 
             this.TooLargeControlCheck.AutoSize = true;
-            this.TooLargeControlCheck.Location = new System.Drawing.Point(12, 38);
+            this.TooLargeControlCheck.Location = new System.Drawing.Point(25, 175);
             this.TooLargeControlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TooLargeControlCheck.Name = "TooLargeControlCheck";
             this.TooLargeControlCheck.Size = new System.Drawing.Size(137, 20);
@@ -108,7 +112,7 @@
             // HiddenControlCheck
             // 
             this.HiddenControlCheck.AutoSize = true;
-            this.HiddenControlCheck.Location = new System.Drawing.Point(12, 64);
+            this.HiddenControlCheck.Location = new System.Drawing.Point(25, 201);
             this.HiddenControlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.HiddenControlCheck.Name = "HiddenControlCheck";
             this.HiddenControlCheck.Size = new System.Drawing.Size(118, 20);
@@ -120,7 +124,7 @@
             // InsufficientSpaceCheck
             // 
             this.InsufficientSpaceCheck.AutoSize = true;
-            this.InsufficientSpaceCheck.Location = new System.Drawing.Point(12, 89);
+            this.InsufficientSpaceCheck.Location = new System.Drawing.Point(25, 226);
             this.InsufficientSpaceCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.InsufficientSpaceCheck.Name = "InsufficientSpaceCheck";
             this.InsufficientSpaceCheck.Size = new System.Drawing.Size(133, 20);
@@ -132,7 +136,7 @@
             // InvisibleControlCheck
             // 
             this.InvisibleControlCheck.AutoSize = true;
-            this.InvisibleControlCheck.Location = new System.Drawing.Point(12, 114);
+            this.InvisibleControlCheck.Location = new System.Drawing.Point(25, 251);
             this.InvisibleControlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.InvisibleControlCheck.Name = "InvisibleControlCheck";
             this.InvisibleControlCheck.Size = new System.Drawing.Size(123, 20);
@@ -144,7 +148,7 @@
             // NoMarginsControlCheck
             // 
             this.NoMarginsControlCheck.AutoSize = true;
-            this.NoMarginsControlCheck.Location = new System.Drawing.Point(12, 142);
+            this.NoMarginsControlCheck.Location = new System.Drawing.Point(25, 279);
             this.NoMarginsControlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.NoMarginsControlCheck.Name = "NoMarginsControlCheck";
             this.NoMarginsControlCheck.Size = new System.Drawing.Size(143, 20);
@@ -156,7 +160,7 @@
             // PoorChoiceOfColorsCheck
             // 
             this.PoorChoiceOfColorsCheck.AutoSize = true;
-            this.PoorChoiceOfColorsCheck.Location = new System.Drawing.Point(12, 167);
+            this.PoorChoiceOfColorsCheck.Location = new System.Drawing.Point(25, 304);
             this.PoorChoiceOfColorsCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PoorChoiceOfColorsCheck.Name = "PoorChoiceOfColorsCheck";
             this.PoorChoiceOfColorsCheck.Size = new System.Drawing.Size(161, 20);
@@ -168,7 +172,7 @@
             // LowContrastCheck
             // 
             this.LowContrastCheck.AutoSize = true;
-            this.LowContrastCheck.Location = new System.Drawing.Point(12, 193);
+            this.LowContrastCheck.Location = new System.Drawing.Point(25, 330);
             this.LowContrastCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LowContrastCheck.Name = "LowContrastCheck";
             this.LowContrastCheck.Size = new System.Drawing.Size(105, 20);
@@ -180,7 +184,7 @@
             // EmptyViewCheck
             // 
             this.EmptyViewCheck.AutoSize = true;
-            this.EmptyViewCheck.Location = new System.Drawing.Point(12, 219);
+            this.EmptyViewCheck.Location = new System.Drawing.Point(25, 356);
             this.EmptyViewCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.EmptyViewCheck.Name = "EmptyViewCheck";
             this.EmptyViewCheck.Size = new System.Drawing.Size(99, 20);
@@ -192,7 +196,7 @@
             // NonCenteredCheck
             // 
             this.NonCenteredCheck.AutoSize = true;
-            this.NonCenteredCheck.Location = new System.Drawing.Point(12, 245);
+            this.NonCenteredCheck.Location = new System.Drawing.Point(25, 382);
             this.NonCenteredCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.NonCenteredCheck.Name = "NonCenteredCheck";
             this.NonCenteredCheck.Size = new System.Drawing.Size(112, 20);
@@ -204,7 +208,7 @@
             // UnalignedControlsCheck
             // 
             this.UnalignedControlsCheck.AutoSize = true;
-            this.UnalignedControlsCheck.Location = new System.Drawing.Point(182, 12);
+            this.UnalignedControlsCheck.Location = new System.Drawing.Point(195, 149);
             this.UnalignedControlsCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UnalignedControlsCheck.Name = "UnalignedControlsCheck";
             this.UnalignedControlsCheck.Size = new System.Drawing.Size(143, 20);
@@ -216,7 +220,7 @@
             // ClippedControlCheck
             // 
             this.ClippedControlCheck.AutoSize = true;
-            this.ClippedControlCheck.Location = new System.Drawing.Point(182, 38);
+            this.ClippedControlCheck.Location = new System.Drawing.Point(195, 175);
             this.ClippedControlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ClippedControlCheck.Name = "ClippedControlCheck";
             this.ClippedControlCheck.Size = new System.Drawing.Size(121, 20);
@@ -228,7 +232,7 @@
             // ObscuredControlCheck
             // 
             this.ObscuredControlCheck.AutoSize = true;
-            this.ObscuredControlCheck.Location = new System.Drawing.Point(182, 64);
+            this.ObscuredControlCheck.Location = new System.Drawing.Point(195, 201);
             this.ObscuredControlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ObscuredControlCheck.Name = "ObscuredControlCheck";
             this.ObscuredControlCheck.Size = new System.Drawing.Size(133, 20);
@@ -240,7 +244,7 @@
             // WrongLanguageCheck
             // 
             this.WrongLanguageCheck.AutoSize = true;
-            this.WrongLanguageCheck.Location = new System.Drawing.Point(182, 89);
+            this.WrongLanguageCheck.Location = new System.Drawing.Point(195, 226);
             this.WrongLanguageCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.WrongLanguageCheck.Name = "WrongLanguageCheck";
             this.WrongLanguageCheck.Size = new System.Drawing.Size(133, 20);
@@ -252,7 +256,7 @@
             // ObscuredTextCheck
             // 
             this.ObscuredTextCheck.AutoSize = true;
-            this.ObscuredTextCheck.Location = new System.Drawing.Point(182, 115);
+            this.ObscuredTextCheck.Location = new System.Drawing.Point(195, 252);
             this.ObscuredTextCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ObscuredTextCheck.Name = "ObscuredTextCheck";
             this.ObscuredTextCheck.Size = new System.Drawing.Size(117, 20);
@@ -264,7 +268,7 @@
             // GrammarCheck
             // 
             this.GrammarCheck.AutoSize = true;
-            this.GrammarCheck.Location = new System.Drawing.Point(182, 140);
+            this.GrammarCheck.Location = new System.Drawing.Point(195, 277);
             this.GrammarCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GrammarCheck.Name = "GrammarCheck";
             this.GrammarCheck.Size = new System.Drawing.Size(126, 20);
@@ -276,7 +280,7 @@
             // WrongEncodingCheck
             // 
             this.WrongEncodingCheck.AutoSize = true;
-            this.WrongEncodingCheck.Location = new System.Drawing.Point(182, 167);
+            this.WrongEncodingCheck.Location = new System.Drawing.Point(195, 304);
             this.WrongEncodingCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.WrongEncodingCheck.Name = "WrongEncodingCheck";
             this.WrongEncodingCheck.Size = new System.Drawing.Size(129, 20);
@@ -288,7 +292,7 @@
             // ClippedTextCheck
             // 
             this.ClippedTextCheck.AutoSize = true;
-            this.ClippedTextCheck.Location = new System.Drawing.Point(182, 193);
+            this.ClippedTextCheck.Location = new System.Drawing.Point(195, 330);
             this.ClippedTextCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ClippedTextCheck.Name = "ClippedTextCheck";
             this.ClippedTextCheck.Size = new System.Drawing.Size(105, 20);
@@ -300,7 +304,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(232, 491);
+            this.label1.Location = new System.Drawing.Point(236, 529);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(165, 16);
             this.label1.TabIndex = 20;
@@ -309,7 +313,7 @@
             // UnlocalizedIconsCheck
             // 
             this.UnlocalizedIconsCheck.AutoSize = true;
-            this.UnlocalizedIconsCheck.Location = new System.Drawing.Point(182, 219);
+            this.UnlocalizedIconsCheck.Location = new System.Drawing.Point(195, 356);
             this.UnlocalizedIconsCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UnlocalizedIconsCheck.Name = "UnlocalizedIconsCheck";
             this.UnlocalizedIconsCheck.Size = new System.Drawing.Size(135, 20);
@@ -321,7 +325,7 @@
             // MissingTranslationCheck
             // 
             this.MissingTranslationCheck.AutoSize = true;
-            this.MissingTranslationCheck.Location = new System.Drawing.Point(182, 245);
+            this.MissingTranslationCheck.Location = new System.Drawing.Point(195, 382);
             this.MissingTranslationCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MissingTranslationCheck.Name = "MissingTranslationCheck";
             this.MissingTranslationCheck.Size = new System.Drawing.Size(145, 20);
@@ -333,7 +337,7 @@
             // MixedLanguagesStateCheck
             // 
             this.MixedLanguagesStateCheck.AutoSize = true;
-            this.MixedLanguagesStateCheck.Location = new System.Drawing.Point(182, 269);
+            this.MixedLanguagesStateCheck.Location = new System.Drawing.Point(195, 406);
             this.MixedLanguagesStateCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MixedLanguagesStateCheck.Name = "MixedLanguagesStateCheck";
             this.MixedLanguagesStateCheck.Size = new System.Drawing.Size(170, 20);
@@ -345,7 +349,7 @@
             // MixedLanguagesAppCheck
             // 
             this.MixedLanguagesAppCheck.AutoSize = true;
-            this.MixedLanguagesAppCheck.Location = new System.Drawing.Point(182, 293);
+            this.MixedLanguagesAppCheck.Location = new System.Drawing.Point(195, 432);
             this.MixedLanguagesAppCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MixedLanguagesAppCheck.Name = "MixedLanguagesAppCheck";
             this.MixedLanguagesAppCheck.Size = new System.Drawing.Size(164, 20);
@@ -357,7 +361,7 @@
             // OffensiveMessagesCheck
             // 
             this.OffensiveMessagesCheck.AutoSize = true;
-            this.OffensiveMessagesCheck.Location = new System.Drawing.Point(182, 317);
+            this.OffensiveMessagesCheck.Location = new System.Drawing.Point(25, 458);
             this.OffensiveMessagesCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.OffensiveMessagesCheck.Name = "OffensiveMessagesCheck";
             this.OffensiveMessagesCheck.Size = new System.Drawing.Size(152, 20);
@@ -369,7 +373,7 @@
             // MissingTextCheck
             // 
             this.MissingTextCheck.AutoSize = true;
-            this.MissingTextCheck.Location = new System.Drawing.Point(182, 389);
+            this.MissingTextCheck.Location = new System.Drawing.Point(25, 406);
             this.MissingTextCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MissingTextCheck.Name = "MissingTextCheck";
             this.MissingTextCheck.Size = new System.Drawing.Size(104, 20);
@@ -381,7 +385,7 @@
             // TooHardToUnderstandCheck
             // 
             this.TooHardToUnderstandCheck.AutoSize = true;
-            this.TooHardToUnderstandCheck.Location = new System.Drawing.Point(182, 365);
+            this.TooHardToUnderstandCheck.Location = new System.Drawing.Point(195, 458);
             this.TooHardToUnderstandCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TooHardToUnderstandCheck.Name = "TooHardToUnderstandCheck";
             this.TooHardToUnderstandCheck.Size = new System.Drawing.Size(180, 20);
@@ -393,7 +397,7 @@
             // UnreadableTextCheck
             // 
             this.UnreadableTextCheck.AutoSize = true;
-            this.UnreadableTextCheck.Location = new System.Drawing.Point(182, 341);
+            this.UnreadableTextCheck.Location = new System.Drawing.Point(25, 432);
             this.UnreadableTextCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UnreadableTextCheck.Name = "UnreadableTextCheck";
             this.UnreadableTextCheck.Size = new System.Drawing.Size(130, 20);
@@ -402,11 +406,55 @@
             this.UnreadableTextCheck.UseVisualStyleBackColor = true;
             this.UnreadableTextCheck.CheckedChanged += new System.EventHandler(this.UnreadableTextCheck_CheckedChanged);
             // 
+            // SelectAPKfile
+            // 
+            this.SelectAPKfile.Location = new System.Drawing.Point(12, 25);
+            this.SelectAPKfile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SelectAPKfile.Name = "SelectAPKfile";
+            this.SelectAPKfile.Size = new System.Drawing.Size(188, 23);
+            this.SelectAPKfile.TabIndex = 29;
+            this.SelectAPKfile.Text = "Select APK file";
+            this.SelectAPKfile.UseVisualStyleBackColor = true;
+            this.SelectAPKfile.Click += new System.EventHandler(this.SelectAPKfile_Click);
+            // 
+            // RunDroidBot
+            // 
+            this.RunDroidBot.Location = new System.Drawing.Point(12, 53);
+            this.RunDroidBot.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.RunDroidBot.Name = "RunDroidBot";
+            this.RunDroidBot.Size = new System.Drawing.Size(188, 23);
+            this.RunDroidBot.TabIndex = 30;
+            this.RunDroidBot.Text = "Run DroidBot";
+            this.RunDroidBot.UseVisualStyleBackColor = true;
+            this.RunDroidBot.Click += new System.EventHandler(this.RunDroidBot_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(236, 28);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(109, 16);
+            this.label2.TabIndex = 31;
+            this.label2.Text = "No APK selected";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(125, 116);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(117, 16);
+            this.label3.TabIndex = 32;
+            this.label3.Text = "Defects to analyze";
+            // 
             // Analyzer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(762, 552);
+            this.ClientSize = new System.Drawing.Size(559, 649);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.RunDroidBot);
+            this.Controls.Add(this.SelectAPKfile);
             this.Controls.Add(this.UnreadableTextCheck);
             this.Controls.Add(this.TooHardToUnderstandCheck);
             this.Controls.Add(this.MissingTextCheck);
@@ -476,6 +524,10 @@
         private System.Windows.Forms.CheckBox MissingTextCheck;
         private System.Windows.Forms.CheckBox TooHardToUnderstandCheck;
         private System.Windows.Forms.CheckBox UnreadableTextCheck;
+        private System.Windows.Forms.Button SelectAPKfile;
+        private System.Windows.Forms.Button RunDroidBot;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 

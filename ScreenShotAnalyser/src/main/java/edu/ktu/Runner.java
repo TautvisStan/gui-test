@@ -1,8 +1,15 @@
 package edu.ktu;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileFilter;
+import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Random;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 import edu.ktu.screenshotanalyser.checks.DataBaseResultsCollector;
@@ -34,6 +41,11 @@ public class Runner {
 				if(args[i].equals("NonCenteredCheck")) checker.addRule(new NonCenteredCheck());
 			}
 			RunAnalyze(app, checker);
+		}
+		
+		if(args[0].equals("DroidBot"))
+		{
+			DroidBotRunner.main(null);
 		}
 
 	}
@@ -69,5 +81,4 @@ public class Runner {
 		exec.awaitTermination(Integer.MAX_VALUE, TimeUnit.SECONDS);
 		
 	}
-
 }

@@ -47,6 +47,7 @@ namespace UI
         }
         private static List<string> SelectedRules = new List<string>();
         private static string ScreenshotDirectory = "";
+        private static string APKFile = "";
         private static string JarLocation = "\"C:\\Users\\AAA\\Downloads\\eclipse-java-2023-03-R-win32-x86_64\\Naujas aplankas\\test.jar\"";
         private System.Diagnostics.Process cmdProcess = null;
 
@@ -229,21 +230,21 @@ namespace UI
             if (ScreenshotDirectory == "")
             {
                 MessageBox.Show("No screenshot directory selected.", "Error",
-    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (SelectedRules.Count == 0)
             {
                 MessageBox.Show("No rules selected.", "Error",
-MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (cmdProcess != null)
             {
                 if (!cmdProcess.HasExited)
                 {
-                    MessageBox.Show("Analyzer is already running.", "Error",
-MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Tool process is already running.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
@@ -252,10 +253,53 @@ MessageBoxButtons.OK, MessageBoxIcon.Error);
             {
                 strCmdText += " " + rule;
             }
-            label1.Text = strCmdText;
+  //          label1.Text = strCmdText;
 
             cmdProcess = System.Diagnostics.Process.Start("CMD.exe", strCmdText);
             //ExecuteCmd.ExecuteCommandAsync("java -jar C:\\Users\\AAA\\Downloads\\eclipse-java-2023-03-R-win32-x86_64\\Naujas aplankas\\test.jar Analyze C:\\gui\\_analyzer_\\apps\\ADSDroidFree_v0.0.2 TooSmallControlCheck EmptyViewCheck");
+        }
+
+        private void SelectAPKfile_Click(object sender, EventArgs e)
+        {
+            using (var fbd = new OpenFileDialog())
+            {
+                fbd.Filter = "APK Files |*.APK";
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.FileName))
+                {
+                    APKFile = fbd.FileName;
+                    label2.Text = "APK Selected: " + APKFile;
+                }
+                else
+                {
+                    APKFile = "";
+                    label2.Text = "No APK Selected";
+                }
+            }
+        }
+
+        private void RunDroidBot_Click(object sender, EventArgs e)
+        {
+            if (APKFile == "")
+            {
+                MessageBox.Show("No APK file selected.", "Error",
+                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (cmdProcess != null)
+            {
+                if (!cmdProcess.HasExited)
+                {
+                    MessageBox.Show("Tool process is already running.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            string strCmdText = "/C java -jar " + JarLocation + " DroidBot \"" + APKFile + "\"";
+            label2.Text = strCmdText;
+
+            cmdProcess = System.Diagnostics.Process.Start("CMD.exe", strCmdText);
         }
     }
     internal static class ExecuteCmd

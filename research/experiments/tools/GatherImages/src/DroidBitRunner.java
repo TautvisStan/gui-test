@@ -13,6 +13,8 @@ import java.util.concurrent.TimeoutException;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+
+
 public class DroidBitRunner
 {
 	private static boolean skipRestart = true;
@@ -43,6 +45,7 @@ boolean emulator = true;
 			if (folder.isDirectory())
 			{
 				runTests(folder, device, emulator);
+				System.out.println("TESTS DONE");
 			}
 		}
 
