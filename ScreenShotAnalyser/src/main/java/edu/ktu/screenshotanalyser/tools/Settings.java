@@ -6,7 +6,7 @@ public class Settings
 {
 	public static final String appsFolder = "C:\\gui\\_analyzer_\\apps";
 	public static final File appImagesFolder = new File("c:/gui/_r/");
-	public static final String debugFolder = "c:/1/";//"e:/1/";
+	public static String debugFolder = "c:/1/";//"e:/1/";
 }
 
 

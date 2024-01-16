@@ -6,6 +6,7 @@ import java.io.FileFilter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URISyntaxException;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
@@ -17,10 +18,12 @@ import edu.ktu.screenshotanalyser.checks.RulesSetChecker;
 import edu.ktu.screenshotanalyser.checks.experiments.tausta3.*;
 import edu.ktu.screenshotanalyser.tools.Settings;
 import edu.ktu.screenshotanalyser.StartUp;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;    
 
 public class Runner {
 
-	public static void main(String[] args) throws IOException, InterruptedException
+	public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException
 	{
 		if(args[0].equals("Analyze"))
 		{
@@ -49,10 +52,24 @@ public class Runner {
 		}
 
 	}
-	private static void RunAnalyze(File app, RulesSetChecker checker) throws IOException, InterruptedException
+	private static void RunAnalyze(File app, RulesSetChecker checker) throws IOException, InterruptedException, URISyntaxException
 	{
 		StartUp.enableLogs();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");  
+		LocalDateTime now = LocalDateTime.now(); 
 		
+		String path = Runner.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+		File jarFile = new File(Runner.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+		String jarDir = jarFile.getParentFile().getAbsolutePath();
+		
+		File ssfolder = new File(jarDir + "/" + dtf.format(now));
+		if(ssfolder.mkdir()) System.out.println("TRUE");
+		else System.out.println("FALSE");
+		
+		
+		Settings.debugFolder = ssfolder + "/";
+		
+		System.out.println(Settings.debugFolder);
 		var failures = new DataBaseResultsCollector("sdssss", false);
 		
 
