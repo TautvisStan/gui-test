@@ -6,6 +6,8 @@ import java.io.FileFilter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -18,54 +20,6 @@ import java.util.concurrent.ThreadLocalRandom;
 public class DroidBotRunner
 	{
 		private static boolean skipRestart = true;
-
-		public static void main(String[] args) throws IOException, InterruptedException
-		{
-			String root = "c:/_apps/";
-			String device = "emulator-5554";
-	boolean emulator = true;
-
-			String[] ddd = sa(new File(root).list());
-			
-			int i = 0;
-			
-			for (String folderName : ddd)
-			{
-				System.out.println("----------------- " + (i++) + "/" + ddd.length + " ---------------------");
-				
-				File folder = new File(root + "/" + folderName);
-
-				if (folder.isDirectory())
-				{
-					runTests(folder, device, emulator);
-				}
-			}
-
-		}
-
-		private static void runTests(File folder, String device, boolean emulator)
-		{
-			FileFilter filter = new FileFilter()
-			{
-				@Override
-				public boolean accept(File pathname)
-				{
-					return pathname.getName().endsWith(".apk");
-				}
-			};
-
-			for (File fileName : folder.listFiles(filter))
-			{
-				try
-				{
-					runDroidBot(folder, fileName, device, emulator);
-				}
-				catch (InterruptedException | ExecutionException ex)
-				{
-					ex.printStackTrace();
-				}
-			}
-		}
 		
 		private static void uninstall(String name)
 		{
@@ -96,10 +50,13 @@ public class DroidBotRunner
 			}
 		}
 
-		private static void runDroidBot(File folder, File apkFile, String device, boolean emulator) throws InterruptedException, ExecutionException
+		public static void runDroidBot(File folder, File apkFile) throws InterruptedException, ExecutionException
 		{
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");  
+			LocalDateTime now = LocalDateTime.now(); 
+			
 
-			File resultsFolder = new File(folder.getAbsolutePath() + "/_results_/" + device + "/");
+			File resultsFolder = new File(folder.getAbsolutePath() + "/DroidBotResults/" + dtf.format(now) + "/");
 
 			if (false == resultsFolder.exists())
 			{
@@ -144,7 +101,7 @@ public class DroidBotRunner
 				
 				skipRestart = false;
 				
-				String command = "python droidbot\\start.py -a " + apkFile.getAbsolutePath().replaceAll("[ ]", "\\ ") + " -o " + resultsFolder.getAbsolutePath().replaceAll("[ ]", "\\ ") + " -keep_env -ignore_ad -timeout 300 -is_emulator";
+				String command = "python \"" + folder.getAbsolutePath() + "\\droidbot\\start.py\" -a \"" + apkFile.getAbsolutePath().replaceAll("[ ]", "\\ ") + "\" -o \"" + resultsFolder.getAbsolutePath().replaceAll("[ ]", "\\ ") + "\" -keep_env -ignore_ad -timeout 300 -is_emulator";
 				
 				Process p = Runtime.getRuntime().exec(command);
 

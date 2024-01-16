@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 
 public class Runner {
 
-	public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException
+	public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException, ExecutionException
 	{
 		if(args[0].equals("Analyze"))
 		{
@@ -48,28 +48,32 @@ public class Runner {
 		
 		if(args[0].equals("DroidBot"))
 		{
-			DroidBotRunner.main(null);
+			File APK = new File(args[1]);
+			File Folder = new File(GetJarFolder());
+			DroidBotRunner.runDroidBot(Folder, APK);
 		}
 
+	}
+	private static String GetJarFolder() throws URISyntaxException
+	{
+		
+		File jarFile = new File(Runner.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+		String jarDir = jarFile.getParentFile().getAbsolutePath();
+		
+		
+		return jarDir;
 	}
 	private static void RunAnalyze(File app, RulesSetChecker checker) throws IOException, InterruptedException, URISyntaxException
 	{
 		StartUp.enableLogs();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");  
 		LocalDateTime now = LocalDateTime.now(); 
-		
-		String path = Runner.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-		File jarFile = new File(Runner.class.getProtectionDomain().getCodeSource().getLocation().toURI());
-		String jarDir = jarFile.getParentFile().getAbsolutePath();
-		
-		File ssfolder = new File(jarDir + "/" + dtf.format(now));
-		if(ssfolder.mkdir()) System.out.println("TRUE");
-		else System.out.println("FALSE");
-		
+				
+		File ssfolder = new File(GetJarFolder() + "/AnalyzeResults/" + dtf.format(now));
+		ssfolder.mkdirs();
 		
 		Settings.debugFolder = ssfolder + "/";
 		
-		System.out.println(Settings.debugFolder);
 		var failures = new DataBaseResultsCollector("sdssss", false);
 		
 
