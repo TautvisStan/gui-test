@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
+using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -48,7 +49,7 @@ namespace UI
         private static List<string> SelectedRules = new List<string>();
         private static string ScreenshotDirectory = "";
         private static string APKFile = "";
-        private static string JarLocation = "\"C:\\Users\\AAA\\Downloads\\eclipse-java-2023-03-R-win32-x86_64\\Naujas aplankas\\test.jar\"";
+        private static string JarLocation = "\"C:\\Users\\AAA\\Downloads\\eclipse-java-2023-03-R-win32-x86_64\\Naujas aplankas\\DefectsAnalyzer.jar\"";
         private System.Diagnostics.Process cmdProcess = null;
 
         private void HandleCheckBox(CheckBox ruleCheckbox, Rules rule)
@@ -226,6 +227,8 @@ namespace UI
 
         private void button2_Click(object sender, EventArgs e)
         {
+            string applicationLocation = System.Reflection.Assembly.GetEntryAssembly().Location;
+            string applicationDirectory = Path.GetDirectoryName(applicationLocation);
 
             if (ScreenshotDirectory == "")
             {
@@ -248,7 +251,7 @@ namespace UI
                     return;
                 }
             }
-            string strCmdText = "/C java -jar " + JarLocation + " Analyze \"" + ScreenshotDirectory + "\"";
+            string strCmdText = "/C java -jar \"" + applicationDirectory + "\\DefectsAnalyzer.jar\" Analyze \"" + ScreenshotDirectory + "\"";
             foreach (string rule in SelectedRules)
             {
                 strCmdText += " " + rule;
@@ -281,6 +284,11 @@ namespace UI
 
         private void RunDroidBot_Click(object sender, EventArgs e)
         {
+            string applicationLocation = System.Reflection.Assembly.GetEntryAssembly().Location;
+            string applicationDirectory = Path.GetDirectoryName(applicationLocation);
+
+
+
             if (APKFile == "")
             {
                 MessageBox.Show("No APK file selected.", "Error",
@@ -296,7 +304,7 @@ namespace UI
                     return;
                 }
             }
-            string strCmdText = "/C java -jar " + JarLocation + " DroidBot \"" + APKFile + "\"";
+            string strCmdText = "/C java -jar \"" + applicationDirectory + "\\DefectsAnalyzer.jar\" DroidBot \"" + APKFile + "\"";
             label2.Text = strCmdText;
 
             cmdProcess = System.Diagnostics.Process.Start("CMD.exe", strCmdText);

@@ -40,7 +40,7 @@ import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 import net.sourceforge.tess4j.Word;
 import net.sourceforge.tess4j.util.LoggHelper;
-
+import edu.ktu.screenshotanalyser.tools.Settings;
 public class TextExtractor
 {
 	private final ITesseract tesseract;
@@ -56,7 +56,8 @@ public class TextExtractor
 		this.confidenceLevel = confidenceLevel;
 
 		this.tesseract = new Tesseract();
-		this.tesseract.setDatapath(new File("./tessdata_best").getAbsolutePath()); // TODO: folder in app settings
+		String JarFolder = Settings.JarFolder;
+		this.tesseract.setDatapath(new File(JarFolder + "/tessdata_best").getAbsolutePath()); // TODO: folder in app settings
 		this.tesseract.setLanguage(language);
 	
 		

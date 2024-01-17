@@ -101,7 +101,7 @@ public class DroidBotRunner
 				
 				skipRestart = false;
 				
-				String command = "python \"" + folder.getAbsolutePath() + "\\droidbot\\start.py\" -a \"" + apkFile.getAbsolutePath().replaceAll("[ ]", "\\ ") + "\" -o \"" + resultsFolder.getAbsolutePath().replaceAll("[ ]", "\\ ") + "\" -keep_env -ignore_ad -timeout 300 -is_emulator";
+				String command = "python \"" + folder.getAbsolutePath() + "\\droidbot\\start.py\" -a \"" + apkFile.getAbsolutePath().replaceAll("[ ]", "\\ ") + "\" -o \"" + resultsFolder.getAbsolutePath().replaceAll("[ ]", "\\ ") + "\" -keep_env -ignore_ad -is_emulator";
 				
 				Process p = Runtime.getRuntime().exec(command);
 

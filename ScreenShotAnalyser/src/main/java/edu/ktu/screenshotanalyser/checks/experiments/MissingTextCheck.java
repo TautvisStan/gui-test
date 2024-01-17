@@ -34,7 +34,7 @@ public class MissingTextCheck extends BaseTextRuleCheck implements IStateRuleChe
 	{
 		super(26, "TM1");
 
-		this.lastRun = loadLastRun("E:\\e1\\2\\p2.txt", "TM1: ");
+	//	this.lastRun = loadLastRun("E:\\e1\\2\\p2.txt", "TM1: ");
 	}
 
 	/*
@@ -169,7 +169,7 @@ public class MissingTextCheck extends BaseTextRuleCheck implements IStateRuleChe
 	
 	private String normalize(String source)
 	{
-		source = source.replace('’', '\'');
+		source = source.replace('ï¿½', '\'');
 		source = source.replace('\u00a0', ' ');
 		
 		return source;
@@ -180,7 +180,7 @@ public class MissingTextCheck extends BaseTextRuleCheck implements IStateRuleChe
 	{
 		if (invalidControls > 0)
 		{
-			//resultImage.save(Settings.debugFolder + "a_" + UUID.randomUUID().toString() + "1.png");
+			resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
 		}
 		
 		failures.addFailure(new CheckResult(state, this, errors, invalidControls));
@@ -259,13 +259,13 @@ public class MissingTextCheck extends BaseTextRuleCheck implements IStateRuleChe
 	@Override
 	public void analyze(State state, ResultsCollector failures)
 	{
-		if (null != this.lastRun)
+	/*	if (null != this.lastRun)
 		{
 			if (false == this.lastRun.contains(state.getImageFile().getAbsolutePath()))
 			{
 				return;
 			}
-		}
+		}*/
 		
 		
 		List<DefectResult> results = new ArrayList<>();
@@ -273,7 +273,8 @@ public class MissingTextCheck extends BaseTextRuleCheck implements IStateRuleChe
 	
 		long invalidControls = 0;
 		String errors = "";
-		
+		ResultImage resultImage = new ResultImage(state.getImageFile());
+
 		for (Control control : state.getActualControls())
 		{
 			if (shouldSkipControl(control, state))
@@ -367,9 +368,10 @@ public class MissingTextCheck extends BaseTextRuleCheck implements IStateRuleChe
 			
 			if (false == textFound.found)
 			{
-//				resultImage.drawBounds(bounds);
+				
+				resultImage.drawBounds(bounds);
 	
-	//			resultImage.drawText(textFound.recognizedTexts + " | " + control.getText(), bounds);
+				resultImage.drawText(textFound.recognizedTexts + " | " + control.getText(), bounds);
 				
 				invalidControls++;
 				
@@ -382,7 +384,7 @@ public class MissingTextCheck extends BaseTextRuleCheck implements IStateRuleChe
 		if (errors.length() > 0)
 		{
 		
-		logDefects(state, failures, null /*resultImage*/, invalidControls, errors);		
+		logDefects(state, failures, resultImage, invalidControls, errors);		
 		
 		}
 		
@@ -664,7 +666,7 @@ public class MissingTextCheck extends BaseTextRuleCheck implements IStateRuleChe
 			return true;
 		}
 		
-		searchMessage = searchMessage.replace(' ', ' ').replace('\n', ' ').replace('\r', ' ');
+		searchMessage = searchMessage.replace('ï¿½', ' ').replace('\n', ' ').replace('\r', ' ');
 
 		String[] words = searchMessage.split("[ ]");
 		String[] targetWords = targetMessage.split("[ ]");

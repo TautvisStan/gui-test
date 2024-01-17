@@ -2,8 +2,8 @@ package edu.ktu.screenshotanalyser.checks;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.text.similarity.LevenshteinDistance;

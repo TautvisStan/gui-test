@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 import edu.ktu.screenshotanalyser.checks.DataBaseResultsCollector;
 import edu.ktu.screenshotanalyser.checks.RulesSetChecker;
 import edu.ktu.screenshotanalyser.checks.experiments.tausta3.*;
+import edu.ktu.screenshotanalyser.checks.experiments.*;
 import edu.ktu.screenshotanalyser.tools.Settings;
 import edu.ktu.screenshotanalyser.StartUp;
 import java.time.format.DateTimeFormatter;  
@@ -25,6 +26,7 @@ public class Runner {
 
 	public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException, ExecutionException
 	{
+		Settings.JarFolder = GetJarFolder();
 		if(args[0].equals("Analyze"))
 		{
 			var checker = new RulesSetChecker();
@@ -42,6 +44,22 @@ public class Runner {
 				if(args[i].equals("LowContrastCheck")) checker.addRule(new LowContrastCheck());
 				if(args[i].equals("EmptyViewCheck")) checker.addRule(new EmptyViewCheck());
 				if(args[i].equals("NonCenteredCheck")) checker.addRule(new NonCenteredCheck());
+				
+				if(args[i].equals("MissingTextCheck")) checker.addRule(new MissingTextCheck());
+				if(args[i].equals("UnreadableTextCheck")) checker.addRule(new UnreadableTextCheck());
+				if(args[i].equals("OffensiveMessagesCheck")) checker.addRule(new OffensiveMessagesCheck());
+				if(args[i].equals("UnalignedControlsCheck")) checker.addRule(new UnalignedControlsCheck());
+				if(args[i].equals("ClippedControlCheck")) checker.addRule(new ClippedControlCheck());
+				if(args[i].equals("ObscuredControlCheck")) checker.addRule(new ObscuredControlCheck());
+				if(args[i].equals("WrongLanguageCheck")) checker.addRule(new WrongLanguageCheck());
+				if(args[i].equals("ObscuredTextCheck")) checker.addRule(new ObscuredTextCheck());
+				if(args[i].equals("GrammarCheck")) checker.addRule(new GrammarCheck());
+				if(args[i].equals("WrongEncodingCheck")) checker.addRule(new WrongEncodingCheck());
+				if(args[i].equals("UnlocalizedIconsCheck")) checker.addRule(new UnlocalizedIconsCheck());
+				if(args[i].equals("MissingTranslationCheck")) checker.addRule(new MissingTranslationCheck());
+				if(args[i].equals("MixedLanguagesStateCheck")) checker.addRule(new MixedLanguagesStateCheck());
+				if(args[i].equals("MixedLanguagesAppCheck")) checker.addRule(new MixedLanguagesAppCheck());
+				if(args[i].equals("TooHardToUnderstandCheck")) checker.addRule(new TooHardToUnderstandCheck());
 			}
 			RunAnalyze(app, checker);
 		}
