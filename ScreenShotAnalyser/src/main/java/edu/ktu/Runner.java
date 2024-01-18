@@ -45,15 +45,18 @@ public class Runner {
 				if(args[i].equals("EmptyViewCheck")) checker.addRule(new EmptyViewCheck());
 				if(args[i].equals("NonCenteredCheck")) checker.addRule(new NonCenteredCheck());
 				
-				if(args[i].equals("MissingTextCheck")) checker.addRule(new MissingTextCheck());
-				if(args[i].equals("UnreadableTextCheck")) checker.addRule(new UnreadableTextCheck());
-				if(args[i].equals("OffensiveMessagesCheck")) checker.addRule(new OffensiveMessagesCheck());
-				if(args[i].equals("UnalignedControlsCheck")) checker.addRule(new UnalignedControlsCheck());
-				if(args[i].equals("ClippedControlCheck")) checker.addRule(new ClippedControlCheck());
-				if(args[i].equals("ObscuredControlCheck")) checker.addRule(new ObscuredControlCheck());
-				if(args[i].equals("WrongLanguageCheck")) checker.addRule(new WrongLanguageCheck());
-				if(args[i].equals("ObscuredTextCheck")) checker.addRule(new ObscuredTextCheck());
-				if(args[i].equals("GrammarCheck")) checker.addRule(new GrammarCheck());
+				
+				//PUT APK IN DROIDBOT RESULTS FOLDER
+				if(args[i].equals("MissingTextCheck")) checker.addRule(new MissingTextCheck());//+
+				if(args[i].equals("UnreadableTextCheck")) checker.addRule(new UnreadableTextCheck());//+
+				if(args[i].equals("OffensiveMessagesCheck")) checker.addRule(new OffensiveMessagesCheck());//~~~~ Too long cmd python command
+				if(args[i].equals("UnalignedControlsCheck")) checker.addRule(new UnalignedControlsCheck());//+   checkLabelAlignment no failure collect    high memory usage
+				if(args[i].equals("ClippedControlCheck")) checker.addRule(new ClippedControlCheck());//+
+				if(args[i].equals("ObscuredControlCheck")) checker.addRule(new ObscuredControlCheck());//+?
+				if(args[i].equals("WrongLanguageCheck")) checker.addRule(new WrongLanguageCheck());//+ high mem usage, note above
+				if(args[i].equals("ObscuredTextCheck")) checker.addRule(new ObscuredTextCheck());//+
+				
+				if(args[i].equals("GrammarCheck")) checker.addRule(new GrammarCheck());  //+ Error: Unable to access jarfile ./tools/apktool_2.3.4.jar, no ss in appcontext, check rules ^
 				if(args[i].equals("WrongEncodingCheck")) checker.addRule(new WrongEncodingCheck());
 				if(args[i].equals("UnlocalizedIconsCheck")) checker.addRule(new UnlocalizedIconsCheck());
 				if(args[i].equals("MissingTranslationCheck")) checker.addRule(new MissingTranslationCheck());
@@ -93,25 +96,6 @@ public class Runner {
 		Settings.debugFolder = ssfolder + "/";
 		
 		var failures = new DataBaseResultsCollector("sdssss", false);
-		
-
-		//checker.addRule(new UnalignedControlsCheck());    +
-		//checker.addRule(new ClippedControlCheck());       +
-		//checker.addRule(new ObscuredControlCheck());      +
-		//checker.addRule(new WrongLanguageCheck());        +
-		//checker.addRule(new ObscuredTextCheck());         +
-		//checker.addRule(new GrammarCheck());              +
-		//checker.addRule(new WrongEncodingCheck());        +
-		//checker.addRule(new ClippedTextCheck());          +
-		//checker.addRule(new UnlocalizedIconsCheck());     +
-		//checker.addRule(new MissingTranslationCheck());   +
-		//checker.addRule(new MixedLanguagesStateCheck());  +
-		//checker.addRule(new MixedLanguagesAppCheck());    +
-		//checker.addRule(new OffensiveMessagesCheck());    + 
-		//checker.addRule(new UnreadableTextCheck());       +
-		//checker.addRule(new TooHardToUnderstandCheck());  +
-	//	checker.addRule(new MissingTextCheck());          //+
-		
 		
 		var exec = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());		
 		StartUp.runChecks(app, exec, checker, failures);

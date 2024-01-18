@@ -1,11 +1,15 @@
 package edu.ktu.screenshotanalyser.checks.experiments;
 
+import java.util.UUID;
+
 import edu.ktu.screenshotanalyser.checks.BaseRuleCheck;
 import edu.ktu.screenshotanalyser.checks.CheckResult;
 import edu.ktu.screenshotanalyser.checks.IStateRuleChecker;
+import edu.ktu.screenshotanalyser.checks.ResultImage;
 import edu.ktu.screenshotanalyser.checks.ResultsCollector;
 import edu.ktu.screenshotanalyser.context.Control;
 import edu.ktu.screenshotanalyser.context.State;
+import edu.ktu.screenshotanalyser.tools.Settings;
 
 public class UnreadableTextCheck extends BaseRuleCheck implements IStateRuleChecker
 {
@@ -16,14 +20,15 @@ public class UnreadableTextCheck extends BaseRuleCheck implements IStateRuleChec
 
 	public UnreadableTextCheck()
 	{
-		super(19, "TS2");
+		super(19, "UnreadableText");
 	}
 
 	@Override
 	public void analyze(State state, ResultsCollector failures)
 	{
 		var tooSmall = new StringBuilder("");
-
+		ResultImage resultImage = new ResultImage(state.getImageFile());
+		int i = 0;
 		for (var message : state.getActualControls())
 		{
 			String result = isTextTooSmall(message, state);
@@ -31,6 +36,14 @@ public class UnreadableTextCheck extends BaseRuleCheck implements IStateRuleChec
 			if (null != result)
 			{
 				tooSmall.append(" " + result);
+				if (i++ % 2 == 0)
+				{
+					resultImage.drawBounds(message.getBounds(), 255, 0, 0);
+				}
+				else
+				{
+					resultImage.drawBounds(message.getBounds(), 0, 255, 0);
+				}
 			}
 		}
 
@@ -39,6 +52,7 @@ public class UnreadableTextCheck extends BaseRuleCheck implements IStateRuleChec
 		if (tooSmallText.length() > 0)
 		{
 			// ???
+			resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
 			failures.addFailure(new CheckResult(state, this, tooSmallText.replace('\n', ' '), tooSmallText.length()));
 		}
 	}

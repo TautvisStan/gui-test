@@ -1,12 +1,15 @@
 package edu.ktu.screenshotanalyser.checks.experiments;
 
+import java.util.UUID;
 import java.util.stream.Collectors;
 import edu.ktu.screenshotanalyser.checks.BaseTextRuleCheck;
 import edu.ktu.screenshotanalyser.checks.CheckResult;
 import edu.ktu.screenshotanalyser.checks.IStateRuleChecker;
+import edu.ktu.screenshotanalyser.checks.ResultImage;
 import edu.ktu.screenshotanalyser.checks.ResultsCollector;
 import edu.ktu.screenshotanalyser.context.Control;
 import edu.ktu.screenshotanalyser.context.State;
+import edu.ktu.screenshotanalyser.tools.Settings;
 
 public class ClippedControlCheck extends BaseTextRuleCheck implements IStateRuleChecker
 {
@@ -24,6 +27,24 @@ public class ClippedControlCheck extends BaseTextRuleCheck implements IStateRule
 		if (!clippedControls.isEmpty())
 		{
 			failures.addFailure(new CheckResult(state, this, "1", clippedControls.size()));
+			ResultImage resultImage = new ResultImage(state.getImageFile());
+
+			int i = 0;
+
+			for (var control : clippedControls)
+			{
+				if (i++ % 2 == 0)
+				{
+					resultImage.drawBounds(control.getBounds(), 255, 0, 0);
+				}
+				else
+				{
+					resultImage.drawBounds(control.getBounds(), 0, 255, 0);
+				}
+			}
+			// System.out.println(state.getStateFile().toString());
+
+			resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
 		}
 	}
 

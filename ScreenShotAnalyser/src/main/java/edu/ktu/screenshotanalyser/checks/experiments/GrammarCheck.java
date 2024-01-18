@@ -1,15 +1,18 @@
 package edu.ktu.screenshotanalyser.checks.experiments;
 
 import java.util.ArrayList;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import org.languagetool.Language;
 import edu.ktu.screenshotanalyser.checks.BaseTextRuleCheck;
 import edu.ktu.screenshotanalyser.checks.CheckResult;
 import edu.ktu.screenshotanalyser.checks.IAppRuleChecker;
 import edu.ktu.screenshotanalyser.checks.IStateRuleChecker;
+import edu.ktu.screenshotanalyser.checks.ResultImage;
 import edu.ktu.screenshotanalyser.checks.ResultsCollector;
 import edu.ktu.screenshotanalyser.context.AppContext;
 import edu.ktu.screenshotanalyser.context.State;
+import edu.ktu.screenshotanalyser.tools.Settings;
 
 public class GrammarCheck extends BaseTextRuleCheck implements IStateRuleChecker, IAppRuleChecker
 {
@@ -65,7 +68,8 @@ public class GrammarCheck extends BaseTextRuleCheck implements IStateRuleChecker
 				if ((mistypes != null) && (mistypes.length() > 0))
 				{
 					failures.addFailure(new CheckResult(state, this, mistypes, 1));
-
+					ResultImage resultImage = new ResultImage(state.getImageFile());
+					resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
 					return;
 				}
 			}
@@ -81,7 +85,8 @@ public class GrammarCheck extends BaseTextRuleCheck implements IStateRuleChecker
 					if ((mistypes != null) && (mistypes.length() > 0))
 					{
 						failures.addFailure(new CheckResult(state, this, mistypes, 1));
-
+						ResultImage resultImage = new ResultImage(state.getImageFile());
+						resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
 						return;
 					}
 				}

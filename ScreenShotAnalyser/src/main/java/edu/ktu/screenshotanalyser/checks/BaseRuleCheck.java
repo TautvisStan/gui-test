@@ -30,7 +30,7 @@ public abstract class BaseRuleCheck
 		
 		try
 		{
-			var logFile = Paths.get("e:/log/" + this.ruleCode + ".txt");
+			var logFile = Paths.get("c:/log/" + this.ruleCode + ".txt");
 			
 			//Files.write(logFile, message.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND, StandardOpenOption.CREATE);
 		}

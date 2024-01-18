@@ -32,7 +32,7 @@ public class MissingTextCheck extends BaseTextRuleCheck implements IStateRuleChe
 	
 	public MissingTextCheck()
 	{
-		super(26, "TM1");
+		super(26, "MissingText");
 
 	//	this.lastRun = loadLastRun("E:\\e1\\2\\p2.txt", "TM1: ");
 	}

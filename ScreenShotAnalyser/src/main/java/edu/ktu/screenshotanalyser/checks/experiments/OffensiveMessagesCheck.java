@@ -9,6 +9,7 @@ import edu.ktu.screenshotanalyser.checks.IStateRuleChecker;
 import edu.ktu.screenshotanalyser.checks.ResultsCollector;
 import edu.ktu.screenshotanalyser.context.AppContext;
 import edu.ktu.screenshotanalyser.context.State;
+import edu.ktu.screenshotanalyser.tools.Settings;
 
 public class OffensiveMessagesCheck extends BaseTextRuleCheck implements IStateRuleChecker, IAppRuleChecker
 {
@@ -92,7 +93,9 @@ public class OffensiveMessagesCheck extends BaseTextRuleCheck implements IStateR
 
 			message = "\"" + message.replace('\"', ' ') + "\"";
 
-			var command = new String[] { "profanity_filter", "--text", message, "--show", "-l", "en" };
+			String pythonFile = "\"" + Settings.JarFolder + "\\profanity_filter\\profanity_filter\\console.py\"";
+			var command = new String[] { "python", pythonFile, "--text", message, "--show", "-l", "en" };
+			System.out.println(command);
 			var output = executeShellCommand(command);
 
 			if (output.contains("**"))

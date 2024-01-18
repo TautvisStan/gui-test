@@ -300,7 +300,14 @@ public class UnalignedControlsCheck extends BaseTextRuleCheck implements IStateR
 						failures.addFailure(new CheckResult(state, this, "unaligned vertically", 1));
 					}
 
-					annotateDefectImage(state, defectiveControls.stream().collect(Collectors.toList()));
+					var resultImage = new ResultImage(state.getImageFile());								
+					
+					for (var control : defectiveControls)
+					{
+						resultImage.drawBounds(control.getBounds());
+					}
+					
+					resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
 
 					return true;
 				}
@@ -390,7 +397,14 @@ public class UnalignedControlsCheck extends BaseTextRuleCheck implements IStateR
 
 								if (((float) b1.size() / (float) textFields.size()) > 0.7)
 								{
-									annotateDefectImage(state, b1);
+									var resultImage = new ResultImage(state.getImageFile());								
+									
+									for (var control : b1)
+									{
+										resultImage.drawBounds(control.getBounds());
+									}
+									
+									resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
 
 									return true;
 								}

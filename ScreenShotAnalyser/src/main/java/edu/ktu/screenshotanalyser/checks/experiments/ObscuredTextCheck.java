@@ -92,7 +92,7 @@ public class ObscuredTextCheck extends BaseTextRuleCheck implements IStateRuleCh
 
 			// System.out.println(state.getStateFile().toString());
 
-			resultImage.save(Settings.debugFolder + "a_" + UUID.randomUUID().toString() + "1.png");
+			resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
 
 			failures.addFailure(new CheckResult(state, this, "1", overlapped.size()));
 		}

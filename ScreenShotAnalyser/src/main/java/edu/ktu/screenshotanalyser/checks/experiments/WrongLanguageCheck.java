@@ -4,15 +4,18 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import com.aliasi.util.Pair;
 import com.github.pemistahl.lingua.api.Language;
 import edu.ktu.screenshotanalyser.checks.BaseTextRuleCheck;
 import edu.ktu.screenshotanalyser.checks.CheckResult;
 import edu.ktu.screenshotanalyser.checks.IStateRuleChecker;
+import edu.ktu.screenshotanalyser.checks.ResultImage;
 import edu.ktu.screenshotanalyser.checks.ResultsCollector;
 import edu.ktu.screenshotanalyser.context.Control;
 import edu.ktu.screenshotanalyser.context.State;
+import edu.ktu.screenshotanalyser.tools.Settings;
 
 public class WrongLanguageCheck extends BaseTextRuleCheck implements IStateRuleChecker
 {
@@ -69,6 +72,8 @@ public class WrongLanguageCheck extends BaseTextRuleCheck implements IStateRuleC
 			
 			if (false == languageFound)
 			{
+				ResultImage resultImage = new ResultImage(state.getImageFile());
+				resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
 				failures.addFailure(new CheckResult(state, this, "missing language " + message.a() + " " + message.b().toString(), 1));
 				
 				return;
