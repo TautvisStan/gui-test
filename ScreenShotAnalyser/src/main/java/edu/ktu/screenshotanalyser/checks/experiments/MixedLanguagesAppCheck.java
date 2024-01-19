@@ -23,7 +23,7 @@ public class MixedLanguagesAppCheck extends  BaseTextRuleCheck implements IAppRu
 
 	@Override
 	public void analyze(AppContext appContext, ResultsCollector failures)
-	{
+	{		
 		var languages = new HashSet<Language>();
 		var deviceStates = appContext.getStates().stream().collect(Collectors.groupingBy(State::getTestDevice));
 

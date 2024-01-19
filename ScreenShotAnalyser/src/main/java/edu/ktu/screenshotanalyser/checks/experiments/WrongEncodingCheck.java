@@ -1,13 +1,16 @@
 package edu.ktu.screenshotanalyser.checks.experiments;
 
+import java.util.UUID;
 import java.util.stream.Collectors;
 //import com.lowagie.text.pdf.PatternColor;
 import edu.ktu.screenshotanalyser.checks.BaseTextRuleCheck;
 import edu.ktu.screenshotanalyser.checks.CheckResult;
 import edu.ktu.screenshotanalyser.checks.IStateRuleChecker;
+import edu.ktu.screenshotanalyser.checks.ResultImage;
 import edu.ktu.screenshotanalyser.checks.ResultsCollector;
 import edu.ktu.screenshotanalyser.context.Control;
 import edu.ktu.screenshotanalyser.context.State;
+import edu.ktu.screenshotanalyser.tools.Settings;
 
 public class WrongEncodingCheck extends BaseTextRuleCheck implements IStateRuleChecker
 {
@@ -76,7 +79,8 @@ public class WrongEncodingCheck extends BaseTextRuleCheck implements IStateRuleC
 					if (text.contains(s))
 					{
 						System.out.println(text + state.getName());
-						
+						ResultImage resultImage = new ResultImage(state.getImageFile());
+						resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
 						failures.addFailure(new CheckResult(state, this, text, 1));
 						
 						return;
@@ -123,7 +127,8 @@ public class WrongEncodingCheck extends BaseTextRuleCheck implements IStateRuleC
 								if (!Character.isAlphabetic(c))
 								{
 									System.out.println("---- [" + w + "] "   + state.getName());
-									
+									ResultImage resultImage = new ResultImage(state.getImageFile());
+									resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
 									failures.addFailure(new CheckResult(state, this, "[" + w + "] "+ text, 1));
 									
 									return;

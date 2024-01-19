@@ -2,15 +2,19 @@ package edu.ktu.screenshotanalyser.checks.experiments;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
 import com.ipeirotis.readability.engine.Readability;
 import com.ipeirotis.readability.enums.MetricType;
 import edu.ktu.screenshotanalyser.checks.BaseTextRuleCheck;
 import edu.ktu.screenshotanalyser.checks.CheckResult;
 import edu.ktu.screenshotanalyser.checks.IAppRuleChecker;
 import edu.ktu.screenshotanalyser.checks.IStateRuleChecker;
+import edu.ktu.screenshotanalyser.checks.ResultImage;
 import edu.ktu.screenshotanalyser.checks.ResultsCollector;
 import edu.ktu.screenshotanalyser.context.AppContext;
 import edu.ktu.screenshotanalyser.context.State;
+import edu.ktu.screenshotanalyser.tools.Settings;
 
 /**
  * https://ipeirotis-hrd.appspot.com/
@@ -28,7 +32,7 @@ public class TooHardToUnderstandCheck extends BaseTextRuleCheck implements IStat
 
 	public TooHardToUnderstandCheck()
 	{
-		super(-1, "SU2");
+		super(-1, "HardToUnderstand");
 
 		// this(13d, 10);
 	}
@@ -71,7 +75,9 @@ public class TooHardToUnderstandCheck extends BaseTextRuleCheck implements IStat
 		if (errors.length() > 0)
 		{
 			// ???
-			failures.addFailure(new CheckResult(state, this, "hard 2 understand " + errors, errors.length()));
+			ResultImage resultImage = new ResultImage(state.getImageFile());
+			resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
+			failures.addFailure(new CheckResult(state, this, "hard to understand " + errors, errors.length()));
 		}
 	}
 

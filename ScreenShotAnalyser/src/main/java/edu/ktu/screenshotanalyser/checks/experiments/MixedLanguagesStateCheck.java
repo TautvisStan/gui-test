@@ -3,21 +3,24 @@ package edu.ktu.screenshotanalyser.checks.experiments;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import com.aliasi.util.Pair;
 import com.github.pemistahl.lingua.api.Language;
 import edu.ktu.screenshotanalyser.checks.BaseTextRuleCheck;
 import edu.ktu.screenshotanalyser.checks.CheckResult;
 import edu.ktu.screenshotanalyser.checks.IStateRuleChecker;
+import edu.ktu.screenshotanalyser.checks.ResultImage;
 import edu.ktu.screenshotanalyser.checks.ResultsCollector;
 import edu.ktu.screenshotanalyser.context.Control;
 import edu.ktu.screenshotanalyser.context.State;
+import edu.ktu.screenshotanalyser.tools.Settings;
 
 public class MixedLanguagesStateCheck extends BaseTextRuleCheck implements IStateRuleChecker
 {
 	public MixedLanguagesStateCheck()
 	{
-		super(7, "SL2");
+		super(7, "MixedLanguagesStateCheck");
 	}
 
 	@Override
@@ -126,6 +129,8 @@ public class MixedLanguagesStateCheck extends BaseTextRuleCheck implements IStat
 		}
 
 		failures.addFailure(new CheckResult(state, this, error, 1));
+		ResultImage resultImage = new ResultImage(state.getImageFile());
+		resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
 	}
 
 	@Override

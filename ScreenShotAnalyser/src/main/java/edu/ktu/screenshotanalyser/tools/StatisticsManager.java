@@ -174,7 +174,7 @@ public class StatisticsManager
 	
 	public List<String> getCheckedStates(long testRunId)
 	{
-		try (var connection = DriverManager.getConnection(connectionUrl))
+	/*	try (var connection = DriverManager.getConnection(connectionUrl))
 		{
 			var query = "SELECT DISTINCT ScreenShot.FileName FROM TestRunDefect JOIN ScreenShot ON TestRunDefect.ScreenShotId = ScreenShot.Id AND TestRunDefect.TestRunId = ?";
 			
@@ -185,7 +185,8 @@ public class StatisticsManager
 			ex.printStackTrace();
 			
 			return new ArrayList<>();
-		}				
+		}		*/	
+		return new ArrayList<>();
 	}
 	
 	public void logDetectedDefect(long testRunId, CheckResult result)

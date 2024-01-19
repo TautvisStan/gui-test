@@ -96,13 +96,16 @@ public class UnlocalizedIconsCheck extends BaseTextRuleCheck implements IStateRu
 							
 						var icon = state.getImage().getSubimage(bounds.x, bounds.y, bounds.width, bounds.height);
 
-						File outputfile = new File(Settings.debugFolder + "a_" + UUID.randomUUID().toString() + "1-------" + msg + "--" + lang + ".png");
-						ImageIO.write(icon, "png", outputfile);
+//						File outputfile = new File(Settings.debugFolder + "a_" + UUID.randomUUID().toString() + "1-------" + msg + "--" + lang + ".png");
+//						ImageIO.write(icon, "png", outputfile);
 
 						
 						
 						var result = new CheckResult(state, this, msg + " != " + lang, 1);
-						failures.addFailure(result);									
+						failures.addFailure(result);	
+						ResultImage resultImage = new ResultImage(state.getImageFile());
+						resultImage.drawBounds(bounds);
+						resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
 						
 						if (failures.acceptsResultImages)
 						{
@@ -239,7 +242,7 @@ public class UnlocalizedIconsCheck extends BaseTextRuleCheck implements IStateRu
 				"cos",
 				"cym",
 				"dan",*/
-				"deu",
+//				"deu",
 /*				"div",
 				"dzo",
 				"ell", */
@@ -252,7 +255,7 @@ public class UnlocalizedIconsCheck extends BaseTextRuleCheck implements IStateRu
 				"fas",
 				"fil",
 				"fin", */
-				"fra",
+//				"fra",
 /*				"frk",
 				"frm",
 				"fry",
@@ -262,8 +265,8 @@ public class UnlocalizedIconsCheck extends BaseTextRuleCheck implements IStateRu
 				"grc",
 				"guj",
 				"hat", */
-				"heb",
-				"hin",
+//				"heb",
+//				"hin",
 /*				"hrv",
 				"hun",
 				"hye",
@@ -282,12 +285,12 @@ public class UnlocalizedIconsCheck extends BaseTextRuleCheck implements IStateRu
 				"khm",
 				"kir",
 				"kmr", */
-				"kor",
+//				"kor",
 /*				"kor_vert",
 				"lao",
 				"lat",
 				"lav", */
-				"lit",
+//				"lit",
 /*				"ltz",
 				"mal",
 				"mar",
@@ -309,13 +312,13 @@ public class UnlocalizedIconsCheck extends BaseTextRuleCheck implements IStateRu
 				"pus",
 				"que",
 				"ron", */
-				"rus",
+//				"rus",
 /*				"san",
 				"sin",
 				"slk",
 				"slv",
 				"snd", */
-				"spa"
+//				"spa"
 /*				"spa_old",
 				"sqi",
 				"srp",

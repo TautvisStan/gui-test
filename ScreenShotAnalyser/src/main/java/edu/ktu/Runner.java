@@ -57,12 +57,12 @@ public class Runner {
 				if(args[i].equals("ObscuredTextCheck")) checker.addRule(new ObscuredTextCheck());//+
 				
 				if(args[i].equals("GrammarCheck")) checker.addRule(new GrammarCheck());  //+ Error: Unable to access jarfile ./tools/apktool_2.3.4.jar, no ss in appcontext, check rules ^
-				if(args[i].equals("WrongEncodingCheck")) checker.addRule(new WrongEncodingCheck());
-				if(args[i].equals("UnlocalizedIconsCheck")) checker.addRule(new UnlocalizedIconsCheck());
-				if(args[i].equals("MissingTranslationCheck")) checker.addRule(new MissingTranslationCheck());
-				if(args[i].equals("MixedLanguagesStateCheck")) checker.addRule(new MixedLanguagesStateCheck());
-				if(args[i].equals("MixedLanguagesAppCheck")) checker.addRule(new MixedLanguagesAppCheck());
-				if(args[i].equals("TooHardToUnderstandCheck")) checker.addRule(new TooHardToUnderstandCheck());
+				if(args[i].equals("WrongEncodingCheck")) checker.addRule(new WrongEncodingCheck()); //+
+				if(args[i].equals("UnlocalizedIconsCheck")) checker.addRule(new UnlocalizedIconsCheck()); //+?    check failure at the bottom  modified langs at the bottom
+				if(args[i].equals("MissingTranslationCheck")) checker.addRule(new MissingTranslationCheck()); //+  appcheck no ss; requires apk in ss; jarfile tools; mid mem usage
+				if(args[i].equals("MixedLanguagesStateCheck")) checker.addRule(new MixedLanguagesStateCheck());//+ high mem usage
+				if(args[i].equals("MixedLanguagesAppCheck")) checker.addRule(new MixedLanguagesAppCheck());//+ no ss, high mem
+				if(args[i].equals("TooHardToUnderstandCheck")) checker.addRule(new TooHardToUnderstandCheck());//+ check the metrics to improve?
 			}
 			RunAnalyze(app, checker);
 		}

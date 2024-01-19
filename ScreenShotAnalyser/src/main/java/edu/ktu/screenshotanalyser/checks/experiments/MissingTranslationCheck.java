@@ -4,21 +4,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import org.languagetool.Language;
 import edu.ktu.screenshotanalyser.checks.BaseTextRuleCheck;
 import edu.ktu.screenshotanalyser.checks.CheckResult;
 import edu.ktu.screenshotanalyser.checks.IAppRuleChecker;
 import edu.ktu.screenshotanalyser.checks.IStateRuleChecker;
+import edu.ktu.screenshotanalyser.checks.ResultImage;
 import edu.ktu.screenshotanalyser.checks.ResultsCollector;
 import edu.ktu.screenshotanalyser.context.AppContext;
 import edu.ktu.screenshotanalyser.context.State;
+import edu.ktu.screenshotanalyser.tools.Settings;
 
 public class MissingTranslationCheck extends BaseTextRuleCheck implements IAppRuleChecker, IStateRuleChecker 
 {
 	public MissingTranslationCheck()
 	{
-		super(14, "SL1");
+		super(14, "MissingTranslation");
 	}
 
 	@Override
@@ -117,6 +120,8 @@ public class MissingTranslationCheck extends BaseTextRuleCheck implements IAppRu
 		if (!placeholders.isEmpty())
 		{
 			failures.addFailure(new CheckResult(state, this, "unstranslated: " + String.join(", ", placeholders.toArray(new String[0])), placeholders.size()));
+			ResultImage resultImage = new ResultImage(state.getImageFile());
+			resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
 		}
 	}
 	
