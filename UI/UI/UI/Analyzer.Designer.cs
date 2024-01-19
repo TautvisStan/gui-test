@@ -1,4 +1,6 @@
-﻿namespace UI
+﻿using System.Windows.Forms;
+
+namespace UI
 {
     partial class Analyzer
     {
@@ -61,6 +63,10 @@
             this.RunDroidBot = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.IsEmulator = new System.Windows.Forms.CheckBox();
+            this.TimeoutCheckBox = new System.Windows.Forms.CheckBox();
+            this.SecondsTextbox = new System.Windows.Forms.TextBox();
+            this.secondsLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -446,11 +452,55 @@
             this.label3.TabIndex = 32;
             this.label3.Text = "Defects to analyze";
             // 
+            // IsEmulator
+            // 
+            this.IsEmulator.AutoSize = true;
+            this.IsEmulator.Location = new System.Drawing.Point(19, 81);
+            this.IsEmulator.Name = "IsEmulator";
+            this.IsEmulator.Size = new System.Drawing.Size(158, 20);
+            this.IsEmulator.TabIndex = 33;
+            this.IsEmulator.Text = "Running on emulator?";
+            this.IsEmulator.UseVisualStyleBackColor = true;
+            this.IsEmulator.CheckedChanged += new System.EventHandler(this.IsEmulator_CheckedChanged);
+            // 
+            // TimeoutCheckBox
+            // 
+            this.TimeoutCheckBox.AutoSize = true;
+            this.TimeoutCheckBox.Location = new System.Drawing.Point(217, 56);
+            this.TimeoutCheckBox.Name = "TimeoutCheckBox";
+            this.TimeoutCheckBox.Size = new System.Drawing.Size(110, 20);
+            this.TimeoutCheckBox.TabIndex = 34;
+            this.TimeoutCheckBox.Text = "Timeout after ";
+            this.TimeoutCheckBox.UseVisualStyleBackColor = true;
+            this.TimeoutCheckBox.CheckedChanged += new System.EventHandler(this.TimeoutCheckBox_CheckedChanged);
+            // 
+            // SecondsTextbox
+            // 
+            this.SecondsTextbox.Location = new System.Drawing.Point(331, 53);
+            this.SecondsTextbox.Name = "SecondsTextbox";
+            this.SecondsTextbox.Size = new System.Drawing.Size(54, 22);
+            this.SecondsTextbox.TabIndex = 35;
+            this.SecondsTextbox.TextChanged += new System.EventHandler(this.SecondsTextbox_TextChanged);
+            this.SecondsTextbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SecondsTextbox_KeyPress);
+            // 
+            // secondsLabel
+            // 
+            this.secondsLabel.AutoSize = true;
+            this.secondsLabel.Location = new System.Drawing.Point(391, 57);
+            this.secondsLabel.Name = "secondsLabel";
+            this.secondsLabel.Size = new System.Drawing.Size(62, 16);
+            this.secondsLabel.TabIndex = 36;
+            this.secondsLabel.Text = "seconds.";
+            // 
             // Analyzer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(559, 649);
+            this.ClientSize = new System.Drawing.Size(783, 649);
+            this.Controls.Add(this.secondsLabel);
+            this.Controls.Add(this.SecondsTextbox);
+            this.Controls.Add(this.TimeoutCheckBox);
+            this.Controls.Add(this.IsEmulator);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.RunDroidBot);
@@ -528,6 +578,10 @@
         private System.Windows.Forms.Button RunDroidBot;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox IsEmulator;
+        private System.Windows.Forms.CheckBox TimeoutCheckBox;
+        private System.Windows.Forms.TextBox SecondsTextbox;
+        private System.Windows.Forms.Label secondsLabel;
     }
 }
 

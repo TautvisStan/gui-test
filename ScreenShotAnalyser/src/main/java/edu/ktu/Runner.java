@@ -1,16 +1,11 @@
 package edu.ktu;
 
-import java.io.BufferedReader;
+import java.awt.Desktop;
 import java.io.File;
-import java.io.FileFilter;
-import java.io.FilenameFilter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.URISyntaxException;
-import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
 import edu.ktu.screenshotanalyser.checks.DataBaseResultsCollector;
@@ -24,6 +19,9 @@ import java.time.LocalDateTime;
 
 public class Runner {
 
+	
+	
+	//timeout / isemulator checkboxes; move apk to droidbot folder; pdf generation based on failures collected;
 	public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException, ExecutionException
 	{
 		Settings.JarFolder = GetJarFolder();
@@ -32,8 +30,10 @@ public class Runner {
 			var checker = new RulesSetChecker();
 			var appDirectory = args[1];
 			var app = new File(appDirectory);
+			System.out.println("Analyzing " + appDirectory + " with these rules:");
 			for(int i = 2; i < args.length; i++)
 			{
+				System.out.println(args[i]);
 				if(args[i].equals("TooSmallControlCheck")) checker.addRule(new TooSmallControlCheck());
 				if(args[i].equals("TooLargeControlCheck")) checker.addRule(new TooLargeControlCheck());
 				if(args[i].equals("HiddenControlCheck")) checker.addRule(new HiddenControlCheck());
@@ -69,10 +69,29 @@ public class Runner {
 		
 		if(args[0].equals("DroidBot"))
 		{
+			
 			File APK = new File(args[1]);
 			File Folder = new File(GetJarFolder());
-			DroidBotRunner.runDroidBot(Folder, APK);
+			System.out.println("Running DroidBot with this apk: " + APK);
+			int i = 2;
+			boolean emulator = false;
+			int timeoutseconds = 0;
+			if(args[i].equals("-Emulator"))
+			{
+				emulator = true;
+				i++;
+			}
+			if(args[i].equals("-Timeout"))
+			{
+				i++;
+				timeoutseconds = Integer.parseInt(args[i]);
+				i++;
+			}
+			DroidBotRunner.runDroidBot(Folder, APK, emulator, timeoutseconds);
+			
 		}
+		System.out.println("The process has ended. Press Enter to close it.");
+		System.in.read();
 
 	}
 	private static String GetJarFolder() throws URISyntaxException
@@ -102,6 +121,7 @@ public class Runner {
 		
 		exec.shutdown();
 		exec.awaitTermination(Integer.MAX_VALUE, TimeUnit.SECONDS);
+		Desktop.getDesktop().open(ssfolder);
 		
 	}
 }

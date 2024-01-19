@@ -1,5 +1,6 @@
 package edu.ktu;
 
+import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
@@ -13,7 +14,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -50,7 +51,7 @@ public class DroidBotRunner
 			}
 		}
 
-		public static void runDroidBot(File folder, File apkFile) throws InterruptedException, ExecutionException
+		public static void runDroidBot(File folder, File apkFile, boolean emulator, int timeoutseconds) throws InterruptedException, ExecutionException, IOException
 		{
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");  
 			LocalDateTime now = LocalDateTime.now(); 
@@ -101,7 +102,15 @@ public class DroidBotRunner
 				
 				skipRestart = false;
 				
-				String command = "python \"" + folder.getAbsolutePath() + "\\droidbot\\start.py\" -a \"" + apkFile.getAbsolutePath().replaceAll("[ ]", "\\ ") + "\" -o \"" + resultsFolder.getAbsolutePath().replaceAll("[ ]", "\\ ") + "\" -keep_env -ignore_ad -is_emulator";
+				String command = "python \"" + folder.getAbsolutePath() + "\\droidbot\\start.py\" -a \"" + apkFile.getAbsolutePath().replaceAll("[ ]", "\\ ") + "\" -o \"" + resultsFolder.getAbsolutePath().replaceAll("[ ]", "\\ ") + "\" -keep_env -ignore_ad";
+				if(emulator == true)
+				{
+					command+= " -is_emulator";
+				}
+				if(timeoutseconds != 0)
+				{
+					command+= "-timeout " + timeoutseconds;
+				}
 				
 				Process p = Runtime.getRuntime().exec(command);
 
@@ -154,8 +163,9 @@ public class DroidBotRunner
 			{
 				e1.printStackTrace();
 			}
-			 
+			Desktop.getDesktop().open(resultsFolder);
 		}
+
 
 
 	  // Implementing Fisher–Yates shuffle
