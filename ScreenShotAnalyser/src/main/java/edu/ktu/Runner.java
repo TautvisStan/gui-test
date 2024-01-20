@@ -16,7 +16,7 @@ import edu.ktu.screenshotanalyser.tools.Settings;
 import edu.ktu.screenshotanalyser.StartUp;
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;    
-
+import edu.ktu.PDFGenerator;
 public class Runner {
 
 	
@@ -65,6 +65,8 @@ public class Runner {
 				if(args[i].equals("TooHardToUnderstandCheck")) checker.addRule(new TooHardToUnderstandCheck());//+ check the metrics to improve?
 			}
 			RunAnalyze(app, checker);
+
+			
 		}
 		
 		if(args[0].equals("DroidBot"))
@@ -122,6 +124,9 @@ public class Runner {
 		exec.shutdown();
 		exec.awaitTermination(Integer.MAX_VALUE, TimeUnit.SECONDS);
 		Desktop.getDesktop().open(ssfolder);
+		
+		//String SelectedRules
+		PDFGenerator.GeneratePdf(ssfolder, dtf.format(now), app, "", failures);
 		
 	}
 }
