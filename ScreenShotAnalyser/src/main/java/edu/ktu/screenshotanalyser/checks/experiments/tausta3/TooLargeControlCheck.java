@@ -33,7 +33,7 @@ public class TooLargeControlCheck extends BaseTextRuleCheck implements IStateRul
 			ResultImage resultImage = new ResultImage(state.getImageFile());
 
 			int i = 0;
-
+			String message = "";
 			for (var control : largeControls)
 			{
 				if (i++ % 2 == 0)
@@ -44,10 +44,12 @@ public class TooLargeControlCheck extends BaseTextRuleCheck implements IStateRul
 				{
 					resultImage.drawBounds(control.getBounds(), 0, 255, 0);
 				}
+				message += "too large " + control.getBounds().toString() + " | " + control.getSignature() + " | " + control.getBounds().width + "x" + control.getBounds().height + "\n";
+
 			}
 
 			resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
-			failures.addFailure(new CheckResult(state, this, "1", largeControls.size()));
+			failures.addFailure(new CheckResult(state, this, message, largeControls.size()));
 		}
 		//return null;
 	}
@@ -56,7 +58,6 @@ public class TooLargeControlCheck extends BaseTextRuleCheck implements IStateRul
 	{
 		if (control.getBounds().area() / state.getImageSize().area() >= maxAllowedRatio)
 		{
-			System.out.println("too large " + control.getBounds().toString() + " | " + control.getSignature() + " | " + control.getBounds().width + "x" + control.getBounds().height);
 
 			return true;
 		}

@@ -71,13 +71,13 @@ public class UnreadableTextCheck extends BaseRuleCheck implements IStateRuleChec
 					{
 						if (message.getBounds().y + message.getBounds().height >= state.getImageSize().height)
 						{
-							System.out.println("skipp - screen edge");
+					//		System.out.println("skipp - screen edge");
 						}
 						else
 						{
 							if ((null != message.getParent()) && (message.getBounds().y + message.getBounds().height >= message.getParent().getBounds().y + message.getParent().getBounds().height))
 							{
-								System.out.println("skipp - parent edge");
+					//			System.out.println("skipp - parent edge");
 							}
 							else
 							{

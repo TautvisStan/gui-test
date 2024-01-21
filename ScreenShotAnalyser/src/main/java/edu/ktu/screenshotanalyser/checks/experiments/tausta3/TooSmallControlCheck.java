@@ -31,7 +31,7 @@ public class TooSmallControlCheck extends BaseRuleCheck implements IStateRuleChe
 			ResultImage resultImage = new ResultImage(state.getImageFile());
 
 			int i = 0;
-
+			String message = "";
 			for (var control : smallControls)
 			{
 				if (i++ % 2 == 0)
@@ -42,12 +42,14 @@ public class TooSmallControlCheck extends BaseRuleCheck implements IStateRuleChe
 				{
 					resultImage.drawBounds(control.getBounds(), 0, 255, 0);
 				}
+				message += "too small " + control.getBounds().toString() + " | " + control.getSignature() + " | " + control.getBounds().width + "x" + control.getBounds().height + "\n";
+				
 			}
 
 			// System.out.println(state.getStateFile().toString());
-
+			failures.addFailure(new CheckResult(state, this, message, smallControls.size()));
 			resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
-			failures.addFailure(new CheckResult(state, this, "1", smallControls.size()));
+
 		}
 		//return null;
 	}
@@ -56,8 +58,6 @@ public class TooSmallControlCheck extends BaseRuleCheck implements IStateRuleChe
 	{
 		if ((control.getBounds().width <= NotAllowedSize) || (control.getBounds().height <= NotAllowedSize))
 		{
-			System.out.println("too small " + control.getBounds().toString() + " | " + control.getSignature() + " | " + control.getBounds().width + "x" + control.getBounds().height);
-
 			return true;
 		}
 

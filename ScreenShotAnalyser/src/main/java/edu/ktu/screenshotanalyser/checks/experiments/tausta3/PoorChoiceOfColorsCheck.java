@@ -48,7 +48,7 @@ public class PoorChoiceOfColorsCheck extends BaseTextRuleCheck implements IState
 			ResultImage resultImage = new ResultImage(state.getImageFile());
 
 			resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
-			failures.addFailure(new CheckResult(state, this, "1", 1));
+			failures.addFailure(new CheckResult(state, this, "Found bad colors", 1));
 		}
 		
 	}

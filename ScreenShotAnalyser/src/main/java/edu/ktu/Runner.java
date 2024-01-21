@@ -21,7 +21,7 @@ public class Runner {
 
 	
 	
-	//timeout / isemulator checkboxes; move apk to droidbot folder; pdf generation based on failures collected;
+	//timeout / isemulator checkboxes; move apk to droidbot folder; selected rules in pdf; remove printlns
 	public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException, ExecutionException
 	{
 		Settings.JarFolder = GetJarFolder();
@@ -34,35 +34,34 @@ public class Runner {
 			for(int i = 2; i < args.length; i++)
 			{
 				System.out.println(args[i]);
-				if(args[i].equals("TooSmallControlCheck")) checker.addRule(new TooSmallControlCheck());
-				if(args[i].equals("TooLargeControlCheck")) checker.addRule(new TooLargeControlCheck());
-				if(args[i].equals("HiddenControlCheck")) checker.addRule(new HiddenControlCheck());
-				if(args[i].equals("InsufficientSpaceCheck")) checker.addRule(new InsufficientSpaceCheck());
-				if(args[i].equals("InvisibleControlCheck")) checker.addRule(new InvisibleControlCheck());
-				if(args[i].equals("NoMarginsControlCheck")) checker.addRule(new NoMarginsControlCheck());
-				if(args[i].equals("PoorChoiceOfColorsCheck")) checker.addRule(new PoorChoiceOfColorsCheck());
-				if(args[i].equals("LowContrastCheck")) checker.addRule(new LowContrastCheck());
-				if(args[i].equals("EmptyViewCheck")) checker.addRule(new EmptyViewCheck());
-				if(args[i].equals("NonCenteredCheck")) checker.addRule(new NonCenteredCheck());
-				
+				if(args[i].equals("TooSmallControlCheck")) checker.addRule(new TooSmallControlCheck());//++
+				if(args[i].equals("TooLargeControlCheck")) checker.addRule(new TooLargeControlCheck());//++
+				if(args[i].equals("HiddenControlCheck")) checker.addRule(new HiddenControlCheck());//++
+				if(args[i].equals("InsufficientSpaceCheck")) checker.addRule(new InsufficientSpaceCheck());//++
+				if(args[i].equals("InvisibleControlCheck")) checker.addRule(new InvisibleControlCheck());//++
+				if(args[i].equals("NoMarginsControlCheck")) checker.addRule(new NoMarginsControlCheck());//++
+				if(args[i].equals("PoorChoiceOfColorsCheck")) checker.addRule(new PoorChoiceOfColorsCheck());//++
+				if(args[i].equals("LowContrastCheck")) checker.addRule(new LowContrastCheck());//++
+				if(args[i].equals("EmptyViewCheck")) checker.addRule(new EmptyViewCheck());//++
+				if(args[i].equals("NonCenteredCheck")) checker.addRule(new NonCenteredCheck());//++
 				
 				//PUT APK IN DROIDBOT RESULTS FOLDER
-				if(args[i].equals("MissingTextCheck")) checker.addRule(new MissingTextCheck());//+
-				if(args[i].equals("UnreadableTextCheck")) checker.addRule(new UnreadableTextCheck());//+
+				if(args[i].equals("MissingTextCheck")) checker.addRule(new MissingTextCheck());//++
+				if(args[i].equals("UnreadableTextCheck")) checker.addRule(new UnreadableTextCheck());//++
 				if(args[i].equals("OffensiveMessagesCheck")) checker.addRule(new OffensiveMessagesCheck());//~~~~ Too long cmd python command
-				if(args[i].equals("UnalignedControlsCheck")) checker.addRule(new UnalignedControlsCheck());//+   checkLabelAlignment no failure collect    high memory usage
-				if(args[i].equals("ClippedControlCheck")) checker.addRule(new ClippedControlCheck());//+
-				if(args[i].equals("ObscuredControlCheck")) checker.addRule(new ObscuredControlCheck());//+?
-				if(args[i].equals("WrongLanguageCheck")) checker.addRule(new WrongLanguageCheck());//+ high mem usage, note above
-				if(args[i].equals("ObscuredTextCheck")) checker.addRule(new ObscuredTextCheck());//+
+				if(args[i].equals("UnalignedControlsCheck")) checker.addRule(new UnalignedControlsCheck());//++   checkLabelAlignment no failure collect    high memory usage
+				if(args[i].equals("ClippedControlCheck")) checker.addRule(new ClippedControlCheck());//++
+				if(args[i].equals("ObscuredControlCheck")) checker.addRule(new ObscuredControlCheck());//++ ?
+				if(args[i].equals("WrongLanguageCheck")) checker.addRule(new WrongLanguageCheck());//++ high mem usage
+				if(args[i].equals("ObscuredTextCheck")) checker.addRule(new ObscuredTextCheck());//++
 				
-				if(args[i].equals("GrammarCheck")) checker.addRule(new GrammarCheck());  //+ Error: Unable to access jarfile ./tools/apktool_2.3.4.jar, no ss in appcontext, check rules ^
-				if(args[i].equals("WrongEncodingCheck")) checker.addRule(new WrongEncodingCheck()); //+
-				if(args[i].equals("UnlocalizedIconsCheck")) checker.addRule(new UnlocalizedIconsCheck()); //+?    check failure at the bottom  modified langs at the bottom
-				if(args[i].equals("MissingTranslationCheck")) checker.addRule(new MissingTranslationCheck()); //+  appcheck no ss; requires apk in ss; jarfile tools; mid mem usage
-				if(args[i].equals("MixedLanguagesStateCheck")) checker.addRule(new MixedLanguagesStateCheck());//+ high mem usage
-				if(args[i].equals("MixedLanguagesAppCheck")) checker.addRule(new MixedLanguagesAppCheck());//+ no ss, high mem
-				if(args[i].equals("TooHardToUnderstandCheck")) checker.addRule(new TooHardToUnderstandCheck());//+ check the metrics to improve?
+				if(args[i].equals("GrammarCheck")) checker.addRule(new GrammarCheck());  //++ Error: Unable to access jarfile ./tools/apktool_2.3.4.jar
+				if(args[i].equals("WrongEncodingCheck")) checker.addRule(new WrongEncodingCheck()); //++
+				if(args[i].equals("UnlocalizedIconsCheck")) checker.addRule(new UnlocalizedIconsCheck()); //++?   modified langs at the bottom
+				if(args[i].equals("MissingTranslationCheck")) checker.addRule(new MissingTranslationCheck()); //++  requires apk in ss; jarfile tools; mid mem usage
+				if(args[i].equals("MixedLanguagesStateCheck")) checker.addRule(new MixedLanguagesStateCheck());//++ high mem usage
+				if(args[i].equals("MixedLanguagesAppCheck")) checker.addRule(new MixedLanguagesAppCheck());//++ no ss, high mem
+				if(args[i].equals("TooHardToUnderstandCheck")) checker.addRule(new TooHardToUnderstandCheck());//++ check the metrics to improve?
 			}
 			RunAnalyze(app, checker);
 

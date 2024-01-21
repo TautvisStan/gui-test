@@ -375,7 +375,7 @@ public class MissingTextCheck extends BaseTextRuleCheck implements IStateRuleChe
 				
 				invalidControls++;
 				
-				System.out.println("1: " + control.getText() + "\n2: " + textFound.recognizedTexts + "\n");
+				//System.out.println("1: " + control.getText() + "\n2: " + textFound.recognizedTexts + "\n");
 				
 				errors += "Expected: [" + control.getText()+ "] found " + textFound.recognizedTexts +"\n";
 			}

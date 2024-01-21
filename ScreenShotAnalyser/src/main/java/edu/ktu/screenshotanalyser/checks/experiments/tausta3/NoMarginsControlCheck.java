@@ -70,6 +70,7 @@ public class NoMarginsControlCheck extends BaseTextRuleCheck implements IStateRu
 			{
 				var resultImage = new ResultImage(state.getImageFile());
 				var i = 0;
+				String message = "";
 
 				for (var control : nomargins)
 				{
@@ -81,10 +82,11 @@ public class NoMarginsControlCheck extends BaseTextRuleCheck implements IStateRu
 					{
 						resultImage.drawBounds(control.getBounds(), 0, 255, 0);
 					}
+					message = "No margins " + control.getBounds().toString() + " | " + control.getSignature() + "\n";
 				}
 
 			resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
-			failures.addFailure(new CheckResult(state, this, "1", nomargins.size()));
+			failures.addFailure(new CheckResult(state, this, message, nomargins.size()));
 
 		}
 		//return null;

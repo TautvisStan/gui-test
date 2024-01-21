@@ -51,7 +51,7 @@ public class EmptyViewCheck extends BaseTextRuleCheck implements IStateRuleCheck
 			// System.out.println(state.getStateFile().toString());
 
 			resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
-			failures.addFailure(new CheckResult(state, this, "1", controls.size()));
+			failures.addFailure(new CheckResult(state, this, "Empty view with " + controls.size(), controls.size()));
 		}
 		
 		//return null;

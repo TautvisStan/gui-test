@@ -58,7 +58,7 @@ public class HiddenControlCheck extends BaseTextRuleCheck implements IStateRuleC
 			ResultImage resultImage = new ResultImage(state.getImageFile());
 
 			int i = 0;
-
+			String message = "";
 			for (var control : hiddenControls)
 			{
 				if (i++ % 2 == 0)
@@ -69,10 +69,11 @@ public class HiddenControlCheck extends BaseTextRuleCheck implements IStateRuleC
 				{
 					resultImage.drawBounds(control.getBounds(), 0, 255, 0);
 				}
+				message += "Hidden control " + control.getBounds().toString() + " | " + control.getSignature() + "\n";
 			}
 
 			resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
-			failures.addFailure(new CheckResult(state, this, "1", hiddenControls.size()));
+			failures.addFailure(new CheckResult(state, this, message, hiddenControls.size()));
 		}
 	}
 

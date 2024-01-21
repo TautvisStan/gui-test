@@ -26,11 +26,11 @@ public class ClippedControlCheck extends BaseTextRuleCheck implements IStateRule
 
 		if (!clippedControls.isEmpty())
 		{
-			failures.addFailure(new CheckResult(state, this, "1", clippedControls.size()));
+			
 			ResultImage resultImage = new ResultImage(state.getImageFile());
 
 			int i = 0;
-
+			String message = "";
 			for (var control : clippedControls)
 			{
 				if (i++ % 2 == 0)
@@ -41,9 +41,11 @@ public class ClippedControlCheck extends BaseTextRuleCheck implements IStateRule
 				{
 					resultImage.drawBounds(control.getBounds(), 0, 255, 0);
 				}
+				message += "clipped " + control.getBounds().toString() + " | " + control.getSignature() + " | " + (control.getBounds().x + control.getBounds().width) + " > " + state.getImageSize().width + " | " + (control.getBounds().y + control.getBounds().height) + " > " + state.getImageSize().height +"\n";
+				
 			}
 			// System.out.println(state.getStateFile().toString());
-
+			failures.addFailure(new CheckResult(state, this, message, clippedControls.size()));
 			resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
 		}
 	}
@@ -52,7 +54,6 @@ public class ClippedControlCheck extends BaseTextRuleCheck implements IStateRule
 	{
 		if ((control.getBounds().x + control.getBounds().width > state.getImageSize().width + 5) || (control.getBounds().y + control.getBounds().height > state.getImageSize().height + 5))
 		{
-			System.out.println("clipped " + control.getBounds().toString() + " | " + control.getSignature() + " | " + (control.getBounds().x + control.getBounds().width) + " > " + state.getImageSize().width + " | " + (control.getBounds().y + control.getBounds().height) + " > " + state.getImageSize().height);
 
 			return true;
 		}

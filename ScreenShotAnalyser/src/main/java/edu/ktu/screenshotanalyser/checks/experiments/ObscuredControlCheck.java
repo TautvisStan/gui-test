@@ -110,7 +110,7 @@ public class ObscuredControlCheck extends BaseTextRuleCheck implements IStateRul
 			{
 				var resultImage = new ResultImage(state.getImageFile());
 				var i = 0;
-
+				String message = "";
 				for (var control : overlapped)
 				{
 					if (i++ % 2 == 0)
@@ -121,13 +121,14 @@ public class ObscuredControlCheck extends BaseTextRuleCheck implements IStateRul
 					{
 						resultImage.drawBounds(control.getBounds(), 0, 255, 0);
 					}
+					message += "Obscured control " + control.getBounds().toString() + " | " + control.getSignature() + "\n";
 				}
 
 				// System.out.println(state.getStateFile().toString());
-
+				
 				resultImage.save(Settings.debugFolder +  this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
 
-				failures.addFailure(new CheckResult(state, this, "1", overlapped.size()));
+				failures.addFailure(new CheckResult(state, this, message, overlapped.size()));
 
 			}
 		}

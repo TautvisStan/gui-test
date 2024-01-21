@@ -34,7 +34,7 @@ public class InsufficientSpaceCheck extends BaseTextRuleCheck implements IStateR
 			ResultImage resultImage = new ResultImage(state.getImageFile());
 
 			int i = 0;
-
+			String message = "";
 			for (var control : insufficientSpaceControls)
 			{
 				if (i++ % 2 == 0)
@@ -45,11 +45,13 @@ public class InsufficientSpaceCheck extends BaseTextRuleCheck implements IStateR
 				{
 					resultImage.drawBounds(control.getBounds(), 0, 255, 0);
 				}
+				message += "not fit in " + control.getBounds().toString() + " | " + control.getSignature() + " | " + control.getParent().getBounds().toString() + " | " + control.getParent().getSignature() + "/n";
+
 			}
 			// System.out.println(state.getStateFile().toString());
 
 			resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
-			failures.addFailure(new CheckResult(state, this, "1", insufficientSpaceControls.size()));
+			failures.addFailure(new CheckResult(state, this, message, insufficientSpaceControls.size()));
 		}
 	//	return null;
 	}
@@ -58,7 +60,6 @@ public class InsufficientSpaceCheck extends BaseTextRuleCheck implements IStateR
 	{
 		if (!isInside(control.getParent().getBounds(), control.getBounds()))
 		{
-			System.out.println("not fit in " + control.getBounds().toString() + " | " + control.getSignature() + " | " + control.getParent().getBounds().toString() + " | " + control.getParent().getSignature() );
 
 			return true;
 		}

@@ -8,7 +8,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+
+import edu.ktu.Runner;
 import edu.ktu.screenshotanalyser.checks.SystemContext;
+import edu.ktu.screenshotanalyser.tools.Settings;
 import edu.ktu.screenshotanalyser.tools.SystemUtils;
 import net.dongliu.apk.parser.ApkFile;
 
@@ -170,13 +173,14 @@ public class AppContext
 	{
 		if (null == messages)
 		{
-			var tempFolder = new File("e:/3/" + this.apkFile.getName());
+			
+			var tempFolder = new File(Settings.debugFolder + this.apkFile.getName());
 
 			try
 			{
 				if (!tempFolder.exists())
 				{
-					SystemUtils.executeCommand("java -jar ./tools/apktool_2.3.4.jar d " + this.apkFile.getAbsolutePath() + " -o " + tempFolder.getAbsolutePath());
+					SystemUtils.executeCommand("java -jar \"" + Settings.JarFolder + "/tools/apktool_2.3.4.jar\" d \"" + this.apkFile.getAbsolutePath() + "\" -o \"" + tempFolder.getAbsolutePath() + "\"");
 				}
 			}
 			catch (Exception ex)

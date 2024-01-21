@@ -64,7 +64,7 @@ public class InvisibleControlCheck extends BaseTextRuleCheck implements IStateRu
 			ResultImage resultImage = new ResultImage(state.getImageFile());
 
 			int i = 0;
-
+			String message = "";
 			for (var control : invisible)
 			{
 				if (i++ % 2 == 0)
@@ -75,10 +75,11 @@ public class InvisibleControlCheck extends BaseTextRuleCheck implements IStateRu
 				{
 					resultImage.drawBounds(control.getBounds(), 0, 255, 0);
 				}
+				message = "Invisible control " + control.getBounds().toString() + " | " + control.getSignature() + "\n";
 			}
-
+			
 			resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
-			failures.addFailure(new CheckResult(state, this, "1", invisible.size()));
+			failures.addFailure(new CheckResult(state, this, message, invisible.size()));
 		}
 		//return null;
 	}

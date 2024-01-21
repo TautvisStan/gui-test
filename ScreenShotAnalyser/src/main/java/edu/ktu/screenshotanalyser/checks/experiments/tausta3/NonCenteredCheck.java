@@ -35,7 +35,7 @@ public class NonCenteredCheck extends BaseTextRuleCheck implements IStateRuleChe
 			ResultImage resultImage = new ResultImage(state.getImageFile());
 
 			int i = 0;
-
+			String message = "";
 			for (var control : NonCenteredControls)
 			{
 				if (i++ % 2 == 0)
@@ -46,10 +46,11 @@ public class NonCenteredCheck extends BaseTextRuleCheck implements IStateRuleChe
 				{
 					resultImage.drawBounds(control.getBounds(), 0, 255, 0);
 				}
+				message += "Non centered " + control.getBounds().toString() + " | " + control.getSignature() + "\n";
 			}
 
 			resultImage.save(Settings.debugFolder + this.getRuleCode() + UUID.randomUUID().toString() + "1.png");
-			failures.addFailure(new CheckResult(state, this, "1", NonCenteredControls.size()));
+			failures.addFailure(new CheckResult(state, this, message, NonCenteredControls.size()));
 		}
 		
 		//return null;
