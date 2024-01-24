@@ -73,7 +73,7 @@ namespace UI
 
         private void Analyzer_Load(object sender, EventArgs e)
         {
-            HandleCheckBox(HiddenControlCheck, Rules.HiddenControlCheck);
+
         }
 
         private void UnalignedControlsCheck_CheckedChanged(object sender, EventArgs e)
@@ -307,6 +307,9 @@ namespace UI
             }
             
             string strCmdText = "/C java -jar \"" + applicationDirectory + "\\DefectsAnalyzer.jar\" DroidBot \"" + APKFile + "\"";
+            strCmdText += " " + DPIBox.Text;
+            strCmdText += " " + WidthBox.Text;
+            strCmdText += " " + HeightBox.Text;
             if (Emulator)
             {
                 strCmdText += " -Emulator";
@@ -341,6 +344,11 @@ namespace UI
             {
                 e.Handled = true;
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

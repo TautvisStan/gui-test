@@ -21,7 +21,7 @@ public class Runner {
 
 	
 	
-	//timeout / isemulator checkboxes; move apk to droidbot folder; selected rules in pdf; remove printlns
+	// move apk to droidbot folder; GENERATE dev.txt IN DROIDBOT FOLDER
 	public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException, ExecutionException
 	{
 		Settings.JarFolder = GetJarFolder();
@@ -31,9 +31,11 @@ public class Runner {
 			var appDirectory = args[1];
 			var app = new File(appDirectory);
 			System.out.println("Analyzing " + appDirectory + " with these rules:");
+			String rules = "";
 			for(int i = 2; i < args.length; i++)
 			{
 				System.out.println(args[i]);
+				rules += args[i] + " ";
 				if(args[i].equals("TooSmallControlCheck")) checker.addRule(new TooSmallControlCheck());//++
 				if(args[i].equals("TooLargeControlCheck")) checker.addRule(new TooLargeControlCheck());//++
 				if(args[i].equals("HiddenControlCheck")) checker.addRule(new HiddenControlCheck());//++
@@ -49,21 +51,21 @@ public class Runner {
 				if(args[i].equals("MissingTextCheck")) checker.addRule(new MissingTextCheck());//++
 				if(args[i].equals("UnreadableTextCheck")) checker.addRule(new UnreadableTextCheck());//++
 				if(args[i].equals("OffensiveMessagesCheck")) checker.addRule(new OffensiveMessagesCheck());//~~~~ Too long cmd python command
-				if(args[i].equals("UnalignedControlsCheck")) checker.addRule(new UnalignedControlsCheck());//++   checkLabelAlignment no failure collect    high memory usage
+				if(args[i].equals("UnalignedControlsCheck")) checker.addRule(new UnalignedControlsCheck());//++       high memory usage
 				if(args[i].equals("ClippedControlCheck")) checker.addRule(new ClippedControlCheck());//++
 				if(args[i].equals("ObscuredControlCheck")) checker.addRule(new ObscuredControlCheck());//++ ?
 				if(args[i].equals("WrongLanguageCheck")) checker.addRule(new WrongLanguageCheck());//++ high mem usage
 				if(args[i].equals("ObscuredTextCheck")) checker.addRule(new ObscuredTextCheck());//++
 				
-				if(args[i].equals("GrammarCheck")) checker.addRule(new GrammarCheck());  //++ Error: Unable to access jarfile ./tools/apktool_2.3.4.jar
+				if(args[i].equals("GrammarCheck")) checker.addRule(new GrammarCheck());  //++ 
 				if(args[i].equals("WrongEncodingCheck")) checker.addRule(new WrongEncodingCheck()); //++
 				if(args[i].equals("UnlocalizedIconsCheck")) checker.addRule(new UnlocalizedIconsCheck()); //++?   modified langs at the bottom
-				if(args[i].equals("MissingTranslationCheck")) checker.addRule(new MissingTranslationCheck()); //++  requires apk in ss; jarfile tools; mid mem usage
+				if(args[i].equals("MissingTranslationCheck")) checker.addRule(new MissingTranslationCheck()); //++   mid mem usage
 				if(args[i].equals("MixedLanguagesStateCheck")) checker.addRule(new MixedLanguagesStateCheck());//++ high mem usage
-				if(args[i].equals("MixedLanguagesAppCheck")) checker.addRule(new MixedLanguagesAppCheck());//++ no ss, high mem
+				if(args[i].equals("MixedLanguagesAppCheck")) checker.addRule(new MixedLanguagesAppCheck());//++ high mem
 				if(args[i].equals("TooHardToUnderstandCheck")) checker.addRule(new TooHardToUnderstandCheck());//++ check the metrics to improve?
 			}
-			RunAnalyze(app, checker);
+			RunAnalyze(app, checker, rules);
 
 			
 		}
@@ -74,7 +76,10 @@ public class Runner {
 			File APK = new File(args[1]);
 			File Folder = new File(GetJarFolder());
 			System.out.println("Running DroidBot with this apk: " + APK);
-			int i = 2;
+			int DPI = Integer.parseInt(args[2]);
+			int Width = Integer.parseInt(args[3]);
+			int Height = Integer.parseInt(args[4]);
+			int i = 5;
 			boolean emulator = false;
 			int timeoutseconds = 0;
 			if(args[i].equals("-Emulator"))
@@ -88,7 +93,7 @@ public class Runner {
 				timeoutseconds = Integer.parseInt(args[i]);
 				i++;
 			}
-			DroidBotRunner.runDroidBot(Folder, APK, emulator, timeoutseconds);
+			DroidBotRunner.runDroidBot(Folder, APK, DPI, Width, Height, emulator, timeoutseconds);
 			
 		}
 		System.out.println("The process has ended. Press Enter to close it.");
@@ -104,7 +109,7 @@ public class Runner {
 		
 		return jarDir;
 	}
-	private static void RunAnalyze(File app, RulesSetChecker checker) throws IOException, InterruptedException, URISyntaxException
+	private static void RunAnalyze(File app, RulesSetChecker checker, String rules) throws IOException, InterruptedException, URISyntaxException
 	{
 		StartUp.enableLogs();
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");  
@@ -114,7 +119,7 @@ public class Runner {
 		ssfolder.mkdirs();
 		
 		Settings.debugFolder = ssfolder + "/";
-		
+		Settings.appImagesFolder = app;
 		var failures = new DataBaseResultsCollector("sdssss", false);
 		
 		var exec = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());		
@@ -125,7 +130,7 @@ public class Runner {
 		Desktop.getDesktop().open(ssfolder);
 		
 		//String SelectedRules
-		PDFGenerator.GeneratePdf(ssfolder, dtf.format(now), app, "", failures);
+		PDFGenerator.GeneratePdf(ssfolder, dtf.format(now), app, rules, failures);
 		
 	}
 }

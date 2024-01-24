@@ -16,7 +16,7 @@ public class RulesSetChecker
 
 	public void runStateChecks(State state, ExecutorService exec, ResultsCollector failures)
 	{
-		System.out.println("checking state" + state.getName());
+		//System.out.println("checking state" + state.getName());
 		if (failures.wasChecked(state))
 		{
 			//System.out.println("Skip: " + state.getImageFile().getAbsolutePath());
@@ -54,7 +54,7 @@ public class RulesSetChecker
 				{
 					if (!failures.wasChecked(state))
 					{
-						System.out.println("checking " + check.getClass().getName());
+						//System.out.println("checking " + check.getClass().getName());
 						check.analyze(state, failures);
 					}
 				}

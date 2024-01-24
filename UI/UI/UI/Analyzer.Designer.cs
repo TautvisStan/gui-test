@@ -67,14 +67,20 @@ namespace UI
             this.TimeoutCheckBox = new System.Windows.Forms.CheckBox();
             this.SecondsTextbox = new System.Windows.Forms.TextBox();
             this.secondsLabel = new System.Windows.Forms.Label();
+            this.DPIBox = new System.Windows.Forms.TextBox();
+            this.WidthBox = new System.Windows.Forms.TextBox();
+            this.HeightBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(16, 526);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Location = new System.Drawing.Point(12, 427);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(188, 23);
+            this.button1.Size = new System.Drawing.Size(141, 19);
             this.button1.TabIndex = 0;
             this.button1.Text = "Select Screenshot Folder";
             this.button1.UseVisualStyleBackColor = true;
@@ -82,10 +88,10 @@ namespace UI
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(16, 556);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button2.Location = new System.Drawing.Point(12, 452);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(188, 23);
+            this.button2.Size = new System.Drawing.Size(141, 19);
             this.button2.TabIndex = 1;
             this.button2.Text = "Analyze Screenshots";
             this.button2.UseVisualStyleBackColor = true;
@@ -94,10 +100,10 @@ namespace UI
             // TooSmallControlCheck
             // 
             this.TooSmallControlCheck.AutoSize = true;
-            this.TooSmallControlCheck.Location = new System.Drawing.Point(25, 149);
-            this.TooSmallControlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TooSmallControlCheck.Location = new System.Drawing.Point(19, 121);
+            this.TooSmallControlCheck.Margin = new System.Windows.Forms.Padding(2);
             this.TooSmallControlCheck.Name = "TooSmallControlCheck";
-            this.TooSmallControlCheck.Size = new System.Drawing.Size(136, 20);
+            this.TooSmallControlCheck.Size = new System.Drawing.Size(109, 17);
             this.TooSmallControlCheck.TabIndex = 2;
             this.TooSmallControlCheck.Text = "Too Small Control";
             this.TooSmallControlCheck.UseVisualStyleBackColor = true;
@@ -106,10 +112,10 @@ namespace UI
             // TooLargeControlCheck
             // 
             this.TooLargeControlCheck.AutoSize = true;
-            this.TooLargeControlCheck.Location = new System.Drawing.Point(25, 175);
-            this.TooLargeControlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TooLargeControlCheck.Location = new System.Drawing.Point(19, 142);
+            this.TooLargeControlCheck.Margin = new System.Windows.Forms.Padding(2);
             this.TooLargeControlCheck.Name = "TooLargeControlCheck";
-            this.TooLargeControlCheck.Size = new System.Drawing.Size(137, 20);
+            this.TooLargeControlCheck.Size = new System.Drawing.Size(111, 17);
             this.TooLargeControlCheck.TabIndex = 3;
             this.TooLargeControlCheck.Text = "Too Large Control";
             this.TooLargeControlCheck.UseVisualStyleBackColor = true;
@@ -118,10 +124,10 @@ namespace UI
             // HiddenControlCheck
             // 
             this.HiddenControlCheck.AutoSize = true;
-            this.HiddenControlCheck.Location = new System.Drawing.Point(25, 201);
-            this.HiddenControlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.HiddenControlCheck.Location = new System.Drawing.Point(19, 163);
+            this.HiddenControlCheck.Margin = new System.Windows.Forms.Padding(2);
             this.HiddenControlCheck.Name = "HiddenControlCheck";
-            this.HiddenControlCheck.Size = new System.Drawing.Size(118, 20);
+            this.HiddenControlCheck.Size = new System.Drawing.Size(96, 17);
             this.HiddenControlCheck.TabIndex = 4;
             this.HiddenControlCheck.Text = "Hidden Control";
             this.HiddenControlCheck.UseVisualStyleBackColor = true;
@@ -130,10 +136,10 @@ namespace UI
             // InsufficientSpaceCheck
             // 
             this.InsufficientSpaceCheck.AutoSize = true;
-            this.InsufficientSpaceCheck.Location = new System.Drawing.Point(25, 226);
-            this.InsufficientSpaceCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.InsufficientSpaceCheck.Location = new System.Drawing.Point(19, 184);
+            this.InsufficientSpaceCheck.Margin = new System.Windows.Forms.Padding(2);
             this.InsufficientSpaceCheck.Name = "InsufficientSpaceCheck";
-            this.InsufficientSpaceCheck.Size = new System.Drawing.Size(133, 20);
+            this.InsufficientSpaceCheck.Size = new System.Drawing.Size(111, 17);
             this.InsufficientSpaceCheck.TabIndex = 5;
             this.InsufficientSpaceCheck.Text = "Insufficient Space";
             this.InsufficientSpaceCheck.UseVisualStyleBackColor = true;
@@ -142,10 +148,10 @@ namespace UI
             // InvisibleControlCheck
             // 
             this.InvisibleControlCheck.AutoSize = true;
-            this.InvisibleControlCheck.Location = new System.Drawing.Point(25, 251);
-            this.InvisibleControlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.InvisibleControlCheck.Location = new System.Drawing.Point(19, 204);
+            this.InvisibleControlCheck.Margin = new System.Windows.Forms.Padding(2);
             this.InvisibleControlCheck.Name = "InvisibleControlCheck";
-            this.InvisibleControlCheck.Size = new System.Drawing.Size(123, 20);
+            this.InvisibleControlCheck.Size = new System.Drawing.Size(100, 17);
             this.InvisibleControlCheck.TabIndex = 6;
             this.InvisibleControlCheck.Text = "Invisible Control";
             this.InvisibleControlCheck.UseVisualStyleBackColor = true;
@@ -154,10 +160,10 @@ namespace UI
             // NoMarginsControlCheck
             // 
             this.NoMarginsControlCheck.AutoSize = true;
-            this.NoMarginsControlCheck.Location = new System.Drawing.Point(25, 279);
-            this.NoMarginsControlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.NoMarginsControlCheck.Location = new System.Drawing.Point(19, 227);
+            this.NoMarginsControlCheck.Margin = new System.Windows.Forms.Padding(2);
             this.NoMarginsControlCheck.Name = "NoMarginsControlCheck";
-            this.NoMarginsControlCheck.Size = new System.Drawing.Size(143, 20);
+            this.NoMarginsControlCheck.Size = new System.Drawing.Size(116, 17);
             this.NoMarginsControlCheck.TabIndex = 7;
             this.NoMarginsControlCheck.Text = "No Margins Control";
             this.NoMarginsControlCheck.UseVisualStyleBackColor = true;
@@ -166,10 +172,10 @@ namespace UI
             // PoorChoiceOfColorsCheck
             // 
             this.PoorChoiceOfColorsCheck.AutoSize = true;
-            this.PoorChoiceOfColorsCheck.Location = new System.Drawing.Point(25, 304);
-            this.PoorChoiceOfColorsCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PoorChoiceOfColorsCheck.Location = new System.Drawing.Point(19, 247);
+            this.PoorChoiceOfColorsCheck.Margin = new System.Windows.Forms.Padding(2);
             this.PoorChoiceOfColorsCheck.Name = "PoorChoiceOfColorsCheck";
-            this.PoorChoiceOfColorsCheck.Size = new System.Drawing.Size(161, 20);
+            this.PoorChoiceOfColorsCheck.Size = new System.Drawing.Size(130, 17);
             this.PoorChoiceOfColorsCheck.TabIndex = 8;
             this.PoorChoiceOfColorsCheck.Text = "Poor Choice Of Colors";
             this.PoorChoiceOfColorsCheck.UseVisualStyleBackColor = true;
@@ -178,10 +184,10 @@ namespace UI
             // LowContrastCheck
             // 
             this.LowContrastCheck.AutoSize = true;
-            this.LowContrastCheck.Location = new System.Drawing.Point(25, 330);
-            this.LowContrastCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.LowContrastCheck.Location = new System.Drawing.Point(19, 268);
+            this.LowContrastCheck.Margin = new System.Windows.Forms.Padding(2);
             this.LowContrastCheck.Name = "LowContrastCheck";
-            this.LowContrastCheck.Size = new System.Drawing.Size(105, 20);
+            this.LowContrastCheck.Size = new System.Drawing.Size(88, 17);
             this.LowContrastCheck.TabIndex = 9;
             this.LowContrastCheck.Text = "Low Contrast";
             this.LowContrastCheck.UseVisualStyleBackColor = true;
@@ -190,10 +196,10 @@ namespace UI
             // EmptyViewCheck
             // 
             this.EmptyViewCheck.AutoSize = true;
-            this.EmptyViewCheck.Location = new System.Drawing.Point(25, 356);
-            this.EmptyViewCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.EmptyViewCheck.Location = new System.Drawing.Point(19, 289);
+            this.EmptyViewCheck.Margin = new System.Windows.Forms.Padding(2);
             this.EmptyViewCheck.Name = "EmptyViewCheck";
-            this.EmptyViewCheck.Size = new System.Drawing.Size(99, 20);
+            this.EmptyViewCheck.Size = new System.Drawing.Size(81, 17);
             this.EmptyViewCheck.TabIndex = 10;
             this.EmptyViewCheck.Text = "Empty View";
             this.EmptyViewCheck.UseVisualStyleBackColor = true;
@@ -202,10 +208,10 @@ namespace UI
             // NonCenteredCheck
             // 
             this.NonCenteredCheck.AutoSize = true;
-            this.NonCenteredCheck.Location = new System.Drawing.Point(25, 382);
-            this.NonCenteredCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.NonCenteredCheck.Location = new System.Drawing.Point(19, 310);
+            this.NonCenteredCheck.Margin = new System.Windows.Forms.Padding(2);
             this.NonCenteredCheck.Name = "NonCenteredCheck";
-            this.NonCenteredCheck.Size = new System.Drawing.Size(112, 20);
+            this.NonCenteredCheck.Size = new System.Drawing.Size(92, 17);
             this.NonCenteredCheck.TabIndex = 11;
             this.NonCenteredCheck.Text = "Non Centered";
             this.NonCenteredCheck.UseVisualStyleBackColor = true;
@@ -214,10 +220,10 @@ namespace UI
             // UnalignedControlsCheck
             // 
             this.UnalignedControlsCheck.AutoSize = true;
-            this.UnalignedControlsCheck.Location = new System.Drawing.Point(195, 149);
-            this.UnalignedControlsCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UnalignedControlsCheck.Location = new System.Drawing.Point(146, 121);
+            this.UnalignedControlsCheck.Margin = new System.Windows.Forms.Padding(2);
             this.UnalignedControlsCheck.Name = "UnalignedControlsCheck";
-            this.UnalignedControlsCheck.Size = new System.Drawing.Size(143, 20);
+            this.UnalignedControlsCheck.Size = new System.Drawing.Size(115, 17);
             this.UnalignedControlsCheck.TabIndex = 12;
             this.UnalignedControlsCheck.Text = "Unaligned Controls";
             this.UnalignedControlsCheck.UseVisualStyleBackColor = true;
@@ -226,10 +232,10 @@ namespace UI
             // ClippedControlCheck
             // 
             this.ClippedControlCheck.AutoSize = true;
-            this.ClippedControlCheck.Location = new System.Drawing.Point(195, 175);
-            this.ClippedControlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ClippedControlCheck.Location = new System.Drawing.Point(146, 142);
+            this.ClippedControlCheck.Margin = new System.Windows.Forms.Padding(2);
             this.ClippedControlCheck.Name = "ClippedControlCheck";
-            this.ClippedControlCheck.Size = new System.Drawing.Size(121, 20);
+            this.ClippedControlCheck.Size = new System.Drawing.Size(97, 17);
             this.ClippedControlCheck.TabIndex = 13;
             this.ClippedControlCheck.Text = "Clipped Control";
             this.ClippedControlCheck.UseVisualStyleBackColor = true;
@@ -238,10 +244,10 @@ namespace UI
             // ObscuredControlCheck
             // 
             this.ObscuredControlCheck.AutoSize = true;
-            this.ObscuredControlCheck.Location = new System.Drawing.Point(195, 201);
-            this.ObscuredControlCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ObscuredControlCheck.Location = new System.Drawing.Point(146, 163);
+            this.ObscuredControlCheck.Margin = new System.Windows.Forms.Padding(2);
             this.ObscuredControlCheck.Name = "ObscuredControlCheck";
-            this.ObscuredControlCheck.Size = new System.Drawing.Size(133, 20);
+            this.ObscuredControlCheck.Size = new System.Drawing.Size(108, 17);
             this.ObscuredControlCheck.TabIndex = 14;
             this.ObscuredControlCheck.Text = "Obscured Control";
             this.ObscuredControlCheck.UseVisualStyleBackColor = true;
@@ -250,10 +256,10 @@ namespace UI
             // WrongLanguageCheck
             // 
             this.WrongLanguageCheck.AutoSize = true;
-            this.WrongLanguageCheck.Location = new System.Drawing.Point(195, 226);
-            this.WrongLanguageCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.WrongLanguageCheck.Location = new System.Drawing.Point(146, 184);
+            this.WrongLanguageCheck.Margin = new System.Windows.Forms.Padding(2);
             this.WrongLanguageCheck.Name = "WrongLanguageCheck";
-            this.WrongLanguageCheck.Size = new System.Drawing.Size(133, 20);
+            this.WrongLanguageCheck.Size = new System.Drawing.Size(109, 17);
             this.WrongLanguageCheck.TabIndex = 15;
             this.WrongLanguageCheck.Text = "Wrong Language";
             this.WrongLanguageCheck.UseVisualStyleBackColor = true;
@@ -262,10 +268,10 @@ namespace UI
             // ObscuredTextCheck
             // 
             this.ObscuredTextCheck.AutoSize = true;
-            this.ObscuredTextCheck.Location = new System.Drawing.Point(195, 252);
-            this.ObscuredTextCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ObscuredTextCheck.Location = new System.Drawing.Point(146, 205);
+            this.ObscuredTextCheck.Margin = new System.Windows.Forms.Padding(2);
             this.ObscuredTextCheck.Name = "ObscuredTextCheck";
-            this.ObscuredTextCheck.Size = new System.Drawing.Size(117, 20);
+            this.ObscuredTextCheck.Size = new System.Drawing.Size(96, 17);
             this.ObscuredTextCheck.TabIndex = 16;
             this.ObscuredTextCheck.Text = "Obscured Text";
             this.ObscuredTextCheck.UseVisualStyleBackColor = true;
@@ -274,10 +280,10 @@ namespace UI
             // GrammarCheck
             // 
             this.GrammarCheck.AutoSize = true;
-            this.GrammarCheck.Location = new System.Drawing.Point(195, 277);
-            this.GrammarCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.GrammarCheck.Location = new System.Drawing.Point(146, 225);
+            this.GrammarCheck.Margin = new System.Windows.Forms.Padding(2);
             this.GrammarCheck.Name = "GrammarCheck";
-            this.GrammarCheck.Size = new System.Drawing.Size(126, 20);
+            this.GrammarCheck.Size = new System.Drawing.Size(102, 17);
             this.GrammarCheck.TabIndex = 17;
             this.GrammarCheck.Text = "Grammar Check";
             this.GrammarCheck.UseVisualStyleBackColor = true;
@@ -286,10 +292,10 @@ namespace UI
             // WrongEncodingCheck
             // 
             this.WrongEncodingCheck.AutoSize = true;
-            this.WrongEncodingCheck.Location = new System.Drawing.Point(195, 304);
-            this.WrongEncodingCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.WrongEncodingCheck.Location = new System.Drawing.Point(146, 247);
+            this.WrongEncodingCheck.Margin = new System.Windows.Forms.Padding(2);
             this.WrongEncodingCheck.Name = "WrongEncodingCheck";
-            this.WrongEncodingCheck.Size = new System.Drawing.Size(129, 20);
+            this.WrongEncodingCheck.Size = new System.Drawing.Size(106, 17);
             this.WrongEncodingCheck.TabIndex = 18;
             this.WrongEncodingCheck.Text = "Wrong Encoding";
             this.WrongEncodingCheck.UseVisualStyleBackColor = true;
@@ -298,10 +304,10 @@ namespace UI
             // ClippedTextCheck
             // 
             this.ClippedTextCheck.AutoSize = true;
-            this.ClippedTextCheck.Location = new System.Drawing.Point(195, 330);
-            this.ClippedTextCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ClippedTextCheck.Location = new System.Drawing.Point(146, 268);
+            this.ClippedTextCheck.Margin = new System.Windows.Forms.Padding(2);
             this.ClippedTextCheck.Name = "ClippedTextCheck";
-            this.ClippedTextCheck.Size = new System.Drawing.Size(105, 20);
+            this.ClippedTextCheck.Size = new System.Drawing.Size(85, 17);
             this.ClippedTextCheck.TabIndex = 19;
             this.ClippedTextCheck.Text = "Clipped Text";
             this.ClippedTextCheck.UseVisualStyleBackColor = true;
@@ -310,19 +316,20 @@ namespace UI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(236, 529);
+            this.label1.Location = new System.Drawing.Point(177, 430);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(165, 16);
+            this.label1.Size = new System.Drawing.Size(133, 13);
             this.label1.TabIndex = 20;
             this.label1.Text = "Current Screenshot Folder:";
             // 
             // UnlocalizedIconsCheck
             // 
             this.UnlocalizedIconsCheck.AutoSize = true;
-            this.UnlocalizedIconsCheck.Location = new System.Drawing.Point(195, 356);
-            this.UnlocalizedIconsCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UnlocalizedIconsCheck.Location = new System.Drawing.Point(146, 289);
+            this.UnlocalizedIconsCheck.Margin = new System.Windows.Forms.Padding(2);
             this.UnlocalizedIconsCheck.Name = "UnlocalizedIconsCheck";
-            this.UnlocalizedIconsCheck.Size = new System.Drawing.Size(135, 20);
+            this.UnlocalizedIconsCheck.Size = new System.Drawing.Size(110, 17);
             this.UnlocalizedIconsCheck.TabIndex = 21;
             this.UnlocalizedIconsCheck.Text = "Unlocalized Icons";
             this.UnlocalizedIconsCheck.UseVisualStyleBackColor = true;
@@ -331,10 +338,10 @@ namespace UI
             // MissingTranslationCheck
             // 
             this.MissingTranslationCheck.AutoSize = true;
-            this.MissingTranslationCheck.Location = new System.Drawing.Point(195, 382);
-            this.MissingTranslationCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MissingTranslationCheck.Location = new System.Drawing.Point(146, 310);
+            this.MissingTranslationCheck.Margin = new System.Windows.Forms.Padding(2);
             this.MissingTranslationCheck.Name = "MissingTranslationCheck";
-            this.MissingTranslationCheck.Size = new System.Drawing.Size(145, 20);
+            this.MissingTranslationCheck.Size = new System.Drawing.Size(116, 17);
             this.MissingTranslationCheck.TabIndex = 22;
             this.MissingTranslationCheck.Text = "Missing Translation";
             this.MissingTranslationCheck.UseVisualStyleBackColor = true;
@@ -343,10 +350,10 @@ namespace UI
             // MixedLanguagesStateCheck
             // 
             this.MixedLanguagesStateCheck.AutoSize = true;
-            this.MixedLanguagesStateCheck.Location = new System.Drawing.Point(195, 406);
-            this.MixedLanguagesStateCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MixedLanguagesStateCheck.Location = new System.Drawing.Point(146, 330);
+            this.MixedLanguagesStateCheck.Margin = new System.Windows.Forms.Padding(2);
             this.MixedLanguagesStateCheck.Name = "MixedLanguagesStateCheck";
-            this.MixedLanguagesStateCheck.Size = new System.Drawing.Size(170, 20);
+            this.MixedLanguagesStateCheck.Size = new System.Drawing.Size(138, 17);
             this.MixedLanguagesStateCheck.TabIndex = 23;
             this.MixedLanguagesStateCheck.Text = "Mixed Languages State";
             this.MixedLanguagesStateCheck.UseVisualStyleBackColor = true;
@@ -355,10 +362,10 @@ namespace UI
             // MixedLanguagesAppCheck
             // 
             this.MixedLanguagesAppCheck.AutoSize = true;
-            this.MixedLanguagesAppCheck.Location = new System.Drawing.Point(195, 432);
-            this.MixedLanguagesAppCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MixedLanguagesAppCheck.Location = new System.Drawing.Point(146, 351);
+            this.MixedLanguagesAppCheck.Margin = new System.Windows.Forms.Padding(2);
             this.MixedLanguagesAppCheck.Name = "MixedLanguagesAppCheck";
-            this.MixedLanguagesAppCheck.Size = new System.Drawing.Size(164, 20);
+            this.MixedLanguagesAppCheck.Size = new System.Drawing.Size(132, 17);
             this.MixedLanguagesAppCheck.TabIndex = 24;
             this.MixedLanguagesAppCheck.Text = "Mixed Languages App";
             this.MixedLanguagesAppCheck.UseVisualStyleBackColor = true;
@@ -367,10 +374,10 @@ namespace UI
             // OffensiveMessagesCheck
             // 
             this.OffensiveMessagesCheck.AutoSize = true;
-            this.OffensiveMessagesCheck.Location = new System.Drawing.Point(25, 458);
-            this.OffensiveMessagesCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.OffensiveMessagesCheck.Location = new System.Drawing.Point(19, 372);
+            this.OffensiveMessagesCheck.Margin = new System.Windows.Forms.Padding(2);
             this.OffensiveMessagesCheck.Name = "OffensiveMessagesCheck";
-            this.OffensiveMessagesCheck.Size = new System.Drawing.Size(152, 20);
+            this.OffensiveMessagesCheck.Size = new System.Drawing.Size(122, 17);
             this.OffensiveMessagesCheck.TabIndex = 25;
             this.OffensiveMessagesCheck.Text = "Offensive Messages";
             this.OffensiveMessagesCheck.UseVisualStyleBackColor = true;
@@ -379,10 +386,10 @@ namespace UI
             // MissingTextCheck
             // 
             this.MissingTextCheck.AutoSize = true;
-            this.MissingTextCheck.Location = new System.Drawing.Point(25, 406);
-            this.MissingTextCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MissingTextCheck.Location = new System.Drawing.Point(19, 330);
+            this.MissingTextCheck.Margin = new System.Windows.Forms.Padding(2);
             this.MissingTextCheck.Name = "MissingTextCheck";
-            this.MissingTextCheck.Size = new System.Drawing.Size(104, 20);
+            this.MissingTextCheck.Size = new System.Drawing.Size(85, 17);
             this.MissingTextCheck.TabIndex = 26;
             this.MissingTextCheck.Text = "Missing Text";
             this.MissingTextCheck.UseVisualStyleBackColor = true;
@@ -391,10 +398,10 @@ namespace UI
             // TooHardToUnderstandCheck
             // 
             this.TooHardToUnderstandCheck.AutoSize = true;
-            this.TooHardToUnderstandCheck.Location = new System.Drawing.Point(195, 458);
-            this.TooHardToUnderstandCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TooHardToUnderstandCheck.Location = new System.Drawing.Point(146, 372);
+            this.TooHardToUnderstandCheck.Margin = new System.Windows.Forms.Padding(2);
             this.TooHardToUnderstandCheck.Name = "TooHardToUnderstandCheck";
-            this.TooHardToUnderstandCheck.Size = new System.Drawing.Size(180, 20);
+            this.TooHardToUnderstandCheck.Size = new System.Drawing.Size(145, 17);
             this.TooHardToUnderstandCheck.TabIndex = 27;
             this.TooHardToUnderstandCheck.Text = "Too Hard To Understand";
             this.TooHardToUnderstandCheck.UseVisualStyleBackColor = true;
@@ -403,10 +410,10 @@ namespace UI
             // UnreadableTextCheck
             // 
             this.UnreadableTextCheck.AutoSize = true;
-            this.UnreadableTextCheck.Location = new System.Drawing.Point(25, 432);
-            this.UnreadableTextCheck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.UnreadableTextCheck.Location = new System.Drawing.Point(19, 351);
+            this.UnreadableTextCheck.Margin = new System.Windows.Forms.Padding(2);
             this.UnreadableTextCheck.Name = "UnreadableTextCheck";
-            this.UnreadableTextCheck.Size = new System.Drawing.Size(130, 20);
+            this.UnreadableTextCheck.Size = new System.Drawing.Size(105, 17);
             this.UnreadableTextCheck.TabIndex = 28;
             this.UnreadableTextCheck.Text = "Unreadable Text";
             this.UnreadableTextCheck.UseVisualStyleBackColor = true;
@@ -414,10 +421,10 @@ namespace UI
             // 
             // SelectAPKfile
             // 
-            this.SelectAPKfile.Location = new System.Drawing.Point(12, 25);
-            this.SelectAPKfile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SelectAPKfile.Location = new System.Drawing.Point(9, 20);
+            this.SelectAPKfile.Margin = new System.Windows.Forms.Padding(2);
             this.SelectAPKfile.Name = "SelectAPKfile";
-            this.SelectAPKfile.Size = new System.Drawing.Size(188, 23);
+            this.SelectAPKfile.Size = new System.Drawing.Size(141, 19);
             this.SelectAPKfile.TabIndex = 29;
             this.SelectAPKfile.Text = "Select APK file";
             this.SelectAPKfile.UseVisualStyleBackColor = true;
@@ -425,10 +432,10 @@ namespace UI
             // 
             // RunDroidBot
             // 
-            this.RunDroidBot.Location = new System.Drawing.Point(12, 53);
-            this.RunDroidBot.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.RunDroidBot.Location = new System.Drawing.Point(9, 43);
+            this.RunDroidBot.Margin = new System.Windows.Forms.Padding(2);
             this.RunDroidBot.Name = "RunDroidBot";
-            this.RunDroidBot.Size = new System.Drawing.Size(188, 23);
+            this.RunDroidBot.Size = new System.Drawing.Size(141, 19);
             this.RunDroidBot.TabIndex = 30;
             this.RunDroidBot.Text = "Run DroidBot";
             this.RunDroidBot.UseVisualStyleBackColor = true;
@@ -437,27 +444,30 @@ namespace UI
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(236, 28);
+            this.label2.Location = new System.Drawing.Point(177, 23);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(109, 16);
+            this.label2.Size = new System.Drawing.Size(88, 13);
             this.label2.TabIndex = 31;
             this.label2.Text = "No APK selected";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(125, 116);
+            this.label3.Location = new System.Drawing.Point(94, 94);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(117, 16);
+            this.label3.Size = new System.Drawing.Size(95, 13);
             this.label3.TabIndex = 32;
             this.label3.Text = "Defects to analyze";
             // 
             // IsEmulator
             // 
             this.IsEmulator.AutoSize = true;
-            this.IsEmulator.Location = new System.Drawing.Point(19, 81);
+            this.IsEmulator.Location = new System.Drawing.Point(14, 66);
+            this.IsEmulator.Margin = new System.Windows.Forms.Padding(2);
             this.IsEmulator.Name = "IsEmulator";
-            this.IsEmulator.Size = new System.Drawing.Size(158, 20);
+            this.IsEmulator.Size = new System.Drawing.Size(130, 17);
             this.IsEmulator.TabIndex = 33;
             this.IsEmulator.Text = "Running on emulator?";
             this.IsEmulator.UseVisualStyleBackColor = true;
@@ -466,9 +476,10 @@ namespace UI
             // TimeoutCheckBox
             // 
             this.TimeoutCheckBox.AutoSize = true;
-            this.TimeoutCheckBox.Location = new System.Drawing.Point(217, 56);
+            this.TimeoutCheckBox.Location = new System.Drawing.Point(163, 46);
+            this.TimeoutCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.TimeoutCheckBox.Name = "TimeoutCheckBox";
-            this.TimeoutCheckBox.Size = new System.Drawing.Size(110, 20);
+            this.TimeoutCheckBox.Size = new System.Drawing.Size(91, 17);
             this.TimeoutCheckBox.TabIndex = 34;
             this.TimeoutCheckBox.Text = "Timeout after ";
             this.TimeoutCheckBox.UseVisualStyleBackColor = true;
@@ -476,9 +487,10 @@ namespace UI
             // 
             // SecondsTextbox
             // 
-            this.SecondsTextbox.Location = new System.Drawing.Point(331, 53);
+            this.SecondsTextbox.Location = new System.Drawing.Point(248, 43);
+            this.SecondsTextbox.Margin = new System.Windows.Forms.Padding(2);
             this.SecondsTextbox.Name = "SecondsTextbox";
-            this.SecondsTextbox.Size = new System.Drawing.Size(54, 22);
+            this.SecondsTextbox.Size = new System.Drawing.Size(42, 20);
             this.SecondsTextbox.TabIndex = 35;
             this.SecondsTextbox.TextChanged += new System.EventHandler(this.SecondsTextbox_TextChanged);
             this.SecondsTextbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SecondsTextbox_KeyPress);
@@ -486,17 +498,79 @@ namespace UI
             // secondsLabel
             // 
             this.secondsLabel.AutoSize = true;
-            this.secondsLabel.Location = new System.Drawing.Point(391, 57);
+            this.secondsLabel.Location = new System.Drawing.Point(293, 46);
+            this.secondsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.secondsLabel.Name = "secondsLabel";
-            this.secondsLabel.Size = new System.Drawing.Size(62, 16);
+            this.secondsLabel.Size = new System.Drawing.Size(50, 13);
             this.secondsLabel.TabIndex = 36;
             this.secondsLabel.Text = "seconds.";
             // 
+            // DPIBox
+            // 
+            this.DPIBox.Location = new System.Drawing.Point(179, 63);
+            this.DPIBox.Margin = new System.Windows.Forms.Padding(2);
+            this.DPIBox.Name = "DPIBox";
+            this.DPIBox.Size = new System.Drawing.Size(30, 20);
+            this.DPIBox.TabIndex = 37;
+            this.DPIBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // WidthBox
+            // 
+            this.WidthBox.Location = new System.Drawing.Point(253, 65);
+            this.WidthBox.Margin = new System.Windows.Forms.Padding(2);
+            this.WidthBox.Name = "WidthBox";
+            this.WidthBox.Size = new System.Drawing.Size(36, 20);
+            this.WidthBox.TabIndex = 38;
+            // 
+            // HeightBox
+            // 
+            this.HeightBox.Location = new System.Drawing.Point(334, 64);
+            this.HeightBox.Margin = new System.Windows.Forms.Padding(2);
+            this.HeightBox.Name = "HeightBox";
+            this.HeightBox.Size = new System.Drawing.Size(32, 20);
+            this.HeightBox.TabIndex = 39;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(147, 67);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(28, 13);
+            this.label4.TabIndex = 40;
+            this.label4.Text = "DPI:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(212, 68);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 13);
+            this.label5.TabIndex = 41;
+            this.label5.Text = "Width:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(289, 68);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 13);
+            this.label6.TabIndex = 42;
+            this.label6.Text = "Height:";
+            // 
             // Analyzer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(783, 649);
+            this.ClientSize = new System.Drawing.Size(587, 527);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.HeightBox);
+            this.Controls.Add(this.WidthBox);
+            this.Controls.Add(this.DPIBox);
             this.Controls.Add(this.secondsLabel);
             this.Controls.Add(this.SecondsTextbox);
             this.Controls.Add(this.TimeoutCheckBox);
@@ -534,7 +608,7 @@ namespace UI
             this.Controls.Add(this.TooSmallControlCheck);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Analyzer";
             this.Text = "Analyzer";
             this.Load += new System.EventHandler(this.Analyzer_Load);
@@ -582,6 +656,12 @@ namespace UI
         private System.Windows.Forms.CheckBox TimeoutCheckBox;
         private System.Windows.Forms.TextBox SecondsTextbox;
         private System.Windows.Forms.Label secondsLabel;
+        private TextBox DPIBox;
+        private TextBox WidthBox;
+        private TextBox HeightBox;
+        private Label label4;
+        private Label label5;
+        private Label label6;
     }
 }
 

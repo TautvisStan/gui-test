@@ -25,7 +25,6 @@ public class AppChecker
 		}
 		
 		//new StatisticsManager().saveAppInfo(context);
-		System.out.println("checking " + appName.getName());
 		System.out.println("found states " + context.getStates().size());
 		for (State state : context.getStates())
 		{

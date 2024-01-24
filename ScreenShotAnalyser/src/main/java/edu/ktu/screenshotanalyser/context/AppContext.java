@@ -25,9 +25,8 @@ public class AppContext
 		
 		for (var testDevice : testDevices)
 		{
-			System.out.println("checking device path" + testDevice.getFolder().getAbsolutePath() + "/" + appFolder.getName() + "/states/");
-			var stateFiles = new File(testDevice.getFolder().getAbsolutePath() + "/" + appFolder.getName() + "/states/").listFiles(pathelement -> pathelement.getAbsolutePath().endsWith("." + stateFileExtension));
-			System.out.println(testDevice.getFolder().getAbsolutePath() + "/" + appFolder.getName() + "/states/");
+			//System.out.println("checking device path " + testDevice.getFolder().getAbsolutePath() + "/states/");
+			var stateFiles = new File(testDevice.getFolder().getAbsolutePath() + "/" /*+ appFolder.getName()*/ + "/states/").listFiles(pathelement -> pathelement.getAbsolutePath().endsWith("." + stateFileExtension));
 			if (null != stateFiles)
 			{
 				for (var stateFile : stateFiles)

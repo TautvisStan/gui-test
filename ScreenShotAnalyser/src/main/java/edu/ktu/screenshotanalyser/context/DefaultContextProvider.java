@@ -12,22 +12,26 @@ public class DefaultContextProvider
 	{
 		this.dataFolder = dataFolder;
 		this.systemContext = new SystemContext();
+	//	System.out.println(new File(dataFolder.getAbsolutePath() + "/dev.txt"));
+		if (new File(dataFolder.getAbsolutePath() + "/dev.txt").exists())
+		{
+			this.testDevices.add(new TestDevice(dataFolder));
+		}
 		
-		for (var testDeviceFolder : this.dataFolder.listFiles(File::isDirectory))
+	/*	for (var testDeviceFolder : this.dataFolder.listFiles(File::isDirectory))
 		{
 			if (new File(testDeviceFolder.getAbsoluteFile() + "/dev.txt").exists())
 			{
 				this.testDevices.add(new TestDevice(testDeviceFolder));
 			}
-		}
+		}*/
 	}
 
 	public AppContext getContext(File appFolder) throws IOException
 	{
-		System.out.println(appFolder);
-		System.out.println(this.dataFolder);
-		System.out.println(this.testDevices.size());
-		System.out.println(this.systemContext);
+		//System.out.println("Apps folder " + appFolder);
+		//System.out.println("Data folder " + this.dataFolder);
+		//System.out.println("test devices size " + this.testDevices.size());
 		return new AppContext(appFolder, this.dataFolder, this.testDevices, this.systemContext);
 	}
 

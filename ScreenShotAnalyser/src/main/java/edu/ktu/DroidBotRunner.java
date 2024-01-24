@@ -7,6 +7,11 @@ import java.io.FileFilter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.ExecutionException;
@@ -51,7 +56,7 @@ public class DroidBotRunner
 			}
 		}
 
-		public static void runDroidBot(File folder, File apkFile, boolean emulator, int timeoutseconds) throws InterruptedException, ExecutionException, IOException
+		public static void runDroidBot(File folder, File apkFile, int DPI, int Width, int Height, boolean emulator, int timeoutseconds) throws InterruptedException, ExecutionException, IOException
 		{
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");  
 			LocalDateTime now = LocalDateTime.now(); 
@@ -81,6 +86,11 @@ public class DroidBotRunner
 
 				
 			}
+			Files.copy(apkFile.toPath(), new File(resultsFolder + "/app.apk").toPath(), StandardCopyOption.REPLACE_EXISTING);
+			
+			List<String> lines = Arrays.asList("dpi: " + DPI, "width: " + Width, "height: " + Height);
+			Path file = Paths.get(resultsFolder + "/dev.txt");
+			Files.write(file, lines, StandardCharsets.UTF_8);
 
 			System.out.println("===== running " + apkFile.getName());
 
@@ -105,11 +115,11 @@ public class DroidBotRunner
 				String command = "python \"" + folder.getAbsolutePath() + "\\droidbot\\start.py\" -a \"" + apkFile.getAbsolutePath().replaceAll("[ ]", "\\ ") + "\" -o \"" + resultsFolder.getAbsolutePath().replaceAll("[ ]", "\\ ") + "\" -keep_env -ignore_ad";
 				if(emulator == true)
 				{
-					command+= " -is_emulator";
+					command+= " -is_emulator ";
 				}
 				if(timeoutseconds != 0)
 				{
-					command+= "-timeout " + timeoutseconds;
+					command+= "-timeout " + timeoutseconds + " ";
 				}
 				
 				Process p = Runtime.getRuntime().exec(command);
